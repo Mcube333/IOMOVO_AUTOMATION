@@ -1,0 +1,9 @@
+<!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd">
+<suite name="IoMoVo Test Suite">
+    <test name="Login Page Tests">
+        <parameter name="browser" value="chrome"/>
+        <classes>
+            <class name="com.iomovo.dashboardtests.LoginPageTest"/>
+        </classes>
+    </test>
+</suite>
