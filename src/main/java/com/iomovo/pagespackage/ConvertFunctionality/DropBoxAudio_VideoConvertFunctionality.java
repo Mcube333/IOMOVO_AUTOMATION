@@ -11,12 +11,9 @@ import com.iomovo.basepackage.BaseClass;
 
 public class DropBoxAudio_VideoConvertFunctionality extends BaseClass {
 
-	WebDriver driver;
-	WebDriverWait wait;
-
 	public DropBoxAudio_VideoConvertFunctionality(WebDriver driver, WebDriverWait wait) {
-		this.driver = driver;
-		this.wait = wait;
+		BaseClass.driver = driver;
+        BaseClass.wait = wait;
 	}
 
 	String automationFolder = "//span[text()='automationfolder']";

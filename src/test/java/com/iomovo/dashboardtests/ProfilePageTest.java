@@ -1,22 +1,12 @@
 package com.iomovo.dashboardtests;
 
-import java.io.FileNotFoundException;
-import java.time.Duration;
-import org.openqa.selenium.chrome.ChromeDriver;
-import org.openqa.selenium.chrome.ChromeOptions;
-import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.AfterSuite;
-import org.testng.annotations.BeforeMethod;
-import org.testng.annotations.BeforeSuite;
 import org.testng.annotations.Test;
 
-import com.iomovo.basepackage.BaseClass;
 import com.iomovo.basetest.BaseTestClass;
 import com.iomovo.pagespackage.DashboardFunctionality.LoginPage;
 import com.iomovo.pagespackage.DashboardFunctionality.ProfilePage;
-
-import io.github.bonigarcia.wdm.WebDriverManager;
 
 
 public class ProfilePageTest extends BaseTestClass 
@@ -83,7 +73,7 @@ public class ProfilePageTest extends BaseTestClass
 	public void verifyUserAbleToSignOutFromCurrentAccountTest() {
 		try {
 			LoginPage login = new LoginPage(driver, wait);
-			login.Login();
+			login.loginMethod();
 
 			ProfilePage profile = new ProfilePage(driver, wait);
 			profile.verifyUserAbleToSignOutFromCurrentAccountTest();
@@ -97,7 +87,7 @@ public class ProfilePageTest extends BaseTestClass
 	public void verifyUserAbleToViewAccountTest() {
 		try {
 			LoginPage login = new LoginPage(driver, wait);
-			login.Login();
+			login.loginMethod();
 
 			ProfilePage profile = new ProfilePage(driver, wait);
 			profile.verifyUserAbleToViewAccountTest();
@@ -111,7 +101,7 @@ public class ProfilePageTest extends BaseTestClass
 	public void verifyUserAbleToDeleteOrChangeTheProfilePicFromUserAccountWithWebCamTest() {
 		try {
 			LoginPage login = new LoginPage(driver, wait);
-			login.Login();
+			login.loginMethod();
 
 			ProfilePage profile = new ProfilePage(driver, wait);
 			profile.verifyUserAbleToDeleteOrChangeTheProfilePicFromUserAccountWithWebCamTest();
@@ -125,7 +115,7 @@ public class ProfilePageTest extends BaseTestClass
 	public void verifyUserAbleToDeleteOrChangeTheProfilePicFromUserAccountWithUploadImageTest() {
 		try {
 			LoginPage login = new LoginPage(driver, wait);
-			login.Login();
+			login.loginMethod();
 
 			ProfilePage profile = new ProfilePage(driver, wait);
 			profile.verifyUserAbleToDeleteOrChangeTheProfilePicFromUserAccountWithUploadImageTest();
@@ -139,7 +129,7 @@ public class ProfilePageTest extends BaseTestClass
 	public void verifyUserAbleToUpdateTheProfileDetailsFromUserAccountTest() {
 		try {
 			LoginPage login = new LoginPage(driver, wait);
-			login.Login();
+			login.loginMethod();
 
 			ProfilePage profile = new ProfilePage(driver, wait);
 			profile.verifyUserAbleToUpdateTheProfileDetailsFromUserAccountTest();
@@ -153,7 +143,7 @@ public class ProfilePageTest extends BaseTestClass
 	public void verifyUserAbleToUpdateTheAddressDetailsFromUserAccountTest() {
 		try {
 			LoginPage login = new LoginPage(driver, wait);
-			login.Login();
+			login.loginMethod();
 
 			ProfilePage profile = new ProfilePage(driver, wait);
 			profile.verifyUserAbleToUpdateTheAddressDetailsFromUserAccountTest();
@@ -167,7 +157,7 @@ public class ProfilePageTest extends BaseTestClass
 	public void verifyUserIsAbleToDeactivateAccountTestTest() {
 		try {
 			LoginPage login = new LoginPage(driver, wait);
-			login.Login();
+			login.loginMethod();
 
 			ProfilePage profile = new ProfilePage(driver, wait);
 			profile.verifyUserIsAbleToDeactivateAccountTestTest();
@@ -181,7 +171,7 @@ public class ProfilePageTest extends BaseTestClass
 	public void verifyUserIsRedirectedToSupportPageFromProfileTest() {
 		try {
 			LoginPage login = new LoginPage(driver, wait);
-			login.Login();
+			login.loginMethod();
 
 			ProfilePage profile = new ProfilePage(driver, wait);
 			profile.verifyUserIsRedirectedToSupportPageFromProfileTest();
@@ -195,7 +185,7 @@ public class ProfilePageTest extends BaseTestClass
 	public void verifyUserAbleToSwitchAccountTest() {
 		try {
 			LoginPage login = new LoginPage(driver, wait);
-			login.Login();
+			login.loginMethod();
 
 			ProfilePage profile3 = new ProfilePage(driver, wait);
 			profile3.verifyUserAbleToSwitchAccountTest();
@@ -209,7 +199,7 @@ public class ProfilePageTest extends BaseTestClass
 	public void verifyUserAbleToSignInFromDifferentAccountTest() {
 		try {
 			LoginPage login = new LoginPage(driver, wait);
-			login.Login();
+			login.loginMethod();
 
 			ProfilePage profile = new ProfilePage(driver, wait);
 			profile.verifyUserAbleToSignInFromDifferentAccountTest();
@@ -223,7 +213,7 @@ public class ProfilePageTest extends BaseTestClass
 	public void verifyUserIsRedirectedToOtherTabsPageFromViewAccountPageTest() {
 		try {
 			LoginPage login = new LoginPage(driver, wait);
-			login.Login();
+			login.loginMethod();
 
 			ProfilePage profile = new ProfilePage(driver, wait);
 			profile.verifyUserIsRedirectedToOtherTabsPageFromViewAccountPageTest();

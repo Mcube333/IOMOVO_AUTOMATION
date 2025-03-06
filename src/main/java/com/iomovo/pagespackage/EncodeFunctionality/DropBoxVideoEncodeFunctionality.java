@@ -13,8 +13,8 @@ public class DropBoxVideoEncodeFunctionality extends BaseClass{
 	WebDriverWait wait;
 
 	public DropBoxVideoEncodeFunctionality(WebDriver driver, WebDriverWait wait) {
-		this.driver = driver;
-		this.wait = wait;
+		BaseClass.driver = driver;
+        BaseClass.wait = wait;
 	}
 
 	String automationFolder = "//span[text()='automationfolder']";

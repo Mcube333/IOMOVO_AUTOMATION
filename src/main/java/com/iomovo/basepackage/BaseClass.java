@@ -43,6 +43,12 @@ public class BaseClass {
 	public static Properties prop;
 	public static int numOfAttemptsToFindWebElement;
 	public static String projectDirectory = System.getProperty("user.dir");
+	
+	public static void initializeExtentReport(String testName) {
+        if (extReport == null) {
+            extReport = extentReportsClass.startReport(testName);
+        }
+    }
 
 	// All Variables which fetches data from config.properties file
 	public static String strUrl = "";
@@ -74,6 +80,7 @@ public class BaseClass {
 	 * @param passReportMessage
 	 */
 	public static void logPassStepInExtentReport(String passReportMessage) {
+		initializeExtentReport("Automation Test");
 		extReport.log(LogStatus.PASS, passReportMessage);
 		System.out.println("\n**************************************************");
 		System.out.println(passReportMessage);
@@ -87,6 +94,7 @@ public class BaseClass {
 	 * @param reportMessage
 	 */
 	public static void logPassStepInExtentReportWithScreenshot(String reportMessage) {
+		initializeExtentReport("Automation Test");
 		extReport.log(LogStatus.PASS, reportMessage);
 		extReport.log(LogStatus.PASS, extReport.addScreenCapture(extentReportsClass.capture(driver)));
 		System.out.println("\n**************************************************");
@@ -101,6 +109,7 @@ public class BaseClass {
 	 * @param reportMessage
 	 */
 	public static void logFailStepInExtentReport(String reportMessage) {
+		initializeExtentReport("Automation Test");
 		extReport.log(LogStatus.FAIL, reportMessage);
 		extReport.log(LogStatus.FAIL, extReport.addScreenCapture(extentReportsClass.capture(driver)));
 		System.err.println("\n**************************************************");
@@ -115,6 +124,7 @@ public class BaseClass {
 	 * @param reportMessage
 	 */
 	public static void logInfoStepInExtentReport(String reportMessage) {
+		initializeExtentReport("Automation Test");
 		extReport.log(LogStatus.INFO, reportMessage);
 		System.out.println("\n**************************************************");
 		System.out.println(reportMessage);
@@ -128,6 +138,7 @@ public class BaseClass {
 	 * @param consoleOutputMessage
 	 */
 	public static void logConsoleOutputMessage(String consoleOutputMessage) {
+		initializeExtentReport("Automation Test");
 		System.out.println("\n**************************************************");
 		System.out.println(consoleOutputMessage);
 		System.out.println("**************************************************\n");

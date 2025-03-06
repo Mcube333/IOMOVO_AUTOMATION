@@ -15,9 +15,11 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 import com.iomovo.basepackage.BaseClass;
 
 public class IoCloudCenterPanel extends BaseClass {
-
-	WebDriver driver;
-	WebDriverWait wait;
+	
+	public IoCloudCenterPanel(WebDriver driver, WebDriverWait wait) {
+		BaseClass.driver = driver;
+        BaseClass.wait = wait;
+	}
 
 	// All X-Paths after selecting a file in IoCloud.
 	String leftPanelHomeButton = "//span[text()=' Home']";
@@ -212,15 +214,13 @@ public class IoCloudCenterPanel extends BaseClass {
 	String pdfFileName = "sample.pdf";
 	String videoFileName = "One Planet.mp4";
 
-	public IoCloudCenterPanel(WebDriver driver, WebDriverWait wait) {
-		this.driver = driver;
-		this.wait = wait;	}
 
 	public void verifyUserAbleToAddFolderFromIOCloudMyFilesFunctionalityTest(String folderName) throws Exception {
 		try {
 			logConsoleOutputMessage("strUrl: " + strUrl);
 			logPassStepInExtentReport("TC 001: verify User Able To Add Folder From Left Panel MyFiles Functionality Test");
-			doubleClickUsingActionClass(leftPanelHomeButton);
+//			doubleClickUsingActionClass(leftPanelHomeButton);
+			clickWebElement(leftpanelIOCloudButton);
 			clickWebElement(leftPanelIOCloud_MyFiles);
 			logPassStepInExtentReport("My Files Button Clicked Successfully");
 			explicitWaitInSeconds(3);
@@ -251,7 +251,8 @@ public class IoCloudCenterPanel extends BaseClass {
 		try {
 			logConsoleOutputMessage("strUrl: " + strUrl);
 			logPassStepInExtentReport("TC 002: verify User Able To Add Project From Left Panel MyFiles Functionality Test");
-			doubleClickUsingActionClass(leftPanelHomeButton);
+//			doubleClickUsingActionClass(leftPanelHomeButton);
+			clickWebElement(leftpanelIOCloudButton);
 			clickWebElement(leftPanelIOCloud_MyFiles);
 			logPassStepInExtentReport("My Files Button Clicked Successfully");
 			explicitWaitInSeconds(3);

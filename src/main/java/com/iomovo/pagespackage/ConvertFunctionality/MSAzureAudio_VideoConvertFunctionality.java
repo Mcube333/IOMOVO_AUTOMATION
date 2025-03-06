@@ -11,12 +11,9 @@ import com.iomovo.basepackage.BaseClass;
 
 public class MSAzureAudio_VideoConvertFunctionality extends BaseClass {
 
-	WebDriver driver;
-	WebDriverWait wait;
-
 	public MSAzureAudio_VideoConvertFunctionality(WebDriver driver, WebDriverWait wait) {
-		this.driver = driver;
-		this.wait = wait;
+		BaseClass.driver = driver;
+        BaseClass.wait = wait;
 	}
 
 	String loadmoreButton = "//span[contains(text(),'Load More')]";

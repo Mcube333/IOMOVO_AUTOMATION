@@ -9,12 +9,9 @@ import com.iomovo.basepackage.BaseClass;
 
 public class HomePageCenterPanel extends BaseClass {
 
-	WebDriver driver;
-	WebDriverWait wait;
-
 	public HomePageCenterPanel(WebDriver driver, WebDriverWait wait) {
-		this.driver = driver;
-		this.wait = wait;
+		BaseClass.driver = driver;
+        BaseClass.wait = wait;
 	}
 
 	// All X-paths of Home Page TOP SECTION.

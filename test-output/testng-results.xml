@@ -1,17 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testng-results ignored="0" total="6" passed="5" failed="1" skipped="0">
+<testng-results ignored="6" total="7" passed="1" failed="0" skipped="0">
   <reporter-output>
   </reporter-output>
-  <suite started-at="2025-03-06T06:29:24 IST" name="IoMoVo Test Suite" finished-at="2025-03-06T06:33:41 IST" duration-ms="256252">
+  <suite started-at="2025-03-07T01:55:18 IST" name="Default suite" finished-at="2025-03-07T01:56:18 IST" duration-ms="59316">
     <groups>
     </groups>
-    <test started-at="2025-03-06T06:29:24 IST" name="Login Page Tests" finished-at="2025-03-06T06:33:41 IST" duration-ms="256252">
-      <class name="com.iomovo.dashboardtests.LoginPageTest">
-        <test-method is-config="true" signature="beforeSuite()[pri:0, instance:com.iomovo.dashboardtests.LoginPageTest@36ebc363]" started-at="2025-03-06T06:29:24 IST" name="beforeSuite" finished-at="2025-03-06T06:29:24 IST" duration-ms="162" status="PASS">
+    <test started-at="2025-03-07T01:55:18 IST" name="Default test" finished-at="2025-03-07T01:56:18 IST" duration-ms="59316">
+      <class name="com.iomovo.dashboardtests.HomePageLeftPanelTest">
+        <test-method is-config="true" signature="beforeSuite()[pri:0, instance:com.iomovo.dashboardtests.HomePageLeftPanelTest@61d6015a]" started-at="2025-03-07T01:55:18 IST" name="beforeSuite" finished-at="2025-03-07T01:55:18 IST" duration-ms="90" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- beforeSuite -->
-        <test-method is-config="true" signature="testSetUp(java.lang.String)[pri:0, instance:com.iomovo.dashboardtests.LoginPageTest@36ebc363]" started-at="2025-03-06T06:29:24 IST" name="testSetUp" finished-at="2025-03-06T06:29:26 IST" duration-ms="1374" status="PASS">
+        <test-method is-config="true" signature="testSetUp(java.lang.String)[pri:0, instance:com.iomovo.dashboardtests.HomePageLeftPanelTest@61d6015a]" started-at="2025-03-07T01:55:18 IST" name="testSetUp" finished-at="2025-03-07T01:55:20 IST" duration-ms="1315" status="PASS">
           <params>
             <param index="0">
               <value>
@@ -22,217 +22,26 @@
           <reporter-output>
           </reporter-output>
         </test-method> <!-- testSetUp -->
-        <test-method is-config="true" signature="setUp()[pri:0, instance:com.iomovo.dashboardtests.LoginPageTest@36ebc363]" started-at="2025-03-06T06:29:26 IST" name="setUp" finished-at="2025-03-06T06:29:26 IST" duration-ms="2" status="PASS">
+        <test-method is-config="true" signature="setUp()[pri:0, instance:com.iomovo.dashboardtests.HomePageLeftPanelTest@61d6015a]" started-at="2025-03-07T01:55:20 IST" name="setUp" finished-at="2025-03-07T01:55:20 IST" duration-ms="3" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- setUp -->
-        <test-method signature="Login()[pri:0, instance:com.iomovo.dashboardtests.LoginPageTest@36ebc363]" started-at="2025-03-06T06:29:26 IST" name="Login" finished-at="2025-03-06T06:30:06 IST" duration-ms="40113" status="PASS">
+        <test-method signature="verifyUserIsRedirectedToMyFileFromLeftPanelTest()[pri:0, instance:com.iomovo.dashboardtests.HomePageLeftPanelTest@61d6015a]" started-at="2025-03-07T01:55:20 IST" name="verifyUserIsRedirectedToMyFileFromLeftPanelTest" finished-at="2025-03-07T01:56:18 IST" duration-ms="57781" status="PASS">
           <reporter-output>
           </reporter-output>
-        </test-method> <!-- Login -->
-        <test-method is-config="true" signature="tearDown(org.testng.ITestResult)[pri:0, instance:com.iomovo.dashboardtests.LoginPageTest@36ebc363]" started-at="2025-03-06T06:30:06 IST" name="tearDown" finished-at="2025-03-06T06:30:06 IST" duration-ms="170" status="PASS">
+        </test-method> <!-- verifyUserIsRedirectedToMyFileFromLeftPanelTest -->
+        <test-method is-config="true" signature="tearDown(org.testng.ITestResult)[pri:0, instance:com.iomovo.dashboardtests.HomePageLeftPanelTest@61d6015a]" started-at="2025-03-07T01:56:18 IST" name="tearDown" finished-at="2025-03-07T01:56:18 IST" duration-ms="199" status="PASS">
           <params>
             <param index="0">
               <value>
-                <![CDATA[[TestResult name=Login status=SUCCESS method=LoginPageTest.Login()[pri:0, instance:com.iomovo.dashboardtests.LoginPageTest@36ebc363] output={null}]]]>
+                <![CDATA[[TestResult name=verifyUserIsRedirectedToMyFileFromLeftPanelTest status=SUCCESS method=HomePageLeftPanelTest.verifyUserIsRedirectedToMyFileFromLeftPanelTest()[pri:0, instance:com.iomovo.dashboardtests.HomePageLeftPanelTest@61d6015a] output={null}]]]>
               </value>
             </param>
           </params>
           <reporter-output>
           </reporter-output>
         </test-method> <!-- tearDown -->
-        <test-method is-config="true" signature="testSetUp(java.lang.String)[pri:0, instance:com.iomovo.dashboardtests.LoginPageTest@36ebc363]" started-at="2025-03-06T06:30:06 IST" name="testSetUp" finished-at="2025-03-06T06:30:07 IST" duration-ms="688" status="PASS">
-          <params>
-            <param index="0">
-              <value>
-                <![CDATA[chrome]]>
-              </value>
-            </param>
-          </params>
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- testSetUp -->
-        <test-method signature="LoginTest()[pri:0, instance:com.iomovo.dashboardtests.LoginPageTest@36ebc363]" started-at="2025-03-06T06:30:07 IST" name="LoginTest" finished-at="2025-03-06T06:30:52 IST" duration-ms="45259" status="PASS">
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- LoginTest -->
-        <test-method is-config="true" signature="setUp()[pri:0, instance:com.iomovo.dashboardtests.LoginPageTest@36ebc363]" started-at="2025-03-06T06:30:07 IST" name="setUp" finished-at="2025-03-06T06:30:07 IST" duration-ms="0" status="PASS">
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- setUp -->
-        <test-method is-config="true" signature="tearDown(org.testng.ITestResult)[pri:0, instance:com.iomovo.dashboardtests.LoginPageTest@36ebc363]" started-at="2025-03-06T06:30:52 IST" name="tearDown" finished-at="2025-03-06T06:30:52 IST" duration-ms="158" status="PASS">
-          <params>
-            <param index="0">
-              <value>
-                <![CDATA[[TestResult name=LoginTest status=SUCCESS method=LoginPageTest.LoginTest()[pri:0, instance:com.iomovo.dashboardtests.LoginPageTest@36ebc363] output={null}]]]>
-              </value>
-            </param>
-          </params>
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- tearDown -->
-        <test-method is-config="true" signature="testSetUp(java.lang.String)[pri:0, instance:com.iomovo.dashboardtests.LoginPageTest@36ebc363]" started-at="2025-03-06T06:30:52 IST" name="testSetUp" finished-at="2025-03-06T06:30:53 IST" duration-ms="657" status="PASS">
-          <params>
-            <param index="0">
-              <value>
-                <![CDATA[chrome]]>
-              </value>
-            </param>
-          </params>
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- testSetUp -->
-        <test-method is-config="true" signature="setUp()[pri:0, instance:com.iomovo.dashboardtests.LoginPageTest@36ebc363]" started-at="2025-03-06T06:30:53 IST" name="setUp" finished-at="2025-03-06T06:30:53 IST" duration-ms="1" status="PASS">
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- setUp -->
-        <test-method signature="ioMoVoAppTest()[pri:0, instance:com.iomovo.dashboardtests.LoginPageTest@36ebc363]" started-at="2025-03-06T06:30:53 IST" name="ioMoVoAppTest" finished-at="2025-03-06T06:32:51 IST" duration-ms="117970" status="FAIL">
-          <exception class="java.lang.AssertionError">
-            <message>
-              <![CDATA[expected [true] but found [false]]]>
-            </message>
-            <full-stacktrace>
-              <![CDATA[java.lang.AssertionError: expected [true] but found [false]
-at org.testng.Assert.fail(Assert.java:99)
-at org.testng.Assert.failNotEquals(Assert.java:1037)
-at org.testng.Assert.assertTrue(Assert.java:45)
-at org.testng.Assert.assertTrue(Assert.java:55)
-at com.iomovo.pagespackage.DashboardFunctionality.LoginPage.VerifyUserAbleToLoginWithCorrectEmailIDAndWrongPasswordTest(LoginPage.java:404)
-at com.iomovo.dashboardtests.LoginPageTest.ioMoVoAppTest(LoginPageTest.java:148)
-at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:103)
-at java.base/java.lang.reflect.Method.invoke(Method.java:580)
-at org.testng.internal.MethodInvocationHelper.invokeMethod(MethodInvocationHelper.java:133)
-at org.testng.internal.TestInvoker.invokeMethod(TestInvoker.java:598)
-at org.testng.internal.TestInvoker.invokeTestMethod(TestInvoker.java:173)
-at org.testng.internal.MethodRunner.runInSequence(MethodRunner.java:46)
-at org.testng.internal.TestInvoker$MethodInvocationAgent.invoke(TestInvoker.java:824)
-at org.testng.internal.TestInvoker.invokeTestMethods(TestInvoker.java:146)
-at org.testng.internal.TestMethodWorker.invokeTestMethods(TestMethodWorker.java:146)
-at org.testng.internal.TestMethodWorker.run(TestMethodWorker.java:128)
-at java.base/java.util.ArrayList.forEach(ArrayList.java:1596)
-at org.testng.TestRunner.privateRun(TestRunner.java:794)
-at org.testng.TestRunner.run(TestRunner.java:596)
-at org.testng.SuiteRunner.runTest(SuiteRunner.java:377)
-at org.testng.SuiteRunner.runSequentially(SuiteRunner.java:371)
-at org.testng.SuiteRunner.privateRun(SuiteRunner.java:332)
-at org.testng.SuiteRunner.run(SuiteRunner.java:276)
-at org.testng.SuiteRunnerWorker.runSuite(SuiteRunnerWorker.java:53)
-at org.testng.SuiteRunnerWorker.run(SuiteRunnerWorker.java:96)
-at org.testng.TestNG.runSuitesSequentially(TestNG.java:1212)
-at org.testng.TestNG.runSuitesLocally(TestNG.java:1134)
-at org.testng.TestNG.runSuites(TestNG.java:1063)
-at org.testng.TestNG.run(TestNG.java:1031)
-at org.testng.remote.AbstractRemoteTestNG.run(AbstractRemoteTestNG.java:115)
-at org.testng.remote.RemoteTestNG.initAndRun(RemoteTestNG.java:293)
-at org.testng.remote.RemoteTestNG.main(RemoteTestNG.java:91)
-]]>
-            </full-stacktrace>
-          </exception> <!-- java.lang.AssertionError -->
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- ioMoVoAppTest -->
-        <test-method is-config="true" signature="tearDown(org.testng.ITestResult)[pri:0, instance:com.iomovo.dashboardtests.LoginPageTest@36ebc363]" started-at="2025-03-06T06:32:51 IST" name="tearDown" finished-at="2025-03-06T06:32:51 IST" duration-ms="158" status="PASS">
-          <params>
-            <param index="0">
-              <value>
-                <![CDATA[[TestResult name=ioMoVoAppTest status=FAILURE method=LoginPageTest.ioMoVoAppTest()[pri:0, instance:com.iomovo.dashboardtests.LoginPageTest@36ebc363] output={null}]]]>
-              </value>
-            </param>
-          </params>
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- tearDown -->
-        <test-method is-config="true" signature="testSetUp(java.lang.String)[pri:0, instance:com.iomovo.dashboardtests.LoginPageTest@36ebc363]" started-at="2025-03-06T06:32:51 IST" name="testSetUp" finished-at="2025-03-06T06:32:52 IST" duration-ms="672" status="PASS">
-          <params>
-            <param index="0">
-              <value>
-                <![CDATA[chrome]]>
-              </value>
-            </param>
-          </params>
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- testSetUp -->
-        <test-method signature="verifyAllElementsArePresentInLoginPageTest()[pri:0, instance:com.iomovo.dashboardtests.LoginPageTest@36ebc363]" started-at="2025-03-06T06:32:52 IST" name="verifyAllElementsArePresentInLoginPageTest" finished-at="2025-03-06T06:33:07 IST" duration-ms="15823" status="PASS">
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- verifyAllElementsArePresentInLoginPageTest -->
-        <test-method is-config="true" signature="setUp()[pri:0, instance:com.iomovo.dashboardtests.LoginPageTest@36ebc363]" started-at="2025-03-06T06:32:52 IST" name="setUp" finished-at="2025-03-06T06:32:52 IST" duration-ms="0" status="PASS">
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- setUp -->
-        <test-method is-config="true" signature="tearDown(org.testng.ITestResult)[pri:0, instance:com.iomovo.dashboardtests.LoginPageTest@36ebc363]" started-at="2025-03-06T06:33:07 IST" name="tearDown" finished-at="2025-03-06T06:33:08 IST" duration-ms="147" status="PASS">
-          <params>
-            <param index="0">
-              <value>
-                <![CDATA[[TestResult name=verifyAllElementsArePresentInLoginPageTest status=SUCCESS method=LoginPageTest.verifyAllElementsArePresentInLoginPageTest()[pri:0, instance:com.iomovo.dashboardtests.LoginPageTest@36ebc363] output={null}]]]>
-              </value>
-            </param>
-          </params>
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- tearDown -->
-        <test-method is-config="true" signature="testSetUp(java.lang.String)[pri:0, instance:com.iomovo.dashboardtests.LoginPageTest@36ebc363]" started-at="2025-03-06T06:33:08 IST" name="testSetUp" finished-at="2025-03-06T06:33:08 IST" duration-ms="657" status="PASS">
-          <params>
-            <param index="0">
-              <value>
-                <![CDATA[chrome]]>
-              </value>
-            </param>
-          </params>
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- testSetUp -->
-        <test-method is-config="true" signature="setUp()[pri:0, instance:com.iomovo.dashboardtests.LoginPageTest@36ebc363]" started-at="2025-03-06T06:33:08 IST" name="setUp" finished-at="2025-03-06T06:33:08 IST" duration-ms="1" status="PASS">
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- setUp -->
-        <test-method signature="verifyUserIsRedirectedToIoMoVoPrivacyPolicyPageTest()[pri:0, instance:com.iomovo.dashboardtests.LoginPageTest@36ebc363]" started-at="2025-03-06T06:33:08 IST" name="verifyUserIsRedirectedToIoMoVoPrivacyPolicyPageTest" finished-at="2025-03-06T06:33:24 IST" duration-ms="16287" status="PASS">
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- verifyUserIsRedirectedToIoMoVoPrivacyPolicyPageTest -->
-        <test-method is-config="true" signature="tearDown(org.testng.ITestResult)[pri:0, instance:com.iomovo.dashboardtests.LoginPageTest@36ebc363]" started-at="2025-03-06T06:33:24 IST" name="tearDown" finished-at="2025-03-06T06:33:25 IST" duration-ms="149" status="PASS">
-          <params>
-            <param index="0">
-              <value>
-                <![CDATA[[TestResult name=verifyUserIsRedirectedToIoMoVoPrivacyPolicyPageTest status=SUCCESS method=LoginPageTest.verifyUserIsRedirectedToIoMoVoPrivacyPolicyPageTest()[pri:0, instance:com.iomovo.dashboardtests.LoginPageTest@36ebc363] output={null}]]]>
-              </value>
-            </param>
-          </params>
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- tearDown -->
-        <test-method is-config="true" signature="testSetUp(java.lang.String)[pri:0, instance:com.iomovo.dashboardtests.LoginPageTest@36ebc363]" started-at="2025-03-06T06:33:25 IST" name="testSetUp" finished-at="2025-03-06T06:33:25 IST" duration-ms="641" status="PASS">
-          <params>
-            <param index="0">
-              <value>
-                <![CDATA[chrome]]>
-              </value>
-            </param>
-          </params>
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- testSetUp -->
-        <test-method signature="verifyUserIsRedirectedToIoMoVoTermsPageTest()[pri:0, instance:com.iomovo.dashboardtests.LoginPageTest@36ebc363]" started-at="2025-03-06T06:33:25 IST" name="verifyUserIsRedirectedToIoMoVoTermsPageTest" finished-at="2025-03-06T06:33:40 IST" duration-ms="15131" status="PASS">
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- verifyUserIsRedirectedToIoMoVoTermsPageTest -->
-        <test-method is-config="true" signature="setUp()[pri:0, instance:com.iomovo.dashboardtests.LoginPageTest@36ebc363]" started-at="2025-03-06T06:33:25 IST" name="setUp" finished-at="2025-03-06T06:33:25 IST" duration-ms="0" status="PASS">
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- setUp -->
-        <test-method is-config="true" signature="tearDown(org.testng.ITestResult)[pri:0, instance:com.iomovo.dashboardtests.LoginPageTest@36ebc363]" started-at="2025-03-06T06:33:40 IST" name="tearDown" finished-at="2025-03-06T06:33:41 IST" duration-ms="162" status="PASS">
-          <params>
-            <param index="0">
-              <value>
-                <![CDATA[[TestResult name=verifyUserIsRedirectedToIoMoVoTermsPageTest status=SUCCESS method=LoginPageTest.verifyUserIsRedirectedToIoMoVoTermsPageTest()[pri:0, instance:com.iomovo.dashboardtests.LoginPageTest@36ebc363] output={null}]]]>
-              </value>
-            </param>
-          </params>
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- tearDown -->
-      </class> <!-- com.iomovo.dashboardtests.LoginPageTest -->
-    </test> <!-- Login Page Tests -->
-  </suite> <!-- IoMoVo Test Suite -->
+      </class> <!-- com.iomovo.dashboardtests.HomePageLeftPanelTest -->
+    </test> <!-- Default test -->
+  </suite> <!-- Default suite -->
 </testng-results>

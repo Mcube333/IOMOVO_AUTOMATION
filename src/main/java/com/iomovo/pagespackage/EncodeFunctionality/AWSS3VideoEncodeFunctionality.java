@@ -9,12 +9,9 @@ import com.iomovo.basepackage.BaseClass;
 
 public class AWSS3VideoEncodeFunctionality extends BaseClass{
 
-	WebDriver driver;
-	WebDriverWait wait;
-
 	public AWSS3VideoEncodeFunctionality(WebDriver driver, WebDriverWait wait) {
-		this.driver = driver;
-		this.wait = wait;
+		BaseClass.driver = driver;
+        BaseClass.wait = wait;
 	}
 
 	String automationFolder = "//a[text()='automationfolder']";

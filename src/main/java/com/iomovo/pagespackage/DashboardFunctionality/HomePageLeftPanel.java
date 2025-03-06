@@ -9,17 +9,14 @@ import com.iomovo.basepackage.BaseClass;
 
 public class HomePageLeftPanel extends BaseClass {
 
-	WebDriver driver;
-	WebDriverWait wait;
-
 	public HomePageLeftPanel(WebDriver driver, WebDriverWait wait) {
-		this.driver = driver;
-		this.wait = wait;
+		BaseClass.driver = driver;
+        BaseClass.wait = wait;
 	}
 
 	//All X-paths of Home Page LEFT PANEL.
 	String leftPanelHomeButton = "//span[text()=' Home']";
-	String leftPanelIOCloud = "//span[text()='ioCloud']";
+	String leftPanelIOCloud = "//li[contains(@class, 'MuiListItem-root') and @title='Digital Asset Management']";
 
 	String leftPanelIOCloud_MyFiles = "//div[text()='My Files']";
 	String myFilesPageConfirmation = "//a[text()='ioCloud']";
@@ -49,6 +46,7 @@ public class HomePageLeftPanel extends BaseClass {
 			logConsoleOutputMessage("strUrl: " + strUrl);
 			logPassStepInExtentReport("TC 001 : Verify User Is Redirected To My File From Left Panel Test");
 			refreshWebPage();
+			clickWebElement(leftPanelIOCloud);
 			clickWebElement(leftPanelIOCloud_MyFiles);
 			explicitWaitInSeconds(5);
 			logPassStepInExtentReport("MyFiles Button Clicked Successfully");
@@ -72,6 +70,7 @@ public class HomePageLeftPanel extends BaseClass {
 			logConsoleOutputMessage("strUrl: " + strUrl);
 			logPassStepInExtentReport("TC 002 : Verify User Is Redirected To Recent Files From Left Panel Test");
 			refreshWebPage();
+			clickWebElement(leftPanelIOCloud);
 			clickWebElement(leftPanelIOCloud_Recent);
 			explicitWaitInSeconds(5);
 			logPassStepInExtentReport("Recent Button Clicked Successfully");
@@ -95,6 +94,7 @@ public class HomePageLeftPanel extends BaseClass {
 			logConsoleOutputMessage("strUrl: " + strUrl);
 			logPassStepInExtentReport("TC 003 : Verify User Is Redirected To Shared With Me Section From Left Panel Test");
 			refreshWebPage();
+			clickWebElement(leftPanelIOCloud);
 			clickWebElement(leftPanelIOCloud_SharedWithMe);
 			explicitWaitInSeconds(5);
 			logPassStepInExtentReport("Shared With Me Button Clicked Successfully");
@@ -118,6 +118,7 @@ public class HomePageLeftPanel extends BaseClass {
 			logConsoleOutputMessage("strUrl: " + strUrl);
 			logPassStepInExtentReport("TC 004 : Verify User Is Redirected To Shared By Me Section From Left Panel Test");
 			refreshWebPage();
+			clickWebElement(leftPanelIOCloud);
 			clickWebElement(leftPanelIOCloud_SharedByMe);
 			explicitWaitInSeconds(5);
 			logPassStepInExtentReport("Shared By Me Button Clicked Successfully");
@@ -141,6 +142,7 @@ public class HomePageLeftPanel extends BaseClass {
 			logConsoleOutputMessage("strUrl: " + strUrl);
 			logPassStepInExtentReport("TC 005 : Verify User Is Redirected To Recycle Bin From Left Panel Test");
 			refreshWebPage();
+			clickWebElement(leftPanelIOCloud);
 			clickWebElement(leftPanelIOCloud_RecycleBin);
 			explicitWaitInSeconds(5);
 			logPassStepInExtentReport("Recycle Bin Button Clicked Successfully");
@@ -164,6 +166,7 @@ public class HomePageLeftPanel extends BaseClass {
 			logConsoleOutputMessage("strUrl: " + strUrl);
 			logPassStepInExtentReport("TC 006 : Verify User Is Redirected To Add Connection Page From Left Panel Test");
 			refreshWebPage();
+			clickWebElement(leftPanelIOCloud);
 			clickWebElement(leftPanelIOHubAddConnectionButton);
 			explicitWaitInSeconds(5);
 			logPassStepInExtentReport("Add Connection Button Clicked Successfully");
@@ -187,6 +190,7 @@ public class HomePageLeftPanel extends BaseClass {
 			logConsoleOutputMessage("strUrl: " + strUrl);
 			logPassStepInExtentReport("TC 007 : Verify User Is Redirected To Add Connection Page From Left Panel Test");
 			refreshWebPage();
+			clickWebElement(leftPanelIOCloud);
 			clickWebElement(leftPanelIOAIMSVideoAnalyzerButton);
 			explicitWaitInSeconds(5);
 			logPassStepInExtentReport("MS Video Analyzer Button Clicked Successfully");

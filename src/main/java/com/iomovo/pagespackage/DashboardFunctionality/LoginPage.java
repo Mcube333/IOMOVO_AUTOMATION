@@ -44,6 +44,9 @@ public class LoginPage extends BaseClass {
 	String passwordTextBox = "//input[@id='password']";
 	String viewPasswordEyeButton = "//span[@toggle='#password']";
 	String forgotPasswordLink = "//a[@id='forgotPassword']";
+	String loginButton = "//a[contains(text(),'Log In')]";
+	String loginPageConfirmation = "//h2[text()='Sign in with your email address']";
+	String noticeAcceptAllButton = "//button[text()='Accept all']";
 	String signInButton = "//button[@id='next']";
 	String userProfileDivLabel = "//p[contains(text(),'gmail.com')]";
 	String keepMeSignedInCheckBox = "//input[@id='rememberMe']";
@@ -185,7 +188,7 @@ public class LoginPage extends BaseClass {
 	        }
 			logConsoleOutputMessage("strUrl: " + strUrl);
 			driver.get(strUrl);
-			explicitWaitInSeconds(10);
+			explicitWaitInSeconds(5);
 			
 			System.out.println("Title: " + driver.getTitle());
 
@@ -195,6 +198,13 @@ public class LoginPage extends BaseClass {
 				logFailStepInExtentReport("Login Page Not Displayed");
 				assertTrue(false);
 			}
+			
+//			clickWebElement(noticeAcceptAllButton);
+//			
+//			clickWebElement(loginButton);
+//			
+//			swithToNextNewWindow();
+			
 			setTextInTextField(emailTextBox, strUsername);
 			setTextInTextField(passwordTextBox, strPassword);
 			clickWebElement(signInButton);
@@ -220,7 +230,7 @@ public class LoginPage extends BaseClass {
 		}
 	}
 
-	public void Login() throws Exception {
+	public void login() throws Exception {
 		try {
 			if (driver == null) {
 	            throw new IllegalStateException("WebDriver is null in LoginPage. Check if it is properly initialized in BaseTestClass.");
@@ -228,6 +238,14 @@ public class LoginPage extends BaseClass {
 			logConsoleOutputMessage("strUrl: " + strUrl);
 			driver.get(strUrl);
 			explicitWaitInSeconds(5);
+			
+//			clickWebElement(noticeAcceptAllButton);
+//			
+//			clickWebElement(loginButton);
+//			
+//			swithToNextNewWindow();
+//			
+//			isWebElementDisplayed(loginPageConfirmation);
 
 			if (isTitleValid("iomovo")) {
 				logPassStepInExtentReport("Login Page Displayed Successfully. Title: " + getTitleFromUI());
@@ -239,6 +257,8 @@ public class LoginPage extends BaseClass {
 			setTextInTextField(emailTextBox, strUsername);
 			setTextInTextField(passwordTextBox, strPassword);
 			clickWebElement(signInButton);
+			
+			explicitWaitInSeconds(5);
 
 			isWebElementDisplayed(profileButtonLink);
 			clickWebElement(profileButtonLink);

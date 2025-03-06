@@ -9,12 +9,9 @@ import com.iomovo.basepackage.BaseClass;
 
 public class GoogleDriveVideoEncodeFunctionality extends BaseClass{
 
-	WebDriver driver;
-	WebDriverWait wait;
-
 	public GoogleDriveVideoEncodeFunctionality(WebDriver driver, WebDriverWait wait) {
-		this.driver = driver;
-		this.wait = wait;
+		BaseClass.driver = driver;
+        BaseClass.wait = wait;
 	}
 
 	String automationFolder = "//span[text()='automationfolder']";

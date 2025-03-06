@@ -9,12 +9,9 @@ import com.iomovo.basepackage.BaseClass;
 
 public class OneDriveVideoEncodeFunctionality extends BaseClass{
 
-	WebDriver driver;
-	WebDriverWait wait;
-
 	public OneDriveVideoEncodeFunctionality(WebDriver driver, WebDriverWait wait) {
-		this.driver = driver;
-		this.wait = wait;
+		BaseClass.driver = driver;
+        BaseClass.wait = wait;
 	}
 
 	String automationFolder = "//span[text()='automationfolder']";

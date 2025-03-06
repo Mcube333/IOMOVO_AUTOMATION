@@ -11,12 +11,9 @@ import com.iomovo.basepackage.BaseClass;
 
 public class GoogleCloudAudio_VideoConvertFunctionality extends BaseClass {
 
-	WebDriver driver;
-	WebDriverWait wait;
-
 	public GoogleCloudAudio_VideoConvertFunctionality(WebDriver driver, WebDriverWait wait) {
-		this.driver = driver;
-		this.wait = wait;
+		BaseClass.driver = driver;
+        BaseClass.wait = wait;
 	}
 
 	String ftpSearchBar = "//input[@id='free-solo-demo']";

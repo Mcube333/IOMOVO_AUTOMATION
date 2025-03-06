@@ -11,12 +11,9 @@ import com.iomovo.basepackage.BaseClass;
 
 public class BoxAudio_VideoConvertFunctionality extends BaseClass {
 
-	WebDriver driver;
-	WebDriverWait wait;
-
 	public BoxAudio_VideoConvertFunctionality(WebDriver driver, WebDriverWait wait) {
-		this.driver = driver;
-		this.wait = wait;
+		BaseClass.driver = driver;
+        BaseClass.wait = wait;
 	}
 
 	String automationFolder = "//a[text()='automationfolder']";

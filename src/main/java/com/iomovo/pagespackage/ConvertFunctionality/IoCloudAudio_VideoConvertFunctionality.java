@@ -7,19 +7,15 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.WebDriverWait;
-import org.openqa.selenium.*;
 import java.util.Arrays;
 import java.util.List;
 import com.iomovo.basepackage.BaseClass;
 
 public class IoCloudAudio_VideoConvertFunctionality extends BaseClass {
 
-	WebDriver driver;
-	WebDriverWait wait;
-
 	public IoCloudAudio_VideoConvertFunctionality(WebDriver driver, WebDriverWait wait) {
-		this.driver = driver;
-		this.wait = wait;
+		BaseClass.driver = driver;
+        BaseClass.wait = wait;
 	}
 
 	String convertAudioFolder = "//div/a[text()='Audio Convert Folder']";
