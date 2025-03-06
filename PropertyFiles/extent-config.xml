@@ -1,0 +1,14 @@
+<extentreports>
+    <configuration>
+        <theme>standard</theme>
+        <encoding>UTF-8</encoding>
+        <protocol>https</protocol>
+        <reportName>Automation Test Report</reportName>
+        <documentTitle>Test Execution Report</documentTitle>
+        <timeStampFormat>MMM dd, yyyy HH:mm:ss</timeStampFormat>
+        <appendExisting>false</appendExisting>
+        <chartVisibilityOnOpen>true</chartVisibilityOnOpen>
+        <offlineMode>true</offlineMode>
+        <enableTimeline>true</enableTimeline>
+    </configuration>
+</extentreports>
