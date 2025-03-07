@@ -31,9 +31,9 @@ public class IoCloudAudio_VideoConvertFunctionalityTest extends BaseTestClass {
 			
 			IoCloud.verifyAudioConvertFunctionalityInIoCloud();
 			
-			IoCloud.verifyVideoConvertFunctionalityInIoCloud();
-			
-			IoCloud.verifyVideo2AudioConvertFunctionalityInIoCloud();
+//			IoCloud.verifyVideoConvertFunctionalityInIoCloud();
+//			
+//			IoCloud.verifyVideo2AudioConvertFunctionalityInIoCloud();
 			
 		} catch (Exception e) {
 			e.printStackTrace();

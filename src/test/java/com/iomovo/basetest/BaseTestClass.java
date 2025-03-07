@@ -11,8 +11,8 @@ import org.testng.annotations.*;
 import org.apache.log4j.Logger;
 import org.apache.log4j.PropertyConfigurator;
 
-import com.iomovo.basepackage.BaseClass;
 import com.iomovo.pagespackage.DashboardFunctionality.LoginPage;
+import com.iomovo.utilspackage.ExtentReportsClass;
 
 import io.github.bonigarcia.wdm.WebDriverManager;
 
@@ -25,7 +25,8 @@ import java.time.Duration;
 import java.util.Date;
 import java.util.Properties;
 
-public class BaseTestClass extends BaseClass{
+public class BaseTestClass extends ExtentReportsClass{
+	ExtentReportsClass extentReport = new ExtentReportsClass();
 	protected static final Logger log = Logger.getLogger(BaseTestClass.class);
 
 	protected static WebDriver driver;
@@ -97,6 +98,12 @@ public class BaseTestClass extends BaseClass{
 			logInfoStepInExtentReport("WebDriver session closed.");// Prevent stale WebDriver instance
 		}
 	}
+	
+	@AfterSuite
+    public void tearDown() {
+        System.out.println("🟠 Inside @AfterSuite: Calling endReport()");
+        extentReport.endReport();  // ✅ Now accessible
+    }
 
 	public void captureScreenshot(String testName) {
 		File src = ((TakesScreenshot) driver).getScreenshotAs(OutputType.FILE);

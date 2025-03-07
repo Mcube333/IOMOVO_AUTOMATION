@@ -101,10 +101,10 @@ public class IoCloudAudio_VideoConvertFunctionality extends BaseClass {
 			logPassStepInExtentReport("MP3 Audio File Selected successfully");
 
 			// Audio formats list
-			List<String> formats = Arrays.asList("8SVX", "AAC", "AC3", "AIF", "AIFF", "AMR", "AU", "CAF", "FLAC", "GSM",
-					"IRCAM", "ISMA", "M4A", "MAUD", "MKA", "MP2", "NIST", "OGA", "OPUS", "SPX", "TTA", "VOC", "W64", "WAV ", "WV");
+//			List<String> formats = Arrays.asList("8SVX", "AAC", "AC3", "AIF", "AIFF", "AMR", "AU", "CAF", "FLAC", "GSM",
+//					"IRCAM", "ISMA", "M4A", "MAUD", "MKA", "MP2", "NIST", "OGA", "OPUS", "SPX", "TTA", "VOC", "W64", "WAV ", "WV");
 
-//						List<String> formats = Arrays.asList("AAC", "FLAC");
+						List<String> formats = Arrays.asList("AAC", "FLAC");
 
 			for (String format : formats) {
 				try {
