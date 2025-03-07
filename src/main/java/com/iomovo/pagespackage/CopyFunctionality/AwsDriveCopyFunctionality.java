@@ -7,12 +7,10 @@ import com.iomovo.basepackage.BaseClass;
 
 public class AwsDriveCopyFunctionality extends BaseClass {
 
-	WebDriver driver;
-	WebDriverWait wait;
-
 	public AwsDriveCopyFunctionality(WebDriver driver, WebDriverWait wait) {
-		this.driver = driver;
-		this.wait = wait;	}
+		BaseClass.driver = driver;
+        BaseClass.wait = wait;
+	}
 
 	String copyDataFolderSelection = "//a[text()='automationfolder']";
 	String moveDataFolderSelectionRoot = "//a[text()='automationfolder']";

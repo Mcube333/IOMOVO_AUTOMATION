@@ -9,12 +9,10 @@ import com.iomovo.basepackage.BaseClass;
 
 public class Optimised_BoxDriveCopyFunctionality extends BaseClass {
 
-	WebDriver driver;
-	WebDriverWait wait;
-
 	public Optimised_BoxDriveCopyFunctionality(WebDriver driver, WebDriverWait wait) {
-		this.driver = driver;
-		this.wait = wait;	}
+		BaseClass.driver = driver;
+        BaseClass.wait = wait;
+	}
 
 	String copyDataFolderSelection = "//a[text()='AVI Data Folder']";
 	String moveDataFolderSelectionRoot = "//a[text()='AutomationTestingFolder']";

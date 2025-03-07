@@ -8,12 +8,10 @@ import com.iomovo.basepackage.BaseClass;
 
 public class Optimised_AzureDriveCopyFunctionality extends BaseClass {
 
-	WebDriver driver;
-	WebDriverWait wait;
-
 	public Optimised_AzureDriveCopyFunctionality(WebDriver driver, WebDriverWait wait) {
-		this.driver = driver;
-		this.wait = wait;	}
+		BaseClass.driver = driver;
+        BaseClass.wait = wait;
+	}
 
 	String copyDataFolderSelection = "//a[text()='AVI Data Folder']";
 	String moveDataFolderSelectionRoot = "//a[text()='AutomationTestingFolder']";

@@ -12,14 +12,10 @@ import com.iomovo.basepackage.BaseClass;
 
 public class Optimised_AwsDriveCopyFunctionality extends BaseClass {
 
-	WebDriver driver;
-	WebDriverWait wait;
-
-	// Constructor
-
 	public Optimised_AwsDriveCopyFunctionality(WebDriver driver, WebDriverWait wait) {
-		this.driver = driver;
-		this.wait = wait;	}
+		BaseClass.driver = driver;
+        BaseClass.wait = wait;
+	}
 
 	// XPath Constants
 

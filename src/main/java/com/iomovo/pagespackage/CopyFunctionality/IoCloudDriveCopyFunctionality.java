@@ -9,12 +9,10 @@ import com.iomovo.basepackage.BaseClass;
 
 public class IoCloudDriveCopyFunctionality extends BaseClass {
 
-	WebDriver driver;
-	WebDriverWait wait;
-
 	public IoCloudDriveCopyFunctionality(WebDriver driver, WebDriverWait wait) {
-		this.driver = driver;
-		this.wait = wait;	}
+		BaseClass.driver = driver;
+        BaseClass.wait = wait;
+	}
 
 	String copyDataFolderSelection = "//a[text()='AVI Data Folder']";
 	String moveDataFolderSelectionRoot = "//a[text()='AutomationTestingFolder']";
