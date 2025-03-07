@@ -2,16 +2,16 @@
 <testng-results ignored="5" total="6" passed="1" failed="0" skipped="0">
   <reporter-output>
   </reporter-output>
-  <suite started-at="2025-03-08T01:45:16 IST" name="Default suite" finished-at="2025-03-08T01:45:31 IST" duration-ms="15835">
+  <suite started-at="2025-03-08T04:27:12 IST" name="Default suite" finished-at="2025-03-08T04:27:31 IST" duration-ms="18774">
     <groups>
     </groups>
-    <test started-at="2025-03-08T01:45:16 IST" name="Default test" finished-at="2025-03-08T01:45:31 IST" duration-ms="15835">
+    <test started-at="2025-03-08T04:27:12 IST" name="Default test" finished-at="2025-03-08T04:27:31 IST" duration-ms="18774">
       <class name="com.iomovo.dashboardtests.LoginPageTest">
-        <test-method is-config="true" signature="beforeSuite()[pri:0, instance:com.iomovo.dashboardtests.LoginPageTest@306cf3ea]" started-at="2025-03-08T01:45:16 IST" name="beforeSuite" finished-at="2025-03-08T01:45:16 IST" duration-ms="87" status="PASS">
+        <test-method is-config="true" signature="beforeSuite()[pri:0, instance:com.iomovo.dashboardtests.LoginPageTest@306cf3ea]" started-at="2025-03-08T04:27:12 IST" name="beforeSuite" finished-at="2025-03-08T04:27:12 IST" duration-ms="187" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- beforeSuite -->
-        <test-method is-config="true" signature="testSetUp(java.lang.String)[pri:0, instance:com.iomovo.dashboardtests.LoginPageTest@306cf3ea]" started-at="2025-03-08T01:45:16 IST" name="testSetUp" finished-at="2025-03-08T01:45:17 IST" duration-ms="1311" status="PASS">
+        <test-method is-config="true" signature="testSetUp(java.lang.String)[pri:0, instance:com.iomovo.dashboardtests.LoginPageTest@306cf3ea]" started-at="2025-03-08T04:27:12 IST" name="testSetUp" finished-at="2025-03-08T04:27:15 IST" duration-ms="2968" status="PASS">
           <params>
             <param index="0">
               <value>
@@ -22,15 +22,15 @@
           <reporter-output>
           </reporter-output>
         </test-method> <!-- testSetUp -->
-        <test-method is-config="true" signature="setUp()[pri:0, instance:com.iomovo.dashboardtests.LoginPageTest@306cf3ea]" started-at="2025-03-08T01:45:17 IST" name="setUp" finished-at="2025-03-08T01:45:17 IST" duration-ms="2" status="PASS">
+        <test-method is-config="true" signature="setUp()[pri:0, instance:com.iomovo.dashboardtests.LoginPageTest@306cf3ea]" started-at="2025-03-08T04:27:15 IST" name="setUp" finished-at="2025-03-08T04:27:15 IST" duration-ms="3" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- setUp -->
-        <test-method signature="verifyAllElementsArePresentInLoginPageTest()[pri:0, instance:com.iomovo.dashboardtests.LoginPageTest@306cf3ea]" started-at="2025-03-08T01:45:17 IST" name="verifyAllElementsArePresentInLoginPageTest" finished-at="2025-03-08T01:45:31 IST" duration-ms="14347" status="PASS">
+        <test-method signature="verifyAllElementsArePresentInLoginPageTest()[pri:0, instance:com.iomovo.dashboardtests.LoginPageTest@306cf3ea]" started-at="2025-03-08T04:27:15 IST" name="verifyAllElementsArePresentInLoginPageTest" finished-at="2025-03-08T04:27:31 IST" duration-ms="15495" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- verifyAllElementsArePresentInLoginPageTest -->
-        <test-method is-config="true" signature="tearDown(org.testng.ITestResult)[pri:0, instance:com.iomovo.dashboardtests.LoginPageTest@306cf3ea]" started-at="2025-03-08T01:45:31 IST" name="tearDown" finished-at="2025-03-08T01:45:31 IST" duration-ms="155" status="PASS">
+        <test-method is-config="true" signature="tearDown(org.testng.ITestResult)[pri:0, instance:com.iomovo.dashboardtests.LoginPageTest@306cf3ea]" started-at="2025-03-08T04:27:31 IST" name="tearDown" finished-at="2025-03-08T04:27:31 IST" duration-ms="273" status="PASS">
           <params>
             <param index="0">
               <value>
@@ -41,7 +41,7 @@
           <reporter-output>
           </reporter-output>
         </test-method> <!-- tearDown -->
-        <test-method is-config="true" signature="tearDown()[pri:0, instance:com.iomovo.dashboardtests.LoginPageTest@306cf3ea]" started-at="2025-03-08T01:45:31 IST" name="tearDown" finished-at="2025-03-08T01:45:32 IST" duration-ms="200" status="PASS">
+        <test-method is-config="true" signature="tearDown()[pri:0, instance:com.iomovo.dashboardtests.LoginPageTest@306cf3ea]" started-at="2025-03-08T04:27:31 IST" name="tearDown" finished-at="2025-03-08T04:27:31 IST" duration-ms="306" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- tearDown -->

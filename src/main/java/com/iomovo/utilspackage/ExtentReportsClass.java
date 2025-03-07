@@ -33,7 +33,7 @@ public class ExtentReportsClass extends BaseClass {
             System.out.println("📂 Created ExtentReports directory: " + REPORTS_FOLDER);
         }
         // Define report file path
-        String reportPath = REPORTS_FOLDER + "/Latest_ExtentReport.html";
+        String reportPath = REPORTS_FOLDER + "/ExtentReport_IomovoApp_" + getCurrentDateTime() + ".html";
         System.out.println("📝 Saving Extent Report at: " + reportPath);
         // Initialize ExtentReports
         extentReports = new ExtentReports(reportPath, true);
