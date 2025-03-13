@@ -2,6 +2,8 @@ package com.iomovo.pagespackage.DashboardFunctionality;
 
 import static org.testng.Assert.assertTrue;
 
+import java.time.Duration;
+
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
@@ -9,10 +11,24 @@ import com.iomovo.basepackage.BaseClass;
 
 public class HomePageCenterPanel extends BaseClass {
 
-	public HomePageCenterPanel(WebDriver driver, WebDriverWait wait) {
-		BaseClass.driver = driver;
-        BaseClass.wait = wait;
-	}
+	public HomePageCenterPanel() {
+		if (getDriver() == null) {
+            throw new IllegalStateException("❌ WebDriver is null in ProfilePage. Ensure it is initialized in BaseClass.");
+        }
+    }
+	
+    public HomePageCenterPanel(WebDriver driver, WebDriverWait wait) {
+        BaseClass.tdriver.set(driver);
+        BaseClass.wait.set(new WebDriverWait(driver, Duration.ofSeconds(10))); // Ensure WebDriverWait is set
+    }
+
+    private WebDriver getDriverInstance() {
+        WebDriver driver = tdriver.get();
+        if (driver == null) {
+            throw new IllegalStateException("❌ WebDriver is null in ProfilePage. Ensure it is initialized in BaseClass.");
+        }
+        return driver;
+    }
 
 	// All X-paths of Home Page TOP SECTION.
 
@@ -192,14 +208,17 @@ public class HomePageCenterPanel extends BaseClass {
 	}
 
 	public void verifyUserAbleToUploadSameDocumentFileMultipleTimesAndTakeCertainActionsTest() throws Exception {
+		getDriverInstance();
 		uploadSameFileMultipleTimesAndTakeCertainActionsFunctionality(docFilesPath, pdfFileName);
 	}
 
 	public void verifyUserAbleToUploadSameAudioFileMultipleTimesAndTakeCertainActionsTest() throws Exception {
+		getDriverInstance();
 		uploadSameFileMultipleTimesAndTakeCertainActionsFunctionality(audioFilesPath, audioFileName);
 	}
 
 	public void verifyUserAbleToUploadSameVideoFileMultipleTimesAndTakeCertainActionsTest() throws Exception {
+		getDriverInstance();
 		uploadSameFileMultipleTimesAndTakeCertainActionsFunctionality(videoFilesPath, videoFileName);
 	}
 
@@ -207,6 +226,7 @@ public class HomePageCenterPanel extends BaseClass {
 	
 	public void verifyUserAbleToDeleteFileWhileUploadingTest() throws Exception {
 		try {
+			getDriverInstance();
 			logConsoleOutputMessage("strUrl: " + strUrl);
 			logPassStepInExtentReport("TC 005 : verify User Able To Delete FIle While Uploading From Center Panel Test");
 			uploadFilesFunctionality(videoFilesPath, videoFileName);
@@ -227,6 +247,7 @@ public class HomePageCenterPanel extends BaseClass {
 	
 	public void verifyUserIsAbleToRecordTheVideoWithoutAutoSyncTest() throws Exception {
 		try {
+			getDriverInstance();
 			logConsoleOutputMessage("strUrl: " + strUrl);
 			logPassStepInExtentReport("TC 006 : verify User Is Able To Record The Video From Center Panel Without AutoSync Test");
 			refreshWebPage();
@@ -267,6 +288,7 @@ public class HomePageCenterPanel extends BaseClass {
 
 	public void verifyUserIsAbleToRecordTheVideoWithAutoSyncTest() throws Exception {
 		try {
+			getDriverInstance();
 			logConsoleOutputMessage("strUrl: " + strUrl);
 			logPassStepInExtentReport("TC 007 : verify User Is Able To Record The Video From Center Panel With AutoSync Test");
 			refreshWebPage();
@@ -307,6 +329,7 @@ public class HomePageCenterPanel extends BaseClass {
 
 	public void verifyUserIsAbleToCaptureImageWithoutAutoSyncTest() throws Exception {
 		try {
+			getDriverInstance();
 			logConsoleOutputMessage("strUrl: " + strUrl);
 			logPassStepInExtentReport("TC 008 : verify User Is Able To Capture Image From Center Panel Without AutoSync Test");
 			refreshWebPage();
@@ -340,6 +363,7 @@ public class HomePageCenterPanel extends BaseClass {
 
 	public void verifyUserIsAbleToCaptureImageWithAutoSyncTest() throws Exception {
 		try {
+			getDriverInstance();
 			logConsoleOutputMessage("strUrl: " + strUrl);
 			logPassStepInExtentReport("TC 009 : verify User Is Able To Capture Image From Center Panel With AutoSync Test");
 			refreshWebPage();
@@ -376,6 +400,7 @@ public class HomePageCenterPanel extends BaseClass {
 
 	public void verifyUserIsAbleToCaptureTheScreenTest() throws Exception {
 		try {
+			getDriverInstance();
 			logConsoleOutputMessage("strUrl: " + strUrl);
 			logPassStepInExtentReport("TC 010 : verify User Is Able To Record The Screen From Center Panel Test");
 			refreshWebPage();

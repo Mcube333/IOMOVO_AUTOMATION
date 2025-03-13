@@ -2,6 +2,8 @@ package com.iomovo.pagespackage.CopyFunctionality;
 
 import static org.testng.Assert.assertTrue;
 
+import java.time.Duration;
+
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
@@ -9,10 +11,24 @@ import com.iomovo.basepackage.BaseClass;
 
 public class AzureDriveCopyFunctionality extends BaseClass {
 
-	public AzureDriveCopyFunctionality(WebDriver driver, WebDriverWait wait) {
-		BaseClass.driver = driver;
-        BaseClass.wait = wait;
-	}
+	public AzureDriveCopyFunctionality() {
+		if (getDriver() == null) {
+            throw new IllegalStateException("❌ WebDriver is null in ProfilePage. Ensure it is initialized in BaseClass.");
+        }
+    }
+	
+    public AzureDriveCopyFunctionality(WebDriver driver, WebDriverWait wait) {
+        BaseClass.tdriver.set(driver);
+        BaseClass.wait.set(new WebDriverWait(driver, Duration.ofSeconds(10))); // Ensure WebDriverWait is set
+    }
+
+    private WebDriver getDriverInstance() {
+        WebDriver driver = tdriver.get();
+        if (driver == null) {
+            throw new IllegalStateException("❌ WebDriver is null in ProfilePage. Ensure it is initialized in BaseClass.");
+        }
+        return driver;
+    }
 
 	String copyDataFolderSelection = "//a[text()='AVI Data Folder']";
 	String moveDataFolderSelectionRoot = "//a[text()='AutomationTestingFolder']";
@@ -353,6 +369,7 @@ public class AzureDriveCopyFunctionality extends BaseClass {
 
 	public void verifyCopyFilesFunctionalityFromAzureToIoCloudDrive() throws Exception {
 		try {
+			getDriverInstance();
 			navigateToAzureDrive("TC 001 : Verify Copy Function From Azure To IoCloud Drive");
 			copyFilesFromSourceFolder();
 			clickWebElement(leftPanelIoCloudButton);
@@ -382,6 +399,7 @@ public class AzureDriveCopyFunctionality extends BaseClass {
 
 	public void verifyCopyFilesFunctionalityFromAzureToAWSDrive() throws Exception {
 		try {
+			getDriverInstance();
 			navigateToAzureDrive("TC 002 : Verify Copy Function From Azure To AWS Drive");
 			copyFilesFromSourceFolder();
 			clickWebElement(leftPanelIoHubButton);
@@ -412,6 +430,7 @@ public class AzureDriveCopyFunctionality extends BaseClass {
 
 	public void verifyCopyFilesFunctionalityFromAzureToBoxDrive() throws Exception {
 		try {
+			getDriverInstance();
 			navigateToAzureDrive("TC 003 : Verify Copy Function From Azure To Box Drive");
 			copyFilesFromSourceFolder();
 			clickWebElement(leftPanelIoHubButton);
@@ -442,6 +461,7 @@ public class AzureDriveCopyFunctionality extends BaseClass {
 
 	public void verifyCopyFilesFunctionalityFromAzureToDropBoxDrive() throws Exception {
 		try {
+			getDriverInstance();
 			navigateToAzureDrive("TC 004 : Verify Copy Function From Azure To DropBox Drive");
 			copyFilesFromSourceFolder();
 			clickWebElement(leftPanelIoHubButton);
@@ -472,6 +492,7 @@ public class AzureDriveCopyFunctionality extends BaseClass {
 
 	public void verifyCopyFilesFunctionalityFromAzureToFTPDrive() throws Exception {
 		try {
+			getDriverInstance();
 			navigateToAzureDrive("TC 005 : Verify Copy Function From Azure To Ftp Drive");
 			copyFilesFromSourceFolder();
 			clickWebElement(leftPanelIoHubButton);
@@ -502,6 +523,7 @@ public class AzureDriveCopyFunctionality extends BaseClass {
 
 	public void verifyCopyFilesFunctionalityFromAzureToGoogleCloudDrive() throws Exception {
 		try {
+			getDriverInstance();
 			navigateToAzureDrive("TC 006 : Verify Copy Function From Azure To GoogleCloud Drive");
 			copyFilesFromSourceFolder();
 			clickWebElement(leftPanelIoHubButton);
@@ -532,6 +554,7 @@ public class AzureDriveCopyFunctionality extends BaseClass {
 
 	public void verifyCopyFilesFunctionalityFromAzureToGoogleDrive() throws Exception {
 		try {
+			getDriverInstance();
 			navigateToAzureDrive("TC 007 : Verify Copy Function From Azure To Google Drive");
 			copyFilesFromSourceFolder();
 			clickWebElement(leftPanelIoHubButton);
@@ -562,6 +585,7 @@ public class AzureDriveCopyFunctionality extends BaseClass {
 
 	public void verifyCopyFilesFunctionalityFromAzureToAzureDrive() throws Exception {
 		try {
+			getDriverInstance();
 			navigateToAzureDrive("TC 008 : Verify Copy Function From Azure To Azure Drive");
 			copyFilesFromSourceFolder();
 			clickWebElement(leftPanelIoHubButton);
@@ -592,6 +616,7 @@ public class AzureDriveCopyFunctionality extends BaseClass {
 
 	public void verifyCopyFilesFunctionalityFromAzureToOneDrive() throws Exception {
 		try {
+			getDriverInstance();
 			navigateToAzureDrive("TC 009 : Verify Copy Function From Azure To One Drive");
 			copyFilesFromSourceFolder();
 			clickWebElement(leftPanelIoHubButton);
@@ -622,6 +647,7 @@ public class AzureDriveCopyFunctionality extends BaseClass {
 	
 	public void verifyCopyFilesFunctionalityFromAzureToOOSDrive() throws Exception {
 		try {
+			getDriverInstance();
 			navigateToAzureDrive("TC 010 : Verify Copy Function From Azure To OOS Drive");
 			copyFilesFromSourceFolder();
 			clickWebElement(leftPanelIoHubButton);
@@ -652,6 +678,7 @@ public class AzureDriveCopyFunctionality extends BaseClass {
 
 	public void verifyCopyFilesFunctionalityFromAzureToSFTPDrive() throws Exception {
 		try {
+			getDriverInstance();
 			navigateToAzureDrive("TC 011 : Verify Copy Function From Azure To Sftp Drive");
 			copyFilesFromSourceFolder();
 			clickWebElement(leftPanelIoHubButton);
@@ -682,6 +709,7 @@ public class AzureDriveCopyFunctionality extends BaseClass {
 
 	public void verifyCopyFilesFunctionalityFromAzureToSharePointDrive() throws Exception {
 		try {
+			getDriverInstance();
 			navigateToAzureDrive("TC 012 : Verify Copy Function From Azure To SharePoint Drive");
 			copyFilesFromSourceFolder();
 			clickWebElement(leftPanelIoHubButton);

@@ -2,6 +2,8 @@ package com.iomovo.pagespackage.CopyFunctionality;
 
 import static org.testng.Assert.assertTrue;
 
+import java.time.Duration;
+
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
@@ -9,10 +11,24 @@ import com.iomovo.basepackage.BaseClass;
 
 public class OneDriveCopyFunctionality extends BaseClass {
 
-	public OneDriveCopyFunctionality(WebDriver driver, WebDriverWait wait) {
-		BaseClass.driver = driver;
-        BaseClass.wait = wait;
-	}
+	public OneDriveCopyFunctionality() {
+		if (getDriver() == null) {
+            throw new IllegalStateException("❌ WebDriver is null in ProfilePage. Ensure it is initialized in BaseClass.");
+        }
+    }
+	
+    public OneDriveCopyFunctionality(WebDriver driver, WebDriverWait wait) {
+        BaseClass.tdriver.set(driver);
+        BaseClass.wait.set(new WebDriverWait(driver, Duration.ofSeconds(10))); // Ensure WebDriverWait is set
+    }
+
+    private WebDriver getDriverInstance() {
+        WebDriver driver = tdriver.get();
+        if (driver == null) {
+            throw new IllegalStateException("❌ WebDriver is null in ProfilePage. Ensure it is initialized in BaseClass.");
+        }
+        return driver;
+    }
 
 	String copyDataFolderSelection = "//a[text()='AVI Data Folder']";
 	String moveDataFolderSelectionRoot = "//a[text()='AutomationTestingFolder']";
@@ -352,6 +368,7 @@ public class OneDriveCopyFunctionality extends BaseClass {
 
 	public void verifyCopyFilesFunctionalityFromOneDriveToIoCloudDrive() throws Exception {
 		try {
+			getDriverInstance();
 			navigateToIoOneDrive("TC 001 : Verify Copy Function From OneDrive To IoCloud Drive");
 			copyFilesFromSourceFolder();
 			clickWebElement(leftPanelIoCloudButton);
@@ -385,6 +402,7 @@ public class OneDriveCopyFunctionality extends BaseClass {
 
 	public void verifyCopyFilesFunctionalityFromOneDriveToAWSDrive() throws Exception {
 		try {
+			getDriverInstance();
 			navigateToIoOneDrive("TC 002 : Verify Copy Function From OneDrive To AWS Drive");
 			copyFilesFromSourceFolder();
 			clickWebElement(leftPanelIoHubButton);
@@ -419,6 +437,7 @@ public class OneDriveCopyFunctionality extends BaseClass {
 
 	public void verifyCopyFilesFunctionalityFromOneDriveToBoxDrive() throws Exception {
 		try {
+			getDriverInstance();
 			navigateToIoOneDrive("TC 003 : Verify Copy Function From OneDrive To Box Drive");
 			copyFilesFromSourceFolder();
 			clickWebElement(leftPanelIoHubButton);
@@ -453,6 +472,7 @@ public class OneDriveCopyFunctionality extends BaseClass {
 
 	public void verifyCopyFilesFunctionalityFromOneDriveToDropBoxDrive() throws Exception {
 		try {
+			getDriverInstance();
 			navigateToIoOneDrive("TC 004 : Verify Copy Function From OneDrive To Dropbox Drive");
 			copyFilesFromSourceFolder();
 			clickWebElement(leftPanelIoHubButton);
@@ -487,6 +507,7 @@ public class OneDriveCopyFunctionality extends BaseClass {
 
 	public void verifyCopyFilesFunctionalityFromOneDriveToFTPDrive() throws Exception {
 		try {
+			getDriverInstance();
 			navigateToIoOneDrive("TC 005 : Verify Copy Function From OneDrive To FTP Drive");
 			copyFilesFromSourceFolder();
 			clickWebElement(leftPanelIoHubButton);
@@ -521,6 +542,7 @@ public class OneDriveCopyFunctionality extends BaseClass {
 
 	public void verifyCopyFilesFunctionalityFromOneDriveToGoogleCloudDrive() throws Exception {
 		try {
+			getDriverInstance();
 			navigateToIoOneDrive("TC 006 : Verify Copy Function From OneDrive To GoogleCloud Drive");
 			copyFilesFromSourceFolder();
 			clickWebElement(leftPanelIoHubButton);
@@ -555,6 +577,7 @@ public class OneDriveCopyFunctionality extends BaseClass {
 
 	public void verifyCopyFilesFunctionalityFromOneDriveToGoogleDrive() throws Exception {
 		try {
+			getDriverInstance();
 			navigateToIoOneDrive("TC 007 : Verify Copy Function From OneDrive To Google Drive");
 			copyFilesFromSourceFolder();
 			clickWebElement(leftPanelIoHubButton);
@@ -589,6 +612,7 @@ public class OneDriveCopyFunctionality extends BaseClass {
 
 	public void verifyCopyFilesFunctionalityFromOneDriveToAzureDrive() throws Exception {
 		try {
+			getDriverInstance();
 			navigateToIoOneDrive("TC 008 : Verify Copy Function From OneDrive To Azure Drive");
 			copyFilesFromSourceFolder();
 			clickWebElement(leftPanelIoHubButton);
@@ -623,6 +647,7 @@ public class OneDriveCopyFunctionality extends BaseClass {
 
 	public void verifyCopyFilesFunctionalityFromOneDriveToOneDrive() throws Exception {
 		try {
+			getDriverInstance();
 			navigateToIoOneDrive("TC 009 : Verify Copy Function From OneDrive To OneDrive");
 			copyFilesFromSourceFolder();
 			clickWebElement(leftPanelIoHubButton);
@@ -657,6 +682,7 @@ public class OneDriveCopyFunctionality extends BaseClass {
 	
 	public void verifyCopyFilesFunctionFromOneDriveToOOSDrive() throws Exception {
 		try {
+			getDriverInstance();
 			navigateToIoOneDrive("TC 010 : Verify Copy Function From OneDrive To OOS Drive");
 			copyFilesFromSourceFolder();
 			clickWebElement(leftPanelIoHubButton);
@@ -691,6 +717,7 @@ public class OneDriveCopyFunctionality extends BaseClass {
 
 	public void verifyCopyFilesFunctionalityFromOneDriveToSFTPDrive() throws Exception {
 		try {
+			getDriverInstance();
 			navigateToIoOneDrive("TC 010 : Verify Copy Function From OneDrive To SFTP Drive");
 			copyFilesFromSourceFolder();
 			clickWebElement(leftPanelIoHubButton);
@@ -725,6 +752,7 @@ public class OneDriveCopyFunctionality extends BaseClass {
 
 	public void verifyCopyFilesFunctionalityFromOneDriveToSharePointDrive() throws Exception {
 		try {
+			getDriverInstance();
 			navigateToIoOneDrive("TC 012 : Verify Copy Function From OneDrive To Sharepoint Drive");
 			copyFilesFromSourceFolder();
 			clickWebElement(leftPanelIoHubButton);

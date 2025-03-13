@@ -2,6 +2,8 @@ package com.iomovo.pagespackage.DashboardFunctionality;
 
 import static org.testng.Assert.assertTrue;
 
+import java.time.Duration;
+
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
@@ -9,10 +11,50 @@ import com.iomovo.basepackage.BaseClass;
 
 public class HomePageLeftPanel extends BaseClass {
 
-	public HomePageLeftPanel(WebDriver driver, WebDriverWait wait) {
-		BaseClass.driver = driver;
-        BaseClass.wait = wait;
-	}
+	public HomePageLeftPanel() {
+		if (getDriver() == null) {
+            throw new IllegalStateException("❌ WebDriver is null in ProfilePage. Ensure it is initialized in BaseClass.");
+        }
+    }
+	
+    public HomePageLeftPanel(WebDriver driver, WebDriverWait wait) {
+        BaseClass.tdriver.set(driver);
+        BaseClass.wait.set(new WebDriverWait(driver, Duration.ofSeconds(10))); // Ensure WebDriverWait is set
+    }
+
+    private WebDriver getDriverInstance() {
+        WebDriver driver = tdriver.get();
+        if (driver == null) {
+            throw new IllegalStateException("❌ WebDriver is null in ProfilePage. Ensure it is initialized in BaseClass.");
+        }
+        return driver;
+    }
+
+    
+    /*		verifyUserIsRedirectedToHomeFromLeftPanelTest
+			verifyUserIsRedirectedToioAIPageFromLeftPanelTest
+			verifyUserIsRedirectedToioCloudPageFromLeftPanelTest
+			verifyUserIsRedirectedToMyFileFromLeftPanelTest
+			verifyUserIsRedirectedToRecentFilesSectionFromLeftPanelTest
+			verifyUserIsRedirectedToSharedWithMeSectionFromLeftPanelTest
+			verifyUserIsRedirectedToSharedByMeSectionFromLeftPanelTest
+			verifyUserIsRedirectedToRecycleBinFromLeftPanelTest
+			verifyUserIsRedirectedToIOHubAddConnectionPageFromLeftPanelTest
+			verifyUserIsRedirectedToAWSS3DriveFromIOHubSectionFromLeftPanelTest
+			verifyUserIsRedirectedToBoxDriveFromIOHubSectionFromLeftPanelTest
+			verifyUserIsRedirectedToDropBoxDriveFromIOHubSectionFromLeftPanelTest
+			verifyUserIsRedirectedToFTPDriveFromIOHubSectionFromLeftPanelTest
+			verifyUserIsRedirectedToGoogleCloudDriveFromIOHubSectionFromLeftPanelTest
+			verifyUserIsRedirectedToGoogleDriveFromIOHubSectionFromLeftPanelTest
+			verifyUserIsRedirectedToMSAzureDriveFromIOHubSectionFromLeftPanelTest
+			verifyUserIsRedirectedToOneDriveFromIOHubSectionFromLeftPanelTest
+			verifyUserIsRedirectedToOOSDriveFromIOHubSectionFromLeftPanelTest
+			verifyUserIsRedirectedToSFTPDriveFromIOHubSectionFromLeftPanelTest
+			verifyUserIsRedirectedToSharePointDriveFromIOHubSectionFromLeftPanelTest
+			verifyUserIsRedirectedToIoPortalPageFromLeftPanelTest
+			verifyUserIsRedirectedToIoFlowPageFromLeftPanelTest
+			verifyUserIsRedirectedToIoReportsPageFromLeftPanelTest
+			verifyUserIsRedirectedToIoPilotPageFromLeftPanelTest		*/
 
 	//All X-paths of Home Page LEFT PANEL.
 	String leftPanelHomeButton = "//span[text()=' Home']";
@@ -43,6 +85,7 @@ public class HomePageLeftPanel extends BaseClass {
 
 	public void verifyUserIsRedirectedToMyFileFromLeftPanelTest() throws Exception {
 		try {
+			getDriverInstance();
 			logConsoleOutputMessage("strUrl: " + strUrl);
 			logPassStepInExtentReport("TC 001 : Verify User Is Redirected To My File From Left Panel Test");
 			refreshWebPage();
@@ -67,6 +110,7 @@ public class HomePageLeftPanel extends BaseClass {
 
 	public void verifyUserIsRedirectedToRecentFilesSectionFromLeftPanelTest() throws Exception {
 		try {
+			getDriverInstance();
 			logConsoleOutputMessage("strUrl: " + strUrl);
 			logPassStepInExtentReport("TC 002 : Verify User Is Redirected To Recent Files From Left Panel Test");
 			refreshWebPage();
@@ -91,6 +135,7 @@ public class HomePageLeftPanel extends BaseClass {
 
 	public void verifyUserIsRedirectedToSharedWithMeSectionFromLeftPanelTest() throws Exception {
 		try {
+			getDriverInstance();
 			logConsoleOutputMessage("strUrl: " + strUrl);
 			logPassStepInExtentReport("TC 003 : Verify User Is Redirected To Shared With Me Section From Left Panel Test");
 			refreshWebPage();
@@ -115,6 +160,7 @@ public class HomePageLeftPanel extends BaseClass {
 
 	public void verifyUserIsRedirectedToSharedByMeSectionFromLeftPanelTest() throws Exception {
 		try {
+			getDriverInstance();
 			logConsoleOutputMessage("strUrl: " + strUrl);
 			logPassStepInExtentReport("TC 004 : Verify User Is Redirected To Shared By Me Section From Left Panel Test");
 			refreshWebPage();
@@ -139,6 +185,7 @@ public class HomePageLeftPanel extends BaseClass {
 
 	public void verifyUserIsRedirectedToRecycleBinFromLeftPanelTest() throws Exception {
 		try {
+			getDriverInstance();
 			logConsoleOutputMessage("strUrl: " + strUrl);
 			logPassStepInExtentReport("TC 005 : Verify User Is Redirected To Recycle Bin From Left Panel Test");
 			refreshWebPage();
@@ -163,6 +210,7 @@ public class HomePageLeftPanel extends BaseClass {
 
 	public void verifyUserIsRedirectedToIOHubAddConnectionPageFromLeftPanelTest() throws Exception {
 		try {
+			getDriverInstance();
 			logConsoleOutputMessage("strUrl: " + strUrl);
 			logPassStepInExtentReport("TC 006 : Verify User Is Redirected To Add Connection Page From Left Panel Test");
 			refreshWebPage();
@@ -187,6 +235,7 @@ public class HomePageLeftPanel extends BaseClass {
 
 	public void verifyUserIsRedirectedToIOAIMSVideoAnalyzerPageFromLeftPanelTest() throws Exception {
 		try {
+			getDriverInstance();
 			logConsoleOutputMessage("strUrl: " + strUrl);
 			logPassStepInExtentReport("TC 007 : Verify User Is Redirected To Add Connection Page From Left Panel Test");
 			refreshWebPage();

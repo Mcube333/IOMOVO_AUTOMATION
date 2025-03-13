@@ -10,8 +10,16 @@ import com.iomovo.basepackage.BaseClass;
 public class DropBoxDriveMoveFunctionality extends BaseClass {
 
 	public DropBoxDriveMoveFunctionality(WebDriver driver, WebDriverWait wait) {
-		BaseClass.driver = driver;
-        BaseClass.wait = wait;
+		BaseClass.tdriver.set(driver);  
+		BaseClass.wait.set(wait);
+	}
+
+	private WebDriver getDriverInstance() {
+		WebDriver driver = tdriver.get();
+		if (driver == null) {
+			throw new IllegalStateException("❌ WebDriver is null in LoginPage. Ensure it is initialized in BaseTestClass.");
+		}
+		return driver;
 	}
 
 	String copyDataFolderSelection = "//a[text()='AVI Data Folder']";
@@ -474,6 +482,7 @@ public class DropBoxDriveMoveFunctionality extends BaseClass {
 
 	public void verifyMoveFilesFunctionalityFromDropBoxToIoCloudDrive() throws Exception {
 		try {
+			getDriverInstance();
 			navigateToDropBoxDrive("TC 001 : Verify Move Files Functionality From DropBox To ioCloud Drive");
 			moveFilesFromSourceFolder();
 			clickWebElement(leftPanelIoCloudButton);
@@ -503,6 +512,7 @@ public class DropBoxDriveMoveFunctionality extends BaseClass {
 	
 	public void verifyMoveFilesFunctionalityFromDropBoxToAWSDrive() throws Exception {
 		try {
+			getDriverInstance();
 			navigateToDropBoxDrive("TC 002 : Verify Move Files Functionality From DropBox To Aws Drive");
 			moveFilesFromSourceFolder();
 			clickWebElement(leftPanelIoHubButton);
@@ -533,6 +543,7 @@ public class DropBoxDriveMoveFunctionality extends BaseClass {
 
 	public void verifyMoveFilesFunctionalityFromDropBoxToBOXDrive() throws Exception {
 		try {
+			getDriverInstance();
 			navigateToDropBoxDrive("TC 003 : Verify Move Function From DropBox To Box Drive");
 			moveFilesFromSourceFolder();
 			clickWebElement(leftPanelIoHubButton);
@@ -563,6 +574,7 @@ public class DropBoxDriveMoveFunctionality extends BaseClass {
 
 	public void verifyMoveFilesFunctionalityFromDropBoxToDropBoxDrive() throws Exception {
 		try {
+			getDriverInstance();
 			navigateToDropBoxDrive("TC 004 : Verify Move Function From DropBox To DropBox Drive");
 			moveFilesFromSourceFolder();
 			clickWebElement(leftPanelIoHubButton);
@@ -593,6 +605,7 @@ public class DropBoxDriveMoveFunctionality extends BaseClass {
 
 	public void verifyMoveFilesFunctionalityFromDropBoxToFTPDrive() throws Exception {
 		try {
+			getDriverInstance();
 			navigateToDropBoxDrive("TC 005 : Verify Move Function From DropBox To FTP Drive");
 			moveFilesFromSourceFolder();
 			clickWebElement(leftPanelIoHubButton);
@@ -623,6 +636,7 @@ public class DropBoxDriveMoveFunctionality extends BaseClass {
 
 	public void verifyMoveFilesFunctionalityFromDropBoxToGoogleCloudDrive() throws Exception {
 		try {
+			getDriverInstance();
 			navigateToDropBoxDrive("TC 006 : Verify Move Function From DropBox To GoogleCloud Drive");
 			moveFilesFromSourceFolder();
 			clickWebElement(leftPanelIoHubButton);
@@ -653,6 +667,7 @@ public class DropBoxDriveMoveFunctionality extends BaseClass {
 
 	public void verifyMoveFilesFunctionalityFromDropBoxToGoogleDrive() throws Exception {
 		try {
+			getDriverInstance();
 			navigateToDropBoxDrive("TC 007 : Verify Move Function From DropBox To Google Drive");
 			moveFilesFromSourceFolder();
 			clickWebElement(leftPanelIoHubButton);
@@ -683,6 +698,7 @@ public class DropBoxDriveMoveFunctionality extends BaseClass {
 
 	public void verifyMoveFilesFunctionalityFromDropBoxToAzureDrive() throws Exception {
 		try {
+			getDriverInstance();
 			navigateToDropBoxDrive("TC 008 : Verify Move Function From DropBox To Azure Drive");
 			moveFilesFromSourceFolder();
 			clickWebElement(leftPanelIoHubButton);
@@ -713,6 +729,7 @@ public class DropBoxDriveMoveFunctionality extends BaseClass {
 
 	public void verifyMoveFilesFunctionalityFromDropBoxToOneDrive() throws Exception {
 		try {
+			getDriverInstance();
 			navigateToDropBoxDrive("TC 009 : Verify Move Function From DropBox To OneDrive");
 			moveFilesFromSourceFolder();
 			clickWebElement(leftPanelIoHubButton);
@@ -743,6 +760,7 @@ public class DropBoxDriveMoveFunctionality extends BaseClass {
 	
 	public void verifyMoveFilesFunctionalityFromDropBoxToOOSDrive() throws Exception {
 		try {
+			getDriverInstance();
 			navigateToDropBoxDrive("TC 010 : Verify Move Function From DropBox To OOS Drive");
 			moveFilesFromSourceFolder();
 			clickWebElement(leftPanelIoHubButton);
@@ -773,6 +791,7 @@ public class DropBoxDriveMoveFunctionality extends BaseClass {
 
 	public void verifyMoveFilesFunctionalityFromDropBoxToSFTPDrive() throws Exception {
 		try {
+			getDriverInstance();
 			navigateToDropBoxDrive("TC 011 : Verify Move Function From DropBox To SFTP Drive");
 			moveFilesFromSourceFolder();
 			clickWebElement(leftPanelIoHubButton);
@@ -803,6 +822,7 @@ public class DropBoxDriveMoveFunctionality extends BaseClass {
 
 	public void verifyMoveFilesFunctionalityFromDropBoxToSharePointDrive() throws Exception {
 		try {
+			getDriverInstance();
 			navigateToDropBoxDrive("TC 012 : Verify Move Function From DropBox To SharePoint Drive");
 			moveFilesFromSourceFolder();
 			clickWebElement(leftPanelIoHubButton);

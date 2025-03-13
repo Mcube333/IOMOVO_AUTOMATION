@@ -10,8 +10,16 @@ import com.iomovo.basepackage.BaseClass;
 public class AzureDriveMoveFunctionality extends BaseClass {
 
 	public AzureDriveMoveFunctionality(WebDriver driver, WebDriverWait wait) {
-		BaseClass.driver = driver;
-        BaseClass.wait = wait;
+		BaseClass.tdriver.set(driver);  
+		BaseClass.wait.set(wait);
+	}
+
+	private WebDriver getDriverInstance() {
+		WebDriver driver = tdriver.get();
+		if (driver == null) {
+			throw new IllegalStateException("❌ WebDriver is null in LoginPage. Ensure it is initialized in BaseTestClass.");
+		}
+		return driver;
 	}
 	
 	String copyDataFolderSelection = "//a[text()='AVI Data Folder']";
@@ -474,6 +482,7 @@ public class AzureDriveMoveFunctionality extends BaseClass {
 
 	public void verifyMoveFilesFunctionalityFromAzureToIoCloudDrive() throws Exception {
 		try {
+			getDriverInstance();
 			navigateToAzureDrive("TC 001 : Verify Move Files Functionality From Azure To ioCloud Drive");
 			moveFilesFromSourceFolder();
 			clickWebElement(leftPanelIoCloudButton);
@@ -503,6 +512,7 @@ public class AzureDriveMoveFunctionality extends BaseClass {
 	
 	public void verifyMoveFilesFunctionalityFromAzureToAWSDrive() throws Exception {
 		try {
+			getDriverInstance();
 			navigateToAzureDrive("TC 002 : Verify Move Files Functionality From Azure To Aws Drive");
 			moveFilesFromSourceFolder();
 			clickWebElement(leftPanelIoHubButton);
@@ -533,6 +543,7 @@ public class AzureDriveMoveFunctionality extends BaseClass {
 
 	public void verifyMoveFilesFunctionalityFromAzureToBOXDrive() throws Exception {
 		try {
+			getDriverInstance();
 			navigateToAzureDrive("TC 003 : Verify Move Function From Azure To Box Drive");
 			moveFilesFromSourceFolder();
 			clickWebElement(leftPanelIoHubButton);
@@ -563,6 +574,7 @@ public class AzureDriveMoveFunctionality extends BaseClass {
 	
 	public void verifyMoveFilesFunctionalityFromAzureToDropBoxDrive() throws Exception {
 		try {
+			getDriverInstance();
 			navigateToAzureDrive("TC 004 : Verify Move Function From Azure To DropBox Drive");
 			moveFilesFromSourceFolder();
 			clickWebElement(leftPanelIoHubButton);
@@ -593,6 +605,7 @@ public class AzureDriveMoveFunctionality extends BaseClass {
 	
 	public void verifyMoveFilesFunctionalityFromAzureToFTPDrive() throws Exception {
 		try {
+			getDriverInstance();
 			navigateToAzureDrive("TC 005 : Verify Move Function From Azure To FTP Drive");
 			moveFilesFromSourceFolder();
 			clickWebElement(leftPanelIoHubButton);
@@ -623,6 +636,7 @@ public class AzureDriveMoveFunctionality extends BaseClass {
 	
 	public void verifyMoveFilesFunctionalityFromAzureToGoogleCloudDrive() throws Exception {
 		try {
+			getDriverInstance();
 			navigateToAzureDrive("TC 006 : Verify Move Function From Azure To GoogleCloud Drive");
 			moveFilesFromSourceFolder();
 			clickWebElement(leftPanelIoHubButton);
@@ -653,6 +667,7 @@ public class AzureDriveMoveFunctionality extends BaseClass {
 	
 	public void verifyMoveFilesFunctionalityFromAzureToGoogleDrive() throws Exception {
 		try {
+			getDriverInstance();
 			navigateToAzureDrive("TC 007 : Verify Move Function From Azure To Google Drive");
 			moveFilesFromSourceFolder();
 			clickWebElement(leftPanelIoHubButton);
@@ -683,6 +698,7 @@ public class AzureDriveMoveFunctionality extends BaseClass {
 	
 	public void verifyMoveFilesFunctionalityFromAzureToAzureDrive() throws Exception {
 		try {
+			getDriverInstance();
 			navigateToAzureDrive("TC 008 : Verify Move Function From Azure To Azure Drive");
 			moveFilesFromSourceFolder();
 			clickWebElement(leftPanelIoHubButton);
@@ -713,6 +729,7 @@ public class AzureDriveMoveFunctionality extends BaseClass {
 
 	public void verifyMoveFilesFunctionalityFromAzureToOneDrive() throws Exception {
 		try {
+			getDriverInstance();
 			navigateToAzureDrive("TC 009 : Verify Move Function From Azure To OneDrive");
 			moveFilesFromSourceFolder();
 			clickWebElement(leftPanelIoHubButton);
@@ -743,6 +760,7 @@ public class AzureDriveMoveFunctionality extends BaseClass {
 	
 	public void verifyMoveFilesFunctionalityFromAzureToOOSDrive() throws Exception {
 		try {
+			getDriverInstance();
 			navigateToAzureDrive("TC 010 : Verify Move Function From Azure To OOS Drive");
 			moveFilesFromSourceFolder();
 			clickWebElement(leftPanelIoHubButton);
@@ -773,6 +791,7 @@ public class AzureDriveMoveFunctionality extends BaseClass {
 	
 	public void verifyMoveFilesFunctionalityFromAzureToSFTPDrive() throws Exception {
 		try {
+			getDriverInstance();
 			navigateToAzureDrive("TC 011 : Verify Move Function From Azure To SFTP Drive");
 			moveFilesFromSourceFolder();
 			clickWebElement(leftPanelIoHubButton);
@@ -803,6 +822,7 @@ public class AzureDriveMoveFunctionality extends BaseClass {
 	
 	public void verifyMoveFilesFunctionalityFromAzureToSharePointDrive() throws Exception {
 		try {
+			getDriverInstance();
 			navigateToAzureDrive("TC 012 : Verify Move Function From Azure To SharePoint Drive");
 			moveFilesFromSourceFolder();
 			clickWebElement(leftPanelIoHubButton);

@@ -1,47 +1,68 @@
 package com.iomovo.encode;
 
+import org.testng.Assert;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
-import com.iomovo.basetest.BaseTestClass;
+import com.iomovo.basepackage.BaseClass;
 import com.iomovo.pagespackage.DashboardFunctionality.LoginPage;
 import com.iomovo.pagespackage.EncodeFunctionality.BoxVideoEncodeFunctionality;
 
-public class BoxVideoEncodeFunctionalityTest extends BaseTestClass {
+public class BoxVideoEncodeFunctionalityTest extends BaseClass {
 	
-	LoginPage loginPage;
-	BoxVideoEncodeFunctionality Box;
-     
-	
+	private LoginPage loginPage;
+    private BoxVideoEncodeFunctionality Box;
+
+    /**
+     * Setup method runs before each test.
+     * Initializes WebDriver, logs in, and sets up required page objects.
+     */
     @BeforeMethod
     public void setUp() {
+        driver = getDriver(); // ✅ Use inherited WebDriver from BaseClass
         if (driver == null) {
-            throw new IllegalStateException("WebDriver is null in IoCloudCenterPanelTest. Check BaseTestClass initialization.");
+            throw new IllegalStateException("❌ WebDriver is null in DropBoxToIoHubMoveTest. Check BaseClass initialization.");
         }
-        loginPage = new LoginPage();
-        Box = new BoxVideoEncodeFunctionality(driver, wait);
+
+        loginPage = new LoginPage(driver, getWait());
+        Box = new BoxVideoEncodeFunctionality(driver, getWait());
+
+        performLogin(); // ✅ Ensures user is logged in before each test
+    }
+
+    /**
+     * Perform login before executing test cases.
+     */
+    private void performLogin() {
+        try {
+            loginPage.loginMethod();
+        } catch (Exception e) {
+            Assert.fail("❌ Login failed before test execution. Exception: " + e.getMessage());
+        }
     }
 	
-	@Test
-	public void AWSS3VideoEncodeFunctionality() {
-		
-		try {
-			
-			loginPage.loginMethod();
-			
-			Box.VerifyVideoEncodeFunctionalityto1080pinBoxDrive();
-			
-			Box.VerifyVideoEncodeFunctionalityto720pinBoxDrive();
-			
-			Box.VerifyVideoEncodeFunctionalityto480pinBoxDrive();
-			
-			Box.VerifyVideoEncodeFunctionalityto360pinBoxDrive();
-			
-			Box.VerifyVideoEncodeFunctionalityto240pinBoxDrive();
-			
-		} catch (Exception e) {
-			e.printStackTrace();
-			
-		}
-	}
+    @Test
+    public void verifyVideoEncodeFunctionalityTo1080pInBoxDrive() throws Exception {
+        Box.VerifyVideoEncodeFunctionalityto1080pinBoxDrive();
+    }
+
+    @Test
+    public void verifyVideoEncodeFunctionalityTo720pInBoxDrive() throws Exception {
+        Box.VerifyVideoEncodeFunctionalityto720pinBoxDrive();
+    }
+
+    @Test
+    public void verifyVideoEncodeFunctionalityTo480pInBoxDrive() throws Exception {
+        Box.VerifyVideoEncodeFunctionalityto480pinBoxDrive();
+    }
+
+    @Test
+    public void verifyVideoEncodeFunctionalityTo360pInBoxDrive() throws Exception {
+        Box.VerifyVideoEncodeFunctionalityto360pinBoxDrive();
+    }
+
+    @Test
+    public void verifyVideoEncodeFunctionalityTo240pInBoxDrive() throws Exception {
+        Box.VerifyVideoEncodeFunctionalityto240pinBoxDrive();
+    }
 }

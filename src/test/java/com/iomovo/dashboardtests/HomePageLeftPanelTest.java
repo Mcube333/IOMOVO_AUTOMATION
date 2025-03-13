@@ -1,111 +1,82 @@
 package com.iomovo.dashboardtests;
 
+import org.openqa.selenium.WebDriver;
+import org.testng.Assert;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
-import com.iomovo.basetest.BaseTestClass;
+import com.iomovo.basepackage.BaseClass;
 import com.iomovo.pagespackage.DashboardFunctionality.HomePageLeftPanel;
 import com.iomovo.pagespackage.DashboardFunctionality.LoginPage;
 
 
-public class HomePageLeftPanelTest extends BaseTestClass {
+public class HomePageLeftPanelTest extends BaseClass {
 
-	LoginPage loginPage;
-	HomePageLeftPanel leftPanel;
+	private WebDriver driver;
+	private LoginPage loginPage;
+    private HomePageLeftPanel leftPanel;
+	
+    /**
+     * Setup method runs before each test.
+     * Initializes WebDriver, logs in, and sets up required page objects.
+     */
+    @BeforeMethod
+    public void setUp() {
+    	driver = getDriver();
+        if (driver == null) {
+            throw new IllegalStateException("❌ WebDriver is null in HomePageTopPanelTest. Check BaseTestClass initialization.");
+        }
 
-	@BeforeMethod
-	public void setUp() {
-		if (driver == null) {
-			throw new IllegalStateException("WebDriver is null in IoCloudCenterPanelTest. Check BaseTestClass initialization.");
-		}
-		loginPage = new LoginPage();
-		leftPanel = new HomePageLeftPanel(driver, wait);
-	}
+        loginPage = new LoginPage(driver, getWait());
+        leftPanel = new HomePageLeftPanel(driver, getWait());
+
+        performLogin(); // Login before each test
+    }
+
+    /**
+     * Perform login before executing test cases.
+     */
+    private void performLogin() {
+        try {
+            loginPage.loginMethod();
+        } catch (Exception e) {
+            Assert.fail("❌ Login failed before test execution. Exception: " + e.getMessage());
+        }
+    }
 
 
-	//These Below Methods are for HOME PAGE LEFT PAGE Functionality tests
+    @Test
+    public void verifyUserIsRedirectedToMyFileFromLeftPanelTest() throws Exception {
+        leftPanel.verifyUserIsRedirectedToMyFileFromLeftPanelTest();
+    }
 
-	@Test
-	public void verifyUserIsRedirectedToMyFileFromLeftPanelTest() {
-		try {
-			loginPage.loginMethod(); 
+    @Test
+    public void verifyUserIsRedirectedToRecentFilesSectionFromLeftPanelTest() throws Exception {
+        leftPanel.verifyUserIsRedirectedToRecentFilesSectionFromLeftPanelTest();
+    }
 
-			leftPanel.verifyUserIsRedirectedToMyFileFromLeftPanelTest();
+    @Test
+    public void verifyUserIsRedirectedToSharedWithMeSectionFromLeftPanelTest() throws Exception {
+        leftPanel.verifyUserIsRedirectedToSharedWithMeSectionFromLeftPanelTest();
+    }
 
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-	}
+    @Test
+    public void verifyUserIsRedirectedToSharedByMeSectionFromLeftPanelTest() throws Exception {
+        leftPanel.verifyUserIsRedirectedToSharedByMeSectionFromLeftPanelTest();
+    }
 
-	@Test
-	public void verifyUserIsRedirectedToRecentFilesSectionFromLeftPanelTest() {
-		try {
-			loginPage.loginMethod(); 
+    @Test
+    public void verifyUserIsRedirectedToRecycleBinFromLeftPanelTest() throws Exception {
+        leftPanel.verifyUserIsRedirectedToRecycleBinFromLeftPanelTest();
+    }
 
-			leftPanel.verifyUserIsRedirectedToRecentFilesSectionFromLeftPanelTest();
+    @Test
+    public void verifyUserIsRedirectedToIOHubAddConnectionPageFromLeftPanelTest() throws Exception {
+        leftPanel.verifyUserIsRedirectedToIOHubAddConnectionPageFromLeftPanelTest();
+    }
 
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-	}
-
-	@Test
-	public void verifyUserIsRedirectedToSharedWithMeSectionFromLeftPanelTest() {
-		try {
-			loginPage.loginMethod(); 
-
-			leftPanel.verifyUserIsRedirectedToSharedWithMeSectionFromLeftPanelTest();
-
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-	}
-
-	@Test
-	public void verifyUserIsRedirectedToSharedByMeSectionFromLeftPanelTest() {
-		try {
-			loginPage.loginMethod(); 
-
-			leftPanel.verifyUserIsRedirectedToSharedByMeSectionFromLeftPanelTest();
-
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-	}
-
-	@Test
-	public void verifyUserIsRedirectedToRecycleBinFromLeftPanelTest() {
-		try {
-			loginPage.loginMethod(); 
-
-			leftPanel.verifyUserIsRedirectedToRecycleBinFromLeftPanelTest();
-
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-	}
-
-	@Test
-	public void verifyUserIsRedirectedToIOHubAddConnectionPageFromLeftPanelTest() {
-		try {
-			loginPage.loginMethod(); 
-
-			leftPanel.verifyUserIsRedirectedToIOHubAddConnectionPageFromLeftPanelTest();
-
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-	}
-
-	@Test
-	public void verifyUserIsRedirectedToIOAIMSVideoAnalyzerPageFromLeftPanelTest() {
-		try {
-			loginPage.loginMethod(); 
-
-			leftPanel.verifyUserIsRedirectedToIOAIMSVideoAnalyzerPageFromLeftPanelTest();
-
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-	}
+    @Test
+    public void verifyUserIsRedirectedToIOAIMSVideoAnalyzerPageFromLeftPanelTest() throws Exception {
+        leftPanel.verifyUserIsRedirectedToIOAIMSVideoAnalyzerPageFromLeftPanelTest();
+    }
 }

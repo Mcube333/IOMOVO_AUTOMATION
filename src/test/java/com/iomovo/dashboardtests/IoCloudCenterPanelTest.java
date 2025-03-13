@@ -1,322 +1,120 @@
 package com.iomovo.dashboardtests;
 
+import org.openqa.selenium.WebDriver;
+import org.testng.Assert;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
-
-import com.iomovo.basetest.BaseTestClass;
+import com.iomovo.basepackage.BaseClass;
 import com.iomovo.pagespackage.DashboardFunctionality.IoCloudCenterPanel;
 import com.iomovo.pagespackage.DashboardFunctionality.LoginPage;
 
+public class IoCloudCenterPanelTest extends BaseClass {
+    
+    private WebDriver driver;
+    private LoginPage loginPage;
+    private IoCloudCenterPanel ioCloud;
 
-public class IoCloudCenterPanelTest extends BaseTestClass 
-{
-	/**
-	 * This Method Runs Before Suite. Logs, extent report and properties file are
-	 * loaded and configured. Screen Recording is started to monitor the execution.
-	 * 
-	 * @author Mudassir
-	 * @throws FileNotFoundException
-	 */
-	LoginPage loginPage;
-	IoCloudCenterPanel ioCloud;
-     
-	
+    /**
+     * Setup method runs before each test to initialize WebDriver and log in.
+     */
     @BeforeMethod
     public void setUp() {
+        driver = getDriver();
         if (driver == null) {
-            throw new IllegalStateException("WebDriver is null in IoCloudCenterPanelTest. Check BaseTestClass initialization.");
+            throw new IllegalStateException("❌ WebDriver is null. Check BaseClass initialization.");
         }
-        loginPage = new LoginPage();
-        ioCloud = new IoCloudCenterPanel(driver, wait);
+        
+        loginPage = new LoginPage(driver, getWait());
+        ioCloud = new IoCloudCenterPanel(driver, getWait());
+
+        performLogin(); // Login before each test
     }
 
-	
-	
-	//These Below Methods are for IOCLOUD Page Functionality tests
+    /**
+     * Perform login before executing test cases.
+     */
+    private void performLogin() {
+        try {
+            loginPage.loginMethod();
+        } catch (Exception e) {
+            Assert.fail("❌ Login failed before test execution. Exception: " + e.getMessage());
+        }
+    }
 
-		@Test
-		public void verifyUserAbleToAddFolderFromIOCloudMyFilesFunctionalityTest() {
-			try {
-				loginPage.loginMethod(); // Perform login
+    // 🔹 IoCloud Functionality Tests
+    
+    @Test
+    public void testAddFolder() throws Exception {
+        ioCloud.verifyUserAbleToAddFolderFromIOCloudMyFilesFunctionalityTest("TestFolder");
+    }
 
-				IoCloudCenterPanel ioCloud = new IoCloudCenterPanel(driver, wait);
-				ioCloud.verifyUserAbleToAddFolderFromIOCloudMyFilesFunctionalityTest("testfolder");
-			} catch (Exception e) {
-				e.printStackTrace();
-			}
-		}
+    @Test
+    public void testAddProject() throws Exception {
+        ioCloud.verifyUserAbleToAddProjectFromIOCloudMyFilesFunctionalityTest("AutoTestProject");
+    }
 
-		@Test
-		public void verifyUserAbleToAddProjectFromIOCloudMyFilesFunctionalityTest() {
-			try {
-				loginPage.loginMethod();
+    @Test
+    public void testUploadMultipleDocuments() throws Exception {
+        ioCloud.verifyUserAbleToUploadDocumentFileMultipleTimesFromIoCloudUploadSectionAndTakeCertainActionsTest();
+    }
 
-				IoCloudCenterPanel ioCloud = new IoCloudCenterPanel(driver, wait);
-				ioCloud.verifyUserAbleToAddProjectFromIOCloudMyFilesFunctionalityTest("AutotestProject");
-			} catch (Exception e) {
-				e.printStackTrace();
-			}
-		}
+    @Test
+    public void testUploadMultipleAudioFiles() throws Exception {
+        ioCloud.verifyUserAbleToUploadAudioFileMultipleTimesFromIoCloudUploadSectionAndTakeCertainActionsTest();
+    }
 
-		@Test
-		public void verifyUserAbleToUploadDocumentFileMultipleTimesFromIoCloudUploadSectionAndTakeCertainActionsTest() {
-			try {
-				loginPage.loginMethod();
+    @Test
+    public void testUploadMultipleVideoFiles() throws Exception {
+        ioCloud.verifyUserAbleToUploadVideoFileMultipleTimesFromIoCloudUploadSectionAndTakeCertainActionsTest();
+    }
 
-				IoCloudCenterPanel ioCloud = new IoCloudCenterPanel(driver, wait);
-				ioCloud.verifyUserAbleToUploadDocumentFileMultipleTimesFromIoCloudUploadSectionAndTakeCertainActionsTest();
+    @Test
+    public void testCaptureImageWithoutAutoSync() throws Exception {
+        ioCloud.verifyUserIsAbleToCaptureImageFromIoCloudCaptureSectionWithoutAutoSyncTest();
+    }
 
-			} catch (Exception e) {
-				e.printStackTrace();
-			}
-		}
+    @Test
+    public void testCaptureImageWithAutoSync() throws Exception {
+        ioCloud.verifyUserIsAbleToCaptureImageFromIoCloudCaptureSectionWithAutoSyncTest();
+    }
 
-		@Test
-		public void verifyUserAbleToUploadAudioFileMultipleTimesFromIoCloudUploadSectionAndTakeCertainActionsTest() {
-			try {
-				loginPage.loginMethod();
-				
-				IoCloudCenterPanel ioCloud = new IoCloudCenterPanel(driver, wait);
-				ioCloud.verifyUserAbleToUploadAudioFileMultipleTimesFromIoCloudUploadSectionAndTakeCertainActionsTest();
+    @Test
+    public void testRecordVideoWithoutAutoSync() throws Exception {
+        ioCloud.verifyUserIsAbleToRecordTheVideoFromIoCloudCaptureSectionWithoutAutoSyncTest();
+    }
 
-			} catch (Exception e) {
-				e.printStackTrace();
-			}
-		}
+    @Test
+    public void testRecordVideoWithAutoSync() throws Exception {
+        ioCloud.verifyUserIsAbleToRecordTheVideoFromIoCloudCaptureSectionWithAutoSyncTest();
+    }
 
-		@Test
-		public void verifyUserAbleToUploadVideoFileMultipleTimesFromIoCloudUploadSectionAndTakeCertainActionsTest() {
-			try {
-				loginPage.loginMethod();
+    @Test
+    public void testZipAndUnzipFiles() throws Exception {
+        ioCloud.verifyUserAbleToZipAndUnzipFilesFromIoCloudMyFiles();
+    }
 
-				IoCloudCenterPanel ioCloud = new IoCloudCenterPanel(driver, wait);
-				ioCloud.verifyUserAbleToUploadVideoFileMultipleTimesFromIoCloudUploadSectionAndTakeCertainActionsTest();
+    @Test
+    public void testSortRecords() throws Exception {
+        ioCloud.verifyUserAbleToSortRecordsFromIoCloudMyFiles();
+    }
 
-			} catch (Exception e) {
-				e.printStackTrace();
-			}
-		}
+    @Test
+    public void testSwitchListAndGridView() throws Exception {
+        ioCloud.verifyUserAbleToSwitchFilesToListAndGridViewFromIoCloudMyFiles();
+    }
 
-		@Test
-		public void verifyUserIsAbleToCaptureImageFromIoCloudCaptureSectionWithoutAutoSyncTest() {
-			try {
-				loginPage.loginMethod();
+    @Test
+    public void testRenameFile() throws Exception {
+        ioCloud.verifyUserAbleToRenameFileFromIoCloudMyFiles();
+    }
 
-				IoCloudCenterPanel ioCloud = new IoCloudCenterPanel(driver, wait);
-				ioCloud.verifyUserIsAbleToCaptureImageFromIoCloudCaptureSectionWithoutAutoSyncTest();
+    @Test
+    public void testRenameFolder() throws Exception {
+        ioCloud.verifyUserAbleToRenameFolderFromIoCloudMyFiles();
+    }
 
-			} catch (Exception e) {
-				e.printStackTrace();
-			}
-		}
-
-		@Test
-		public void verifyUserIsAbleToCaptureImageFromIoCloudCaptureSectionWithAutoSyncTest() {
-			try {
-				loginPage.loginMethod();
-
-				IoCloudCenterPanel ioCloud = new IoCloudCenterPanel(driver, wait);
-				ioCloud.verifyUserIsAbleToCaptureImageFromIoCloudCaptureSectionWithAutoSyncTest();
-
-			} catch (Exception e) {
-				e.printStackTrace();
-			}
-		}
-
-		@Test
-		public void verifyUserIsAbleToRecordTheVideoFromIoCloudCaptureSectionWithoutAutoSyncTest() {
-			try {
-				loginPage.loginMethod();
-
-				IoCloudCenterPanel ioCloud = new IoCloudCenterPanel(driver, wait);
-				ioCloud.verifyUserIsAbleToRecordTheVideoFromIoCloudCaptureSectionWithoutAutoSyncTest();
-
-			} catch (Exception e) {
-				e.printStackTrace();
-			}
-		}
-
-		@Test
-		public void verifyUserIsAbleToRecordTheVideoFromIoCloudCaptureSectionWithAutoSyncTest() {
-			try {
-				loginPage.loginMethod();
-				IoCloudCenterPanel ioCloud = new IoCloudCenterPanel(driver, wait);
-				ioCloud.verifyUserIsAbleToRecordTheVideoFromIoCloudCaptureSectionWithAutoSyncTest();
-
-			} catch (Exception e) {
-				e.printStackTrace();
-			}
-		}
-
-		@Test
-		public void verifyUserAbleToSelectAllAndClearSelectedFilesFromIoCloudMyFilesFunctionalityTest() {
-			try {
-				loginPage.loginMethod();
-
-				IoCloudCenterPanel ioCloud = new IoCloudCenterPanel(driver, wait);
-				ioCloud.verifyUserAbleToSelectAllAndClearSelectedFilesFromIoCloudMyFilesFunctionalityTest();
-
-			} catch (Exception e) {
-				e.printStackTrace();
-			}
-		}
-
-		@Test
-		public void verifyUserAbleToZipAndUnzipFilesFromIoCloudMyFiles() {
-			try {
-				loginPage.loginMethod();
-
-				IoCloudCenterPanel ioCloud = new IoCloudCenterPanel(driver, wait);
-				ioCloud.verifyUserAbleToZipAndUnzipFilesFromIoCloudMyFiles();
-
-			} catch (Exception e) {
-				e.printStackTrace();
-			}
-		}
-
-		@Test
-		public void verifyUserAbleToSortRecordsFromIoCloudMyFiles() {
-			try {
-				loginPage.loginMethod();
-
-				IoCloudCenterPanel ioCloud = new IoCloudCenterPanel(driver, wait);
-				ioCloud.verifyUserAbleToSortRecordsFromIoCloudMyFiles();
-
-			} catch (Exception e) {
-				e.printStackTrace();
-			}
-		}
-
-		@Test
-		public void verifyUserAbleToSwitchFilesToListAndGridViewFromIoCloudMyFiles() {
-			try {
-				loginPage.loginMethod();
-
-				IoCloudCenterPanel ioCloud = new IoCloudCenterPanel(driver, wait);
-				ioCloud.verifyUserAbleToSwitchFilesToListAndGridViewFromIoCloudMyFiles();
-
-			} catch (Exception e) {
-				e.printStackTrace();
-			}
-		}
-
-		@Test
-		public void verifyUserAbleToPinAndUnPinFromIoCloudMyFiles() {
-			try {
-				loginPage.loginMethod();
-
-				IoCloudCenterPanel ioCloud = new IoCloudCenterPanel(driver, wait);
-				ioCloud.verifyUserAbleToPinAndUnPinFromIoCloudMyFiles();
-
-			} catch (Exception e) {
-				e.printStackTrace();
-			}
-		}
-
-
-		@Test
-		public void verifyUserAbleToCopyFilesFromIoCloudMyFiles() {
-			try {
-				loginPage.loginMethod();
-
-				IoCloudCenterPanel ioCloud = new IoCloudCenterPanel(driver, wait);
-				ioCloud.verifyUserAbleToCopyFilesFromIoCloudMyFiles();
-
-			} catch (Exception e) {
-				e.printStackTrace();
-			}
-		}
-
-		@Test
-		public void verifyUserAbleToDragAndDropFileFromIoCloudMyFiles() {
-			try {
-				loginPage.loginMethod();
-
-				IoCloudCenterPanel ioCloud = new IoCloudCenterPanel(driver, wait);
-				ioCloud.verifyUserAbleToDragAndDropFileFromIoCloudMyFiles();
-
-			} catch (Exception e) {
-				e.printStackTrace();
-			}
-		}
-
-		@Test
-		public void verifyUserAbleToOpenVideoFileInTheNewTabFromIoCloudMyFiles() {
-			try {
-				loginPage.loginMethod();
-
-				IoCloudCenterPanel ioCloud = new IoCloudCenterPanel(driver, wait);
-				ioCloud.verifyUserAbleToOpenVideoFileInTheNewTabFromIoCloudMyFiles();
-
-			} catch (Exception e) {
-				e.printStackTrace();
-			}
-		}
-
-		@Test
-		public void verifyUserAbleToOpenAudioFileInTheNewTabFromIoCloudMyFiles() {
-			try {
-				LoginPage login = new LoginPage(driver, wait);
-				login.loginMethod();
-
-				IoCloudCenterPanel ioCloud = new IoCloudCenterPanel(driver, wait);
-				ioCloud.verifyUserAbleToOpenAudioFileInTheNewTabFromIoCloudMyFiles();
-
-			} catch (Exception e) {
-				e.printStackTrace();
-			}
-		}
-
-		@Test
-		public void verifyUserAbleToRenameFileFromIoCloudMyFiles() {
-			try {
-				LoginPage login = new LoginPage(driver, wait);
-				login.loginMethod();
-
-				IoCloudCenterPanel ioCloud = new IoCloudCenterPanel(driver, wait);
-				ioCloud.verifyUserAbleToRenameFileFromIoCloudMyFiles();
-
-			} catch (Exception e) {
-				e.printStackTrace();
-			}
-		}
-
-		@Test
-		public void verifyUserAbleToRenameFolderFromIoCloudMyFiles() {
-			try {
-				LoginPage login = new LoginPage(driver, wait);
-				login.loginMethod();
-
-				IoCloudCenterPanel ioCloud = new IoCloudCenterPanel(driver, wait);
-				ioCloud.verifyUserAbleToRenameFolderFromIoCloudMyFiles();
-
-			} catch (Exception e) {
-				e.printStackTrace();
-			}
-		}	
-
-		@Test
-		public void verifyUserAbleToDeleteFromIoCloudMyFiles() {
-			try {
-				LoginPage login = new LoginPage(driver, wait);
-				login.loginMethod();
-
-				IoCloudCenterPanel ioCloud = new IoCloudCenterPanel(driver, wait);
-				ioCloud.verifyUserAbleToDeleteFromIoCloudMyFiles();
-
-			} catch (Exception e) {
-				e.printStackTrace();
-			}
-		}
-		
-		@Test
-		public void verifyUserAbleToUploadVideoFileToIoCloudUploadSectionTest() {
-			try {
-				LoginPage login = new LoginPage(driver, wait);
-				login.loginMethod();
-			
-			} catch (Exception e) {
-				e.printStackTrace();
-			}
-		}
+    @Test
+    public void testDeleteFile() throws Exception {
+        ioCloud.verifyUserAbleToDeleteFromIoCloudMyFiles();
+    }
 }

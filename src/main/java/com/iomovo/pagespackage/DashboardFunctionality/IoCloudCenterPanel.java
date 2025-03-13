@@ -2,8 +2,8 @@ package com.iomovo.pagespackage.DashboardFunctionality;
 
 import static org.testng.Assert.assertTrue;
 
+import java.time.Duration;
 import java.util.List;
-
 import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
@@ -16,11 +16,24 @@ import com.iomovo.basepackage.BaseClass;
 
 public class IoCloudCenterPanel extends BaseClass {
 	
-	public IoCloudCenterPanel(WebDriver driver, WebDriverWait wait) {
-		BaseClass.driver = driver;
-        BaseClass.wait = wait;
-	}
+	public IoCloudCenterPanel() {
+		if (getDriver() == null) {
+            throw new IllegalStateException("❌ WebDriver is null in ProfilePage. Ensure it is initialized in BaseClass.");
+        }
+    }
+	
+    public IoCloudCenterPanel(WebDriver driver, WebDriverWait wait) {
+        BaseClass.tdriver.set(driver);
+        BaseClass.wait.set(new WebDriverWait(driver, Duration.ofSeconds(10))); // Ensure WebDriverWait is set
+    }
 
+    private WebDriver getDriverInstance() {
+        WebDriver driver = tdriver.get();
+        if (driver == null) {
+            throw new IllegalStateException("❌ WebDriver is null in ProfilePage. Ensure it is initialized in BaseClass.");
+        }
+        return driver;
+    }
 	// All X-Paths after selecting a file in IoCloud.
 	String leftPanelHomeButton = "//span[text()=' Home']";
 
@@ -217,6 +230,7 @@ public class IoCloudCenterPanel extends BaseClass {
 
 	public void verifyUserAbleToAddFolderFromIOCloudMyFilesFunctionalityTest(String folderName) throws Exception {
 		try {
+			getDriverInstance();
 			logConsoleOutputMessage("strUrl: " + strUrl);
 			logPassStepInExtentReport("TC 001: verify User Able To Add Folder From Left Panel MyFiles Functionality Test");
 //			doubleClickUsingActionClass(leftPanelHomeButton);
@@ -249,6 +263,7 @@ public class IoCloudCenterPanel extends BaseClass {
 
 	public void verifyUserAbleToAddProjectFromIOCloudMyFilesFunctionalityTest(String ProjectName) throws Exception {
 		try {
+			getDriverInstance();
 			logConsoleOutputMessage("strUrl: " + strUrl);
 			logPassStepInExtentReport("TC 002: verify User Able To Add Project From Left Panel MyFiles Functionality Test");
 //			doubleClickUsingActionClass(leftPanelHomeButton);
@@ -281,6 +296,7 @@ public class IoCloudCenterPanel extends BaseClass {
 
 	public void uploadFilesFunctionality(String docFilesPath, String samplePdfFile) throws Exception {
 		try {
+			getDriverInstance();
 			logConsoleOutputMessage("strUrl: " + strUrl);
 			doubleClickUsingActionClass(leftpanelIOCloudButton);
 			clickWebElement(leftPanelIOCloud_MyFiles);
@@ -405,6 +421,7 @@ public class IoCloudCenterPanel extends BaseClass {
 
 	public void verifyUserIsAbleToCaptureImageFromIoCloudCaptureSectionWithoutAutoSyncTest() throws Exception {
 		try {
+			getDriverInstance();
 			logConsoleOutputMessage("strUrl: " + strUrl);
 			logPassStepInExtentReport("TC 013 : verify User Is Able To Capture Image From IoCloud Capture Section Without Auto Sync Test");
 			explicitWaitInSeconds(5);
@@ -440,6 +457,7 @@ public class IoCloudCenterPanel extends BaseClass {
 
 	public void verifyUserIsAbleToCaptureImageFromIoCloudCaptureSectionWithAutoSyncTest() throws Exception {
 		try {
+			getDriverInstance();
 			logConsoleOutputMessage("strUrl: " + strUrl);
 			logPassStepInExtentReport("TC 013 : verify User Able To Capture Image From IoCloud Capture Section With AutoSync Test");
 			clickWebElement(leftPanelIOCloud_MyFiles);
@@ -476,6 +494,7 @@ public class IoCloudCenterPanel extends BaseClass {
 
 	public void verifyUserIsAbleToRecordTheVideoFromIoCloudCaptureSectionWithoutAutoSyncTest() throws Exception {
 		try {
+			getDriverInstance();
 			logConsoleOutputMessage("strUrl: " + strUrl);
 			logPassStepInExtentReport("TC 013 : verify User Able To Record The Video From IoCloud Capture Section Without Auto Sync Test");
 			clickWebElement(leftPanelIOCloud_MyFiles);
@@ -515,6 +534,7 @@ public class IoCloudCenterPanel extends BaseClass {
 
 	public void verifyUserIsAbleToRecordTheVideoFromIoCloudCaptureSectionWithAutoSyncTest() throws Exception {
 		try {
+			getDriverInstance();
 			logConsoleOutputMessage("strUrl: " + strUrl);
 			logPassStepInExtentReport("TC 013 : verify User Able To Record The Video From IoCloud Capture Section With AutoSync Test");
 			clickWebElement(leftPanelIOCloud_MyFiles);
@@ -554,6 +574,7 @@ public class IoCloudCenterPanel extends BaseClass {
 
 	public void verifyUserAbleToSelectAllAndClearSelectedFilesFromIoCloudMyFilesFunctionalityTest() throws Exception {
 		try {
+			getDriverInstance();
 			logConsoleOutputMessage("strUrl: " + strUrl);
 			logPassStepInExtentReport("TC 000 : verify User Able To Select All And Clear Selected Files From IoCloud MyFiles Test");
 			refreshWebPage();
@@ -586,6 +607,7 @@ public class IoCloudCenterPanel extends BaseClass {
 
 	public void verifyUserAbleToZipAndUnzipFilesFromIoCloudMyFiles() throws Exception {
 		try {
+			getDriverInstance();
 			logConsoleOutputMessage("strUrl: " + strUrl);
 			logPassStepInExtentReport("TC 000 : verify User Able To Zip And Unzip Files From IoCloud MyFiles Test");
 			refreshWebPage();
@@ -664,6 +686,7 @@ public class IoCloudCenterPanel extends BaseClass {
 
 	public void verifyUserAbleToSortRecordsFromIoCloudMyFiles() throws Exception {
 		try {
+			WebDriver driver = getDriverInstance();
 			logConsoleOutputMessage("strUrl: " + strUrl);
 			logPassStepInExtentReport("verify User Able To Sort Records From IoCloud MyFiles");
 			refreshWebPage();
@@ -680,8 +703,8 @@ public class IoCloudCenterPanel extends BaseClass {
 			logPassStepInExtentReport("Clicked On Sort Ascending Button");
 			explicitWaitInSeconds(5);
 			clickWebElement(ioCloudSortAscendingLink);
-			wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath("//li[contains(@class, 'Mui-selected')]//p[text()='Ascending']")));
-			String selectedOptionClass = driver.findElement(By.xpath("//li[contains(@class, 'Mui-selected')]")).getAttribute("class");
+			wait.get().until(ExpectedConditions.presenceOfElementLocated(By.xpath("//li[contains(@class, 'Mui-selected')]//p[text()='Ascending']")));
+			String selectedOptionClass = driver.findElement(By.xpath("//li[contains(@class, 'Mui-selected')]")).getDomAttribute("class");
 			assertTrue(selectedOptionClass.contains("Mui-selected"));
 			logPassStepInExtentReportWithScreenshot(" Data Sorted Successfully By ASCENDING ");
 			explicitWaitInSeconds(5);
@@ -693,9 +716,9 @@ public class IoCloudCenterPanel extends BaseClass {
 			explicitWaitInSeconds(5);
 			clickWebElement(ioCloudSortDescendingLink);
 			// Wait for the sorting process to complete
-			wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath("//li[contains(@class, 'Mui-selected')]//p[text()='Descending']")));
+			wait.get().until(ExpectedConditions.presenceOfElementLocated(By.xpath("//li[contains(@class, 'Mui-selected')]//p[text()='Descending']")));
 			// Get the class attribute of the selected sorting option
-			selectedOptionClass = driver.findElement(By.xpath("//li[contains(@class, 'Mui-selected')]")).getAttribute("class");
+			selectedOptionClass = driver.findElement(By.xpath("//li[contains(@class, 'Mui-selected')]")).getDomAttribute("class");
 			// Verify that the Descending sorting option is selected
 			assertTrue(selectedOptionClass.contains("Mui-selected"));
 			logPassStepInExtentReportWithScreenshot(" Data Sorted Successfully By DESCENDING ");
@@ -708,9 +731,9 @@ public class IoCloudCenterPanel extends BaseClass {
 			explicitWaitInSeconds(5);
 			clickWebElement(ioCloudSortByNameLink);
 			// Wait for the sorting process to complete
-			wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath("//li[contains(@class, 'Mui-selected')]//p[text()='Sort by Name']")));
+			wait.get().until(ExpectedConditions.presenceOfElementLocated(By.xpath("//li[contains(@class, 'Mui-selected')]//p[text()='Sort by Name']")));
 			// Get the class attribute of the selected sorting option
-			selectedOptionClass = driver.findElement(By.xpath("//li[contains(@class, 'Mui-selected')]")).getAttribute("class");
+			selectedOptionClass = driver.findElement(By.xpath("//li[contains(@class, 'Mui-selected')]")).getDomAttribute("class");
 			// Verify that the Sort by Name option is selected
 			assertTrue(selectedOptionClass.contains("Mui-selected"));
 			logPassStepInExtentReportWithScreenshot(" Data Sorted Successfully By Name ");
@@ -723,9 +746,9 @@ public class IoCloudCenterPanel extends BaseClass {
 			explicitWaitInSeconds(5);
 			clickWebElement(ioCloudSortBySizeLink);
 			// Wait for the sorting process to complete
-			wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath("//li[contains(@class, 'Mui-selected')]//p[text()='Sort by Size']")));
+			wait.get().until(ExpectedConditions.presenceOfElementLocated(By.xpath("//li[contains(@class, 'Mui-selected')]//p[text()='Sort by Size']")));
 			// Get the class attribute of the selected sorting option
-			selectedOptionClass = driver.findElement(By.xpath("//li[contains(@class, 'Mui-selected')]")).getAttribute("class");
+			selectedOptionClass = driver.findElement(By.xpath("//li[contains(@class, 'Mui-selected')]")).getDomAttribute("class");
 			// Verify that the Sort by Size option is selected
 			assertTrue(selectedOptionClass.contains("Mui-selected"));
 			logPassStepInExtentReportWithScreenshot(" Data Sorted Successfully By Size ");
@@ -738,9 +761,9 @@ public class IoCloudCenterPanel extends BaseClass {
 			explicitWaitInSeconds(5);
 			clickWebElement(ioCloudSortByDateLink);
 			// Wait for the sorting process to complete
-			wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath("//li[contains(@class, 'Mui-selected')]//p[text()='Sort by Date']")));
+			wait.get().until(ExpectedConditions.presenceOfElementLocated(By.xpath("//li[contains(@class, 'Mui-selected')]//p[text()='Sort by Date']")));
 			// Get the class attribute of the selected sorting option
-			selectedOptionClass = driver.findElement(By.xpath("//li[contains(@class, 'Mui-selected')]")).getAttribute("class");
+			selectedOptionClass = driver.findElement(By.xpath("//li[contains(@class, 'Mui-selected')]")).getDomAttribute("class");
 			// Verify that the Sort by Date option is selected
 			assertTrue(selectedOptionClass.contains("Mui-selected"));
 			logPassStepInExtentReportWithScreenshot(" Data Sorted Successfully By Date ");
@@ -753,8 +776,11 @@ public class IoCloudCenterPanel extends BaseClass {
 		}
 	}
 
+
+
 	public void verifyUserAbleToSwitchFilesToListAndGridViewFromIoCloudMyFiles() throws Exception {
 		try {
+			getDriverInstance();
 			logConsoleOutputMessage("strUrl: " + strUrl);
 			logPassStepInExtentReport("TC 013 : verify User Able To Switch Files To List And GridView From IoCloud MyFiles");
 			refreshWebPage();
@@ -795,6 +821,7 @@ public class IoCloudCenterPanel extends BaseClass {
 
 	public void verifyUserAbleToPinAndUnPinFromIoCloudMyFiles() throws Exception {
 		try {
+			getDriverInstance();
 			logConsoleOutputMessage("strUrl: " + strUrl);
 			logPassStepInExtentReport("TC 013 : Verify User Able To Pin File ");
 			refreshWebPage();
@@ -896,6 +923,7 @@ public class IoCloudCenterPanel extends BaseClass {
 
 	public void verifyUserAbleToCopyFilesFromIoCloudMyFiles() throws Exception {
 		try {
+			getDriverInstance();
 			logConsoleOutputMessage("strUrl: " + strUrl);
 			logPassStepInExtentReport("TC 013 : Verify that a single file can be successfully copied to a destination.");
 			refreshWebPage();
@@ -1001,6 +1029,7 @@ public class IoCloudCenterPanel extends BaseClass {
 
 	public void verifyUserAbleToDragAndDropFileFromIoCloudMyFiles() throws Exception {
 		try {
+			WebDriver driver = getDriverInstance();
 			logConsoleOutputMessage("strUrl: " + strUrl);
 			logPassStepInExtentReport("TC 013 : verify User Able To Drag And Drop File From IoCloud MyFiles Test");
 			refreshWebPage();
@@ -1030,6 +1059,7 @@ public class IoCloudCenterPanel extends BaseClass {
 
 	public void verifyUserAbleToOpenVideoFileInTheNewTabFromIoCloudMyFiles() throws Exception {
 		try {
+			getDriverInstance();
 			logConsoleOutputMessage("strUrl: " + strUrl);
 			logPassStepInExtentReport("TC 013 : verify User Able To Open Video File In The New Tab From IoCloud MyFiles");
 			refreshWebPage();
@@ -1069,6 +1099,7 @@ public class IoCloudCenterPanel extends BaseClass {
 
 	public void verifyUserAbleToOpenAudioFileInTheNewTabFromIoCloudMyFiles() throws Exception {
 		try {
+			getDriverInstance();
 			logConsoleOutputMessage("strUrl: " + strUrl);
 			logPassStepInExtentReport("TC 013 : verify User Able To Open Audio File In The New Tab From IoCloud MyFiles");
 			refreshWebPage();
@@ -1172,6 +1203,7 @@ public class IoCloudCenterPanel extends BaseClass {
 
 	public void verifyUserAbleToRenameFileFromIoCloudMyFiles() throws Exception {
 		try {
+			getDriverInstance();
 			logConsoleOutputMessage("strUrl: " + strUrl);
 			logPassStepInExtentReport("TC 013 : Verify User Able To Rename File From IoCloud MyFiles");
 			refreshWebPage();
@@ -1219,6 +1251,7 @@ public class IoCloudCenterPanel extends BaseClass {
 
 	public void verifyUserAbleToRenameFolderFromIoCloudMyFiles() throws Exception {
 		try {
+			getDriverInstance();
 			logConsoleOutputMessage("strUrl: " + strUrl);
 			logPassStepInExtentReport("TC 013 : Verify User Able To Rename Folder From IoCloud MyFiles");
 			refreshWebPage();
@@ -1268,6 +1301,7 @@ public class IoCloudCenterPanel extends BaseClass {
 
 	public void verifyUserAbleToDeleteFromIoCloudMyFiles() throws Exception {
 		try {
+			WebDriver driver = getDriverInstance();
 			logConsoleOutputMessage("strUrl: " + strUrl);
 			logPassStepInExtentReport("TC 013 : Verify User Able To Delete From IoCloud MyFiles");
 			refreshWebPage();

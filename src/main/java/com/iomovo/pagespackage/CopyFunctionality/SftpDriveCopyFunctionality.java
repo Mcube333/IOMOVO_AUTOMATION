@@ -2,6 +2,8 @@ package com.iomovo.pagespackage.CopyFunctionality;
 
 import static org.testng.Assert.assertTrue;
 
+import java.time.Duration;
+
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
@@ -9,10 +11,24 @@ import com.iomovo.basepackage.BaseClass;
 
 public class SftpDriveCopyFunctionality extends BaseClass {
 
-	public SftpDriveCopyFunctionality(WebDriver driver, WebDriverWait wait) {
-		BaseClass.driver = driver;
-        BaseClass.wait = wait;
-	}
+	public SftpDriveCopyFunctionality() {
+		if (getDriver() == null) {
+            throw new IllegalStateException("❌ WebDriver is null in ProfilePage. Ensure it is initialized in BaseClass.");
+        }
+    }
+	
+    public SftpDriveCopyFunctionality(WebDriver driver, WebDriverWait wait) {
+        BaseClass.tdriver.set(driver);
+        BaseClass.wait.set(new WebDriverWait(driver, Duration.ofSeconds(10))); // Ensure WebDriverWait is set
+    }
+
+    private WebDriver getDriverInstance() {
+        WebDriver driver = tdriver.get();
+        if (driver == null) {
+            throw new IllegalStateException("❌ WebDriver is null in ProfilePage. Ensure it is initialized in BaseClass.");
+        }
+        return driver;
+    }
 
 	String copyDataFolderSelection = "//a[text()='AVI Data Folder']";
 	String moveDataFolderSelectionRoot = "//a[text()='AutomationTestingFolder']";
@@ -353,6 +369,7 @@ public class SftpDriveCopyFunctionality extends BaseClass {
 
 	public void verifyCopyFilesFunctionalityFromSFTPToIoCloudDrive() throws Exception {
 		try {
+			getDriverInstance();
 			navigateToSFTPDrive("TC 001 : Verify Copy Function From SFTP To IoCloud Drive");
 			copyFilesFromSourceFolder();
 			clickWebElement(leftPanelIoCloudButton);
@@ -382,6 +399,7 @@ public class SftpDriveCopyFunctionality extends BaseClass {
 
 	public void verifyCopyFilesFunctionalityFromSFTPToAWSDrive() throws Exception {
 		try {
+			getDriverInstance();
 			navigateToSFTPDrive("TC 002 : Verify Copy Function From SFTP To AWS Drive");
 			copyFilesFromSourceFolder();
 			clickWebElement(leftPanelIoHubButton);
@@ -412,6 +430,7 @@ public class SftpDriveCopyFunctionality extends BaseClass {
 	
 	public void verifyCopyFilesFunctionalityFromSFTPToBoxDrive() throws Exception {
 		try {
+			getDriverInstance();
 			navigateToSFTPDrive("TC 003 : Verify Copy Function From SFTP To BOX Drive");
 			copyFilesFromSourceFolder();
 			clickWebElement(leftPanelIoHubButton);
@@ -442,6 +461,7 @@ public class SftpDriveCopyFunctionality extends BaseClass {
 
 	public void verifyCopyFilesFunctionalityFromSFTPToDropBoxDrive() throws Exception {
 		try {
+			getDriverInstance();
 			navigateToSFTPDrive("TC 004 : Verify Copy Function From SFTP To DropBox Drive");
 			copyFilesFromSourceFolder();
 			clickWebElement(leftPanelIoHubButton);
@@ -472,6 +492,7 @@ public class SftpDriveCopyFunctionality extends BaseClass {
 
 	public void verifyCopyFilesFunctionalityFromSFTPToFTPDrive() throws Exception {
 		try {
+			getDriverInstance();
 			navigateToSFTPDrive("TC 005 : Verify Copy Function From SFTP To FTP Drive");
 			copyFilesFromSourceFolder();
 			clickWebElement(leftPanelIoHubButton);
@@ -502,6 +523,7 @@ public class SftpDriveCopyFunctionality extends BaseClass {
 
 	public void verifyCopyFilesFunctionalityFromSFTPToGoogleCloudDrive() throws Exception {
 		try {
+			getDriverInstance();
 			navigateToSFTPDrive("TC 006 : Verify Copy Function From SFTP To GoogleCloud Drive");
 			copyFilesFromSourceFolder();
 			clickWebElement(leftPanelIoHubButton);
@@ -532,6 +554,7 @@ public class SftpDriveCopyFunctionality extends BaseClass {
 
 	public void verifyCopyFilesFunctionalityFromSFTPToGoogleDrive() throws Exception {
 		try {
+			getDriverInstance();
 			navigateToSFTPDrive("TC 007 : Verify Copy Function From SFTP To Google Drive");
 			copyFilesFromSourceFolder();
 			clickWebElement(leftPanelIoHubButton);
@@ -562,6 +585,7 @@ public class SftpDriveCopyFunctionality extends BaseClass {
 
 	public void verifyCopyFilesFunctionalityFromSFTPToAzureDrive() throws Exception {
 		try {
+			getDriverInstance();
 			navigateToSFTPDrive("TC 008 : Verify Copy Function From SFTP To MSAzure Drive");
 			copyFilesFromSourceFolder();
 			clickWebElement(leftPanelIoHubButton);
@@ -592,6 +616,7 @@ public class SftpDriveCopyFunctionality extends BaseClass {
 
 	public void verifyCopyFilesFunctionalityFromSFTPToOneDrive() throws Exception {
 		try {
+			getDriverInstance();
 			navigateToSFTPDrive("TC 009 : Verify Copy Function From SFTP To OneDrive");
 			copyFilesFromSourceFolder();
 			clickWebElement(leftPanelIoHubButton);
@@ -622,6 +647,7 @@ public class SftpDriveCopyFunctionality extends BaseClass {
 	
 	public void verifyCopyFilesFunctionalityFromSFTPToOOSDrive() {
 		try {
+			getDriverInstance();
 			navigateToSFTPDrive("TC 010 : Verify Copy Function From SFTP To OOS Drive");
 			copyFilesFromSourceFolder();
 			clickWebElement(leftPanelIoHubButton);
@@ -652,6 +678,7 @@ public class SftpDriveCopyFunctionality extends BaseClass {
 
 	public void verifyCopyFilesFunctionalityFromSFTPToSFTPDrive() throws Exception {
 		try {
+			getDriverInstance();
 			navigateToSFTPDrive("TC 011 : Verify Copy Function From SFTP To SFTP Drive");
 			copyFilesFromSourceFolder();
 			clickWebElement(leftPanelIoHubButton);
@@ -682,6 +709,7 @@ public class SftpDriveCopyFunctionality extends BaseClass {
 
 	public void verifyCopyFilesFunctionalityFromSFTPToSharePointDrive() throws Exception {
 		try {
+			getDriverInstance();
 			navigateToSFTPDrive("TC 012 : Verify Copy Function From SFTP To SharePoint Drive");
 			copyFilesFromSourceFolder();
 			clickWebElement(leftPanelIoHubButton);

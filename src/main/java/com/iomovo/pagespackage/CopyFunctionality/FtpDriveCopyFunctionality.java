@@ -2,6 +2,8 @@ package com.iomovo.pagespackage.CopyFunctionality;
 
 import static org.testng.Assert.assertTrue;
 
+import java.time.Duration;
+
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
@@ -9,10 +11,24 @@ import com.iomovo.basepackage.BaseClass;
 
 public class FtpDriveCopyFunctionality extends BaseClass {
 
-	public FtpDriveCopyFunctionality(WebDriver driver, WebDriverWait wait) {
-		BaseClass.driver = driver;
-        BaseClass.wait = wait;
-	}
+	public FtpDriveCopyFunctionality() {
+		if (getDriver() == null) {
+            throw new IllegalStateException("❌ WebDriver is null in ProfilePage. Ensure it is initialized in BaseClass.");
+        }
+    }
+	
+    public FtpDriveCopyFunctionality(WebDriver driver, WebDriverWait wait) {
+        BaseClass.tdriver.set(driver);
+        BaseClass.wait.set(new WebDriverWait(driver, Duration.ofSeconds(10))); // Ensure WebDriverWait is set
+    }
+
+    private WebDriver getDriverInstance() {
+        WebDriver driver = tdriver.get();
+        if (driver == null) {
+            throw new IllegalStateException("❌ WebDriver is null in ProfilePage. Ensure it is initialized in BaseClass.");
+        }
+        return driver;
+    }
 
 	String copyDataFolderSelection = "//a[text()='AVI Data Folder']";
 	String moveDataFolderSelectionRoot = "//a[text()='AutomationTestingFolder']";
@@ -353,6 +369,7 @@ public class FtpDriveCopyFunctionality extends BaseClass {
 
 	public void verifyCopyFilesFunctionalityFromFTPToIoCloudDrive() throws Exception {
 		try {
+			getDriverInstance();
 			navigateToFtpDrive("TC 001 : Verify Copy Function From Ftp To IoCloud Drive");
 			copyFilesFromSourceFolder();
 			clickWebElement(leftPanelIoCloudButton);
@@ -382,6 +399,7 @@ public class FtpDriveCopyFunctionality extends BaseClass {
 
 	public void verifyCopyFilesFunctionalityFromFTPToAWSDrive() throws Exception {
 		try {
+			getDriverInstance();
 			navigateToFtpDrive("TC 002 : Verify Copy Function From Ftp To AWS Drive");
 			copyFilesFromSourceFolder();
 			clickWebElement(leftPanelIoHubButton);
@@ -412,6 +430,7 @@ public class FtpDriveCopyFunctionality extends BaseClass {
 
 	public void verifyCopyFilesFunctionalityFromFTPToBOXDrive() throws Exception {
 		try {
+			getDriverInstance();
 			navigateToFtpDrive("TC 003 : Verify Copy Function From Ftp To Box Drive");
 			copyFilesFromSourceFolder();
 			clickWebElement(leftPanelIoHubButton);
@@ -442,6 +461,7 @@ public class FtpDriveCopyFunctionality extends BaseClass {
 
 	public void verifyCopyFilesFunctionalityFromFTPToDropBoxDrive() throws Exception {
 		try {
+			getDriverInstance();
 			navigateToFtpDrive("TC 004 : Verify Copy Function From Ftp To DropBox Drive");
 			copyFilesFromSourceFolder();
 			clickWebElement(leftPanelIoHubButton);
@@ -472,6 +492,7 @@ public class FtpDriveCopyFunctionality extends BaseClass {
 
 	public void verifyCopyFilesFunctionalityFromFTPToFTPDrive() throws Exception {
 		try {
+			getDriverInstance();
 			navigateToFtpDrive("TC 005 : Verify Copy Function From Ftp To Ftp Drive");
 			copyFilesFromSourceFolder();
 			clickWebElement(leftPanelIoHubButton);
@@ -502,6 +523,7 @@ public class FtpDriveCopyFunctionality extends BaseClass {
 
 	public void verifyCopyFilesFunctionalityFromFTPToGoogleCloudDrive() throws Exception {
 		try {
+			getDriverInstance();
 			navigateToFtpDrive("TC 006 : Verify Copy Function From Ftp To GoogleCloud Drive");
 			copyFilesFromSourceFolder();
 			clickWebElement(leftPanelIoHubButton);
@@ -532,6 +554,7 @@ public class FtpDriveCopyFunctionality extends BaseClass {
 
 	public void verifyCopyFilesFunctionalityFromFTPToGoogleDrive() throws Exception {
 		try {
+			getDriverInstance();
 			navigateToFtpDrive("TC 007 : Verify Copy Function From Ftp To Google Drive");
 			copyFilesFromSourceFolder();
 			clickWebElement(leftPanelIoHubButton);
@@ -562,6 +585,7 @@ public class FtpDriveCopyFunctionality extends BaseClass {
 
 	public void verifyCopyFilesFunctionalityFromFTPToAzureDrive() throws Exception {
 		try {
+			getDriverInstance();
 			navigateToFtpDrive("TC 008 : Verify Copy Function From Ftp To Azure Drive");
 			copyFilesFromSourceFolder();
 			clickWebElement(leftPanelIoHubButton);
@@ -592,6 +616,7 @@ public class FtpDriveCopyFunctionality extends BaseClass {
 
 	public void verifyCopyFilesFunctionalityFromFTPToOneDrive() throws Exception {
 		try {
+			getDriverInstance();
 			navigateToFtpDrive("TC 009 : Verify Copy Function From Ftp To One Drive");
 			copyFilesFromSourceFolder();
 			clickWebElement(leftPanelIoHubButton);
@@ -622,6 +647,7 @@ public class FtpDriveCopyFunctionality extends BaseClass {
 	
 	public void verifyCopyFilesFunctionalityFromFTPToOOSDrive() throws Exception {
 		try {
+			getDriverInstance();
 			navigateToFtpDrive("TC 010 : Verify Copy Function From Ftp To OOS Drive");
 			copyFilesFromSourceFolder();
 			clickWebElement(leftPanelIoHubButton);
@@ -652,6 +678,7 @@ public class FtpDriveCopyFunctionality extends BaseClass {
 
 	public void verifyCopyFilesFunctionalityFromFTPToSFTPDrive() throws Exception {
 		try {
+			getDriverInstance();
 			navigateToFtpDrive("TC 011 : Verify Copy Function From Ftp To Sftp Drive");
 			copyFilesFromSourceFolder();
 			clickWebElement(leftPanelIoHubButton);
@@ -682,6 +709,7 @@ public class FtpDriveCopyFunctionality extends BaseClass {
 
 	public void verifyCopyFilesFunctionalityFromFTPToSharePointDrive() throws Exception {
 		try {
+			getDriverInstance();
 			navigateToFtpDrive("TC 011 : Verify Copy Function From Ftp To SharePoint Drive");
 			copyFilesFromSourceFolder();
 			clickWebElement(leftPanelIoHubButton);

@@ -10,8 +10,16 @@ import com.iomovo.basepackage.BaseClass;
 public class GoogleCloudDriveMoveFunctionality extends BaseClass {
 
 	public GoogleCloudDriveMoveFunctionality(WebDriver driver, WebDriverWait wait) {
-		BaseClass.driver = driver;
-        BaseClass.wait = wait;
+		BaseClass.tdriver.set(driver);  
+		BaseClass.wait.set(wait);
+	}
+
+	private WebDriver getDriverInstance() {
+		WebDriver driver = tdriver.get();
+		if (driver == null) {
+			throw new IllegalStateException("❌ WebDriver is null in LoginPage. Ensure it is initialized in BaseTestClass.");
+		}
+		return driver;
 	}
 
 	String copyDataFolderSelection = "//a[text()='AVI Data Folder']";
@@ -474,6 +482,7 @@ public class GoogleCloudDriveMoveFunctionality extends BaseClass {
 	
 	public void verifyMoveFilesFunctionalityFromGoogleCloudToIoCloudDrive() throws Exception {
 		try {
+			getDriverInstance();
 			navigateToGoogleCloudDrive("TC 001 : Verify Move Files Functionality From GoogleCloud To ioCloud Drive");
 			moveFilesFromSourceFolder();
 			clickWebElement(leftPanelIoCloudButton);
@@ -503,6 +512,7 @@ public class GoogleCloudDriveMoveFunctionality extends BaseClass {
 	
 	public void verifyMoveFilesFunctionalityFromGoogleCloudToAWSDrive() throws Exception {
 		try {
+			getDriverInstance();
 			navigateToGoogleCloudDrive("TC 002 : Verify Move Files Functionality From GoogleCloud To Aws Drive");
 			moveFilesFromSourceFolder();
 			clickWebElement(leftPanelIoHubButton);
@@ -533,6 +543,7 @@ public class GoogleCloudDriveMoveFunctionality extends BaseClass {
 	
 	public void verifyMoveFilesFunctionalityFromGoogleCloudToBOXDrive() throws Exception {
 		try {
+			getDriverInstance();
 			navigateToGoogleCloudDrive("TC 003 : Verify Move Function From GoogleCloud To Box Drive");
 			moveFilesFromSourceFolder();
 			clickWebElement(leftPanelIoHubButton);
@@ -563,6 +574,7 @@ public class GoogleCloudDriveMoveFunctionality extends BaseClass {
 	
 	public void verifyMoveFilesFunctionalityFromGoogleCloudToDropBoxDrive() throws Exception {
 		try {
+			getDriverInstance();
 			navigateToGoogleCloudDrive("TC 004 : Verify Move Function From GoogleCloud To DropBox Drive");
 			moveFilesFromSourceFolder();
 			clickWebElement(leftPanelIoHubButton);
@@ -593,6 +605,7 @@ public class GoogleCloudDriveMoveFunctionality extends BaseClass {
 	
 	public void verifyMoveFilesFunctionalityFromGoogleCloudToFTPDrive() throws Exception {
 		try {
+			getDriverInstance();
 			navigateToGoogleCloudDrive("TC 005 : Verify Move Function From GoogleCloud To FTP Drive");
 			moveFilesFromSourceFolder();
 			clickWebElement(leftPanelIoHubButton);
@@ -623,6 +636,7 @@ public class GoogleCloudDriveMoveFunctionality extends BaseClass {
 	
 	public void verifyMoveFilesFunctionalityFromGoogleCloudToGoogleCloudDrive() throws Exception {
 		try {
+			getDriverInstance();
 			navigateToGoogleCloudDrive("TC 006 : Verify Move Function From GoogleCloud To GoogleCloud Drive");
 			moveFilesFromSourceFolder();
 			clickWebElement(leftPanelIoHubButton);
@@ -653,6 +667,7 @@ public class GoogleCloudDriveMoveFunctionality extends BaseClass {
 	
 	public void verifyMoveFilesFunctionalityFromGoogleCloudToGoogleDrive() throws Exception {
 		try {
+			getDriverInstance();
 			navigateToGoogleCloudDrive("TC 007 : Verify Move Function From GoogleCloud To Google Drive");
 			moveFilesFromSourceFolder();
 			clickWebElement(leftPanelIoHubButton);
@@ -683,6 +698,7 @@ public class GoogleCloudDriveMoveFunctionality extends BaseClass {
 	
 	public void verifyMoveFilesFunctionalityFromGoogleCloudToAzureDrive() throws Exception {
 		try {
+			getDriverInstance();
 			navigateToGoogleCloudDrive("TC 008 : Verify Move Function From GoogleCloud To Azure Drive");
 			moveFilesFromSourceFolder();
 			clickWebElement(leftPanelIoHubButton);
@@ -713,6 +729,7 @@ public class GoogleCloudDriveMoveFunctionality extends BaseClass {
 
 	public void verifyMoveFilesFunctionalityFromGoogleCloudToOneDrive() throws Exception {
 		try {
+			getDriverInstance();
 			navigateToGoogleCloudDrive("TC 009 : Verify Move Function From GoogleCloud To OneDrive");
 			moveFilesFromSourceFolder();
 			clickWebElement(leftPanelIoHubButton);
@@ -743,6 +760,7 @@ public class GoogleCloudDriveMoveFunctionality extends BaseClass {
 	
 	public void verifyMoveFilesFunctionalityFromGoogleCloudToOOSDrive() throws Exception {
 		try {
+			getDriverInstance();
 			navigateToGoogleCloudDrive("TC 010 : Verify Move Function From GoogleCloud To OOS Drive");
 			moveFilesFromSourceFolder();
 			clickWebElement(leftPanelIoHubButton);
@@ -773,6 +791,7 @@ public class GoogleCloudDriveMoveFunctionality extends BaseClass {
 	
 	public void verifyMoveFilesFunctionalityFromGoogleCloudToSFTPDrive() throws Exception {
 		try {
+			getDriverInstance();
 			navigateToGoogleCloudDrive("TC 011 : Verify Move Function From GoogleCloud To SFTP Drive");
 			moveFilesFromSourceFolder();
 			clickWebElement(leftPanelIoHubButton);
@@ -803,6 +822,7 @@ public class GoogleCloudDriveMoveFunctionality extends BaseClass {
 	
 	public void verifyMoveFilesFunctionalityFromGoogleCloudToSharePointDrive() throws Exception {
 		try {
+			getDriverInstance();
 			navigateToGoogleCloudDrive("TC 012 : Verify Move Function From GoogleCloud To SharePoint Drive");
 			moveFilesFromSourceFolder();
 			clickWebElement(leftPanelIoHubButton);

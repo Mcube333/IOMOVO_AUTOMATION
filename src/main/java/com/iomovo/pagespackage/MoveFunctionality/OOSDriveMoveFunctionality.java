@@ -10,8 +10,16 @@ import com.iomovo.basepackage.BaseClass;
 public class OOSDriveMoveFunctionality extends BaseClass {
 
 	public OOSDriveMoveFunctionality(WebDriver driver, WebDriverWait wait) {
-		BaseClass.driver = driver;
-        BaseClass.wait = wait;
+		BaseClass.tdriver.set(driver);  
+		BaseClass.wait.set(wait);
+	}
+
+	private WebDriver getDriverInstance() {
+		WebDriver driver = tdriver.get();
+		if (driver == null) {
+			throw new IllegalStateException("❌ WebDriver is null in LoginPage. Ensure it is initialized in BaseTestClass.");
+		}
+		return driver;
 	}
 
 	String copyDataFolderSelection = "//a[text()='AVI Data Folder']";
@@ -353,6 +361,7 @@ public class OOSDriveMoveFunctionality extends BaseClass {
 
 	public void verifyMoveFilesFunctionalityFromOosToIoCloudDrive() {
 		try {
+			getDriverInstance();
 			navigateToOOSDrive("TC 001 : Verify Move Function From OOS To IoCloud Drive");
 			copyFilesFromSourceFolder();
 			clickWebElement(leftPanelIoCloudButton);
@@ -382,6 +391,7 @@ public class OOSDriveMoveFunctionality extends BaseClass {
 	
 	public void verifyMoveFilesFunctionalityFromOosToAwsDrive() {
 		try {
+			getDriverInstance();
 			navigateToOOSDrive("TC 002 : Verify Move Function From OOS To AWS Drive");
 			copyFilesFromSourceFolder();
 			clickWebElement(leftPanelIoHubButton);
@@ -412,6 +422,7 @@ public class OOSDriveMoveFunctionality extends BaseClass {
 	
 	public void verifyMoveFilesFunctionalityFromOosToBoxDrive() {
 		try {
+			getDriverInstance();
 			navigateToOOSDrive("TC 003 : Verify Move Function From OOS To BOX Drive");
 			copyFilesFromSourceFolder();
 			clickWebElement(leftPanelIoHubButton);
@@ -442,6 +453,7 @@ public class OOSDriveMoveFunctionality extends BaseClass {
 	
 	public void verifyMoveFilesFunctionalityFromOosToDropBoxDrive() {
 		try {
+			getDriverInstance();
 			navigateToOOSDrive("TC 004 : Verify Move Function From OOS To DropBox Drive");
 			copyFilesFromSourceFolder();
 			clickWebElement(leftPanelIoHubButton);
@@ -472,6 +484,7 @@ public class OOSDriveMoveFunctionality extends BaseClass {
 	
 	public void verifyMoveFilesFunctionalityFromOosToFTPDrive() {
 		try {
+			getDriverInstance();
 			navigateToOOSDrive("TC 005 : Verify Move Function From OOS To FTP Drive");
 			copyFilesFromSourceFolder();
 			clickWebElement(leftPanelIoHubButton);
@@ -502,6 +515,7 @@ public class OOSDriveMoveFunctionality extends BaseClass {
 	
 	public void verifyMoveFilesFunctionalityFromOosToGoogleCloudDrive() {
 		try {
+			getDriverInstance();
 			navigateToOOSDrive("TC 006 : Verify Move Function From OOS To GoogleCloud Drive");
 			copyFilesFromSourceFolder();
 			clickWebElement(leftPanelIoHubButton);
@@ -532,6 +546,7 @@ public class OOSDriveMoveFunctionality extends BaseClass {
 	
 	public void verifyMoveFilesFunctionalityFromOosToGoogleDrive() {
 		try {
+			getDriverInstance();
 			navigateToOOSDrive("TC 007 : Verify Move Function From OOS To Google Drive");
 			copyFilesFromSourceFolder();
 			clickWebElement(leftPanelIoHubButton);
@@ -562,6 +577,7 @@ public class OOSDriveMoveFunctionality extends BaseClass {
 	
 	public void verifyMoveFilesFunctionalityFromOosToMSAzureDrive() {
 		try {
+			getDriverInstance();
 			navigateToOOSDrive("TC 008 : Verify Move Function From OOS To MSAzure Drive");
 			copyFilesFromSourceFolder();
 			clickWebElement(leftPanelIoHubButton);
@@ -592,6 +608,7 @@ public class OOSDriveMoveFunctionality extends BaseClass {
 	
 	public void verifyMoveFilesFunctionalityFromOosToOneDrive() {
 		try {
+			getDriverInstance();
 			navigateToOOSDrive("TC 009 : Verify Move Function From OOS To OneDrive");
 			copyFilesFromSourceFolder();
 			clickWebElement(leftPanelIoHubButton);
@@ -622,6 +639,7 @@ public class OOSDriveMoveFunctionality extends BaseClass {
 	
 	public void verifyMoveFilesFunctionalityFromOosToOosDrive() {
 		try {
+			getDriverInstance();
 			navigateToOOSDrive("TC 010 : Verify Move Function From OOS To OOS Drive");
 			copyFilesFromSourceFolder();
 			clickWebElement(leftPanelIoHubButton);
@@ -652,6 +670,7 @@ public class OOSDriveMoveFunctionality extends BaseClass {
 	
 	public void verifyMoveFilesFunctionalityFromOosToSftpDrive() {
 		try {
+			getDriverInstance();
 			navigateToOOSDrive("TC 011 : Verify Copy Function From OOS To SFTP Drive");
 			copyFilesFromSourceFolder();
 			clickWebElement(leftPanelIoHubButton);
@@ -682,6 +701,7 @@ public class OOSDriveMoveFunctionality extends BaseClass {
 	
 	public void verifyMoveFilesFunctionalityFromOosToSharePointDrive() {
 		try {
+			getDriverInstance();
 			navigateToOOSDrive("TC 012 : Verify Move Function From OOS To SharePoint Drive");
 			copyFilesFromSourceFolder();
 			clickWebElement(leftPanelIoHubButton);

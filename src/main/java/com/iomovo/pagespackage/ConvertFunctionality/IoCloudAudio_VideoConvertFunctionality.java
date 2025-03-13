@@ -14,10 +14,17 @@ import com.iomovo.basepackage.BaseClass;
 public class IoCloudAudio_VideoConvertFunctionality extends BaseClass {
 
 	public IoCloudAudio_VideoConvertFunctionality(WebDriver driver, WebDriverWait wait) {
-		BaseClass.driver = driver;
-        BaseClass.wait = wait;
+		BaseClass.tdriver.set(driver);  
+		BaseClass.wait.set(wait);
 	}
 
+	private WebDriver getDriverInstance() {
+		WebDriver driver = tdriver.get();
+		if (driver == null) {
+			throw new IllegalStateException("❌ WebDriver is null in LoginPage. Ensure it is initialized in BaseTestClass.");
+		}
+		return driver;
+	}
 	String convertAudioFolder = "//div/a[text()='Audio Convert Folder']";
 	String audioFileSelection = "//td/div/a[text()='AudioFile.mp3']";
 	String audioFileEllipseButton = "//td[@data-name and contains(@data-name, '.mp3')]//button";
@@ -80,6 +87,7 @@ public class IoCloudAudio_VideoConvertFunctionality extends BaseClass {
 
 	public void verifyAudioConvertFunctionalityInIoCloud() throws Exception {
 		try {
+			WebDriver driver = getDriverInstance();
 			logPassStepInExtentReport("TC 001 : Verify Audio Convert Functionality (.MP3) Format File In IoCloud");
 
 			clickWebElement(leftPanelIoCloudButton);
@@ -242,6 +250,7 @@ public class IoCloudAudio_VideoConvertFunctionality extends BaseClass {
 
 	public void verifyVideoConvertFunctionalityInIoCloud() throws Exception {
 		try {
+			WebDriver driver = getDriverInstance();
 			logPassStepInExtentReport("TC 002 : Verify Video Convert Functionality (.MP4) Format File In IoCloud");
 			clickWebElement(leftPanelIoCloudButton);
 			logPassStepInExtentReport("ioCloud button clicked successfully");
@@ -297,7 +306,7 @@ public class IoCloudAudio_VideoConvertFunctionality extends BaseClass {
 
 					// Verify if the format was correctly selected by checking the input value
 					WebElement formatInputElement = uiElement(formatPastingField);
-					if (formatInputElement.getAttribute("value").contains(format)) {
+					if (formatInputElement.getDomAttribute("value").contains(format)) {
 						logPassStepInExtentReport("Format " + format + " selected successfully.");
 
 						clickWebElement(resolutionDropdownButton);
@@ -339,6 +348,7 @@ public class IoCloudAudio_VideoConvertFunctionality extends BaseClass {
 	public void verifyVideo2AudioConvertFunctionalityInIoCloud() throws Exception {
 
 		try {
+			WebDriver driver = getDriverInstance();
 			logPassStepInExtentReport("TC 003 : Verify Video To Audio Convert Functionality (.MP4) Format File In Iocloud");
 			clickWebElement(leftPanelIoCloudButton);
 			logPassStepInExtentReport("ioCloud button clicked successfully");
@@ -399,7 +409,7 @@ public class IoCloudAudio_VideoConvertFunctionality extends BaseClass {
 
 					// Verify if the format was correctly selected by checking the input value
 					WebElement formatInputElement = uiElement(formatPastingField);
-					if (formatInputElement.getAttribute("value").contains(format)) {
+					if (formatInputElement.getDomAttribute("value").contains(format)) {
 						logPassStepInExtentReport("Format " + format + " selected successfully.");
 
 						actions.sendKeys(Keys.ARROW_DOWN).build().perform();

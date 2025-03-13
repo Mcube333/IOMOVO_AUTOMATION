@@ -2,6 +2,8 @@ package com.iomovo.pagespackage.CopyFunctionality;
 
 import static org.testng.Assert.assertTrue;
 
+import java.time.Duration;
+
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
@@ -9,10 +11,24 @@ import com.iomovo.basepackage.BaseClass;
 
 public class GoogleDriveCopyFunctionality extends BaseClass {
 
-	public GoogleDriveCopyFunctionality(WebDriver driver, WebDriverWait wait) {
-		BaseClass.driver = driver;
-        BaseClass.wait = wait;
-	}
+	public GoogleDriveCopyFunctionality() {
+		if (getDriver() == null) {
+            throw new IllegalStateException("❌ WebDriver is null in ProfilePage. Ensure it is initialized in BaseClass.");
+        }
+    }
+	
+    public GoogleDriveCopyFunctionality(WebDriver driver, WebDriverWait wait) {
+        BaseClass.tdriver.set(driver);
+        BaseClass.wait.set(new WebDriverWait(driver, Duration.ofSeconds(10))); // Ensure WebDriverWait is set
+    }
+
+    private WebDriver getDriverInstance() {
+        WebDriver driver = tdriver.get();
+        if (driver == null) {
+            throw new IllegalStateException("❌ WebDriver is null in ProfilePage. Ensure it is initialized in BaseClass.");
+        }
+        return driver;
+    }
 
 	String copyDataFolderSelection = "//a[text()='AVI Data Folder']";
 	String moveDataFolderSelectionRoot = "//a[text()='AutomationTestingFolder']";
@@ -353,6 +369,7 @@ public class GoogleDriveCopyFunctionality extends BaseClass {
 
 	public void verifyCopyFilesFunctionalityFromGoogleDriveToIoCloudDrive() throws Exception {
 		try {
+			getDriverInstance();
 			navigateToGoogleDrive("TC 001 : Verify Copy Function From GoogleCloud To IoCloud Drive");
 			copyFilesFromSourceFolder();
 			clickWebElement(leftPanelIoCloudButton);
@@ -382,6 +399,7 @@ public class GoogleDriveCopyFunctionality extends BaseClass {
 
 	public void verifyCopyFilesFunctionalityFromGoogleDriveToAWSDrive() throws Exception {
 		try {
+			getDriverInstance();
 			navigateToGoogleDrive("TC 002 : Verify Copy Function From GoogleDrive To AWS Drive");
 			copyFilesFromSourceFolder();
 			clickWebElement(leftPanelIoHubButton);
@@ -412,6 +430,7 @@ public class GoogleDriveCopyFunctionality extends BaseClass {
 
 	public void verifyCopyFilesFunctionalityFromGoogleDriveToBoxDrive() throws Exception {
 		try {
+			getDriverInstance();
 			navigateToGoogleDrive("TC 003 : Verify Copy Function From GoogleDrive To Box Drive");
 			copyFilesFromSourceFolder();
 			clickWebElement(leftPanelIoHubButton);
@@ -442,6 +461,7 @@ public class GoogleDriveCopyFunctionality extends BaseClass {
 
 	public void verifyCopyFilesFunctionalityFromGoogleDriveToDropBoxDrive() throws Exception {
 		try {
+			getDriverInstance();
 			navigateToGoogleDrive("TC 004 : Verify Copy Function From GoogleDrive To DropBox Drive");
 			copyFilesFromSourceFolder();
 			clickWebElement(leftPanelIoHubButton);
@@ -472,6 +492,7 @@ public class GoogleDriveCopyFunctionality extends BaseClass {
 	
 	public void verifyCopyFilesFunctionalityFromGoogleDriveToFTPDrive() throws Exception {
 		try {
+			getDriverInstance();
 			navigateToGoogleDrive("TC 005 : Verify Copy Function From GoogleDrive To Ftp Drive");
 			copyFilesFromSourceFolder();
 			clickWebElement(leftPanelIoHubButton);
@@ -502,6 +523,7 @@ public class GoogleDriveCopyFunctionality extends BaseClass {
 
 	public void verifyCopyFilesFunctionalityFromGoogleDriveToGoogleCloudDrive() throws Exception {
 		try {
+			getDriverInstance();
 			navigateToGoogleDrive("TC 006 : Verify Copy Function From GoogleDrive To GoogleCloud Drive");
 			copyFilesFromSourceFolder();
 			clickWebElement(leftPanelIoHubButton);
@@ -532,6 +554,7 @@ public class GoogleDriveCopyFunctionality extends BaseClass {
 
 	public void verifyCopyFilesFunctionalityFromGoogleDriveToGoogleDrive() throws Exception {
 		try {
+			getDriverInstance();
 			navigateToGoogleDrive("TC 007 : Verify Copy Function From GoogleDrive To GoogleDrive");
 			copyFilesFromSourceFolder();
 			clickWebElement(leftPanelIoHubButton);
@@ -562,6 +585,7 @@ public class GoogleDriveCopyFunctionality extends BaseClass {
 
 	public void verifyCopyFilesFunctionalityFromGoogleDriveToAzureDrive() throws Exception {
 		try {
+			getDriverInstance();
 			navigateToGoogleDrive("TC 008 : Verify Copy Function From GoogleDrive To Azure Drive");
 			copyFilesFromSourceFolder();
 			clickWebElement(leftPanelIoHubButton);
@@ -592,6 +616,7 @@ public class GoogleDriveCopyFunctionality extends BaseClass {
 
 	public void verifyCopyFilesFunctionalityFromGoogleDriveToOneDrive() throws Exception {
 		try {
+			getDriverInstance();
 			navigateToGoogleDrive("TC 009 : Verify Copy Function From GoogleDrive To OneDrive");
 			copyFilesFromSourceFolder();
 			clickWebElement(leftPanelIoHubButton);
@@ -622,6 +647,7 @@ public class GoogleDriveCopyFunctionality extends BaseClass {
 	
 	public void verifyCopyFilesFunctionalityFromGoogleDriveToOOSDrive() throws Exception {
 		try {
+			getDriverInstance();
 			navigateToGoogleDrive("TC 010 : Verify Copy Function From GoogleDrive To OOS Drive");
 			copyFilesFromSourceFolder();
 			clickWebElement(leftPanelIoHubButton);
@@ -652,6 +678,7 @@ public class GoogleDriveCopyFunctionality extends BaseClass {
 
 	public void verifyCopyFilesFunctionalityFromGoogleDriveToSFTPDrive() throws Exception {
 		try {
+			getDriverInstance();
 			navigateToGoogleDrive("TC 011 : Verify Copy Function From GoogleDrive To Sftp Drive");
 			copyFilesFromSourceFolder();
 			clickWebElement(leftPanelIoHubButton);
@@ -682,6 +709,7 @@ public class GoogleDriveCopyFunctionality extends BaseClass {
 
 	public void verifyCopyFilesFunctionalityFromGoogleDriveToSharePointDrive() throws Exception {
 		try {
+			getDriverInstance();
 			navigateToGoogleDrive("TC 012 : Verify Copy Function From GoogleDrive To SharePoint Drive");
 			copyFilesFromSourceFolder();
 			clickWebElement(leftPanelIoHubButton);

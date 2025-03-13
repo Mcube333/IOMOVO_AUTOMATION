@@ -1,60 +1,103 @@
 package com.iomovo.copytests;
 
+import org.testng.Assert;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
-import com.iomovo.basetest.BaseTestClass;
+import com.iomovo.basepackage.BaseClass;
 import com.iomovo.pagespackage.CopyFunctionality.SharePointCopyFunctionality;
 import com.iomovo.pagespackage.DashboardFunctionality.LoginPage;
 
 
-public class SharePointToOtherDrivesCopyTest extends BaseTestClass {
+public class SharePointToOtherDrivesCopyTest extends BaseClass {
 	
-	LoginPage loginPage;
-	SharePointCopyFunctionality SharePoint;
-  
+	private LoginPage loginPage;
+    private SharePointCopyFunctionality SharePoint;
 	
- @BeforeMethod
- public void setUp() {
-     if (driver == null) {
-         throw new IllegalStateException("WebDriver is null in IoCloudCenterPanelTest. Check BaseTestClass initialization.");
-     }
-     loginPage = new LoginPage();
-     SharePoint = new SharePointCopyFunctionality(driver, wait);
- }
-	
-	
-	@Test
-	public void verifyCopyFilesFunctionalityFromSharePointToOtherDrives() {
-		try {
-			loginPage.loginMethod();
+    /**
+     * Setup method runs before each test.
+     * Initializes WebDriver, logs in, and sets up required page objects.
+     */
+    @BeforeMethod
+    public void setUp() {
+    	driver = getDriver();
+        if (driver == null) {
+            throw new IllegalStateException("❌ WebDriver is null in HomePageTopPanelTest. Check BaseTestClass initialization.");
+        }
 
-			SharePoint.verifyCopyFilesFunctionalityFromSharePointToIoCloudDrive();
-			
-			SharePoint.verifyCopyFilesFunctionalityFromSharePointToAWSDrive();
-			
-			SharePoint.verifyCopyFilesFunctionalityFromSharePointToBoxDrive();
-			
-			SharePoint.verifyCopyFilesFunctionalityFromSharePointToDropBoxDrive();
-			
-			SharePoint.verifyCopyFilesFunctionalityFromSharePointToFTPDrive();
-			
-			SharePoint.verifyCopyFilesFunctionalityFromSharePointToGoogleCloudDrive();
-			
-			SharePoint.verifyCopyFilesFunctionalityFromSharePointToGoogleDrive();
-			
-			SharePoint.verifyCopyFilesFunctionalityFromSharePointToAzureDrive();
-			
-			SharePoint.verifyCopyFilesFunctionalityFromSharePointToOneDrive();
-			
-			SharePoint.verifyCopyFilesFunctionalityFromSharePointToSFTPDrive();
-			
-			SharePoint.verifyCopyFilesFunctionalityFromSharePointToSharePointDrive();
+        loginPage = new LoginPage(driver, getWait());
+        SharePoint = new SharePointCopyFunctionality(driver, getWait());
 
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-	}
+        performLogin(); // Login before each test
+    }
+
+    /**
+     * Perform login before executing test cases.
+     */
+    private void performLogin() {
+        try {
+            loginPage.loginMethod();
+        } catch (Exception e) {
+            Assert.fail("❌ Login failed before test execution. Exception: " + e.getMessage());
+        }
+    }
+	
+	
+    @Test
+    public void verifyCopyFilesFunctionalityFromSharePointToIoCloudDrive() throws Exception {
+        SharePoint.verifyCopyFilesFunctionalityFromSharePointToIoCloudDrive();
+    }
+
+    @Test
+    public void verifyCopyFilesFunctionalityFromSharePointToAWSDrive() throws Exception {
+        SharePoint.verifyCopyFilesFunctionalityFromSharePointToAWSDrive();
+    }
+
+    @Test
+    public void verifyCopyFilesFunctionalityFromSharePointToBoxDrive() throws Exception {
+        SharePoint.verifyCopyFilesFunctionalityFromSharePointToBoxDrive();
+    }
+
+    @Test
+    public void verifyCopyFilesFunctionalityFromSharePointToDropBoxDrive() throws Exception {
+        SharePoint.verifyCopyFilesFunctionalityFromSharePointToDropBoxDrive();
+    }
+
+    @Test
+    public void verifyCopyFilesFunctionalityFromSharePointToFTPDrive() throws Exception {
+        SharePoint.verifyCopyFilesFunctionalityFromSharePointToFTPDrive();
+    }
+
+    @Test
+    public void verifyCopyFilesFunctionalityFromSharePointToGoogleCloudDrive() throws Exception {
+        SharePoint.verifyCopyFilesFunctionalityFromSharePointToGoogleCloudDrive();
+    }
+
+    @Test
+    public void verifyCopyFilesFunctionalityFromSharePointToGoogleDrive() throws Exception {
+        SharePoint.verifyCopyFilesFunctionalityFromSharePointToGoogleDrive();
+    }
+
+    @Test
+    public void verifyCopyFilesFunctionalityFromSharePointToAzureDrive() throws Exception {
+        SharePoint.verifyCopyFilesFunctionalityFromSharePointToAzureDrive();
+    }
+
+    @Test
+    public void verifyCopyFilesFunctionalityFromSharePointToOneDrive() throws Exception {
+        SharePoint.verifyCopyFilesFunctionalityFromSharePointToOneDrive();
+    }
+
+    @Test
+    public void verifyCopyFilesFunctionalityFromSharePointToSFTPDrive() throws Exception {
+        SharePoint.verifyCopyFilesFunctionalityFromSharePointToSFTPDrive();
+    }
+
+    @Test
+    public void verifyCopyFilesFunctionalityFromSharePointToSharePointDrive() throws Exception {
+        SharePoint.verifyCopyFilesFunctionalityFromSharePointToSharePointDrive();
+    }
+}
 		
 //	@Test
 //	public void verifyErasingTheCopiedDataSucccessfullyFromIoHubDrives2() {
@@ -69,5 +112,4 @@ public class SharePointToOtherDrivesCopyTest extends BaseTestClass {
 //			e.printStackTrace();
 //		}
 //	}
-}
 

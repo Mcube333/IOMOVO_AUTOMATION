@@ -2,6 +2,8 @@ package com.iomovo.pagespackage.CopyFunctionality;
 
 import static org.testng.Assert.assertTrue;
 
+import java.time.Duration;
+
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
@@ -9,10 +11,24 @@ import com.iomovo.basepackage.BaseClass;
 
 public class IoCloudDriveCopyFunctionality extends BaseClass {
 
-	public IoCloudDriveCopyFunctionality(WebDriver driver, WebDriverWait wait) {
-		BaseClass.driver = driver;
-        BaseClass.wait = wait;
-	}
+	public IoCloudDriveCopyFunctionality() {
+		if (getDriver() == null) {
+            throw new IllegalStateException("❌ WebDriver is null in ProfilePage. Ensure it is initialized in BaseClass.");
+        }
+    }
+	
+    public IoCloudDriveCopyFunctionality(WebDriver driver, WebDriverWait wait) {
+        BaseClass.tdriver.set(driver);
+        BaseClass.wait.set(new WebDriverWait(driver, Duration.ofSeconds(10))); // Ensure WebDriverWait is set
+    }
+
+    private WebDriver getDriverInstance() {
+        WebDriver driver = tdriver.get();
+        if (driver == null) {
+            throw new IllegalStateException("❌ WebDriver is null in ProfilePage. Ensure it is initialized in BaseClass.");
+        }
+        return driver;
+    }
 
 	String copyDataFolderSelection = "//a[text()='AVI Data Folder']";
 	String moveDataFolderSelectionRoot = "//a[text()='AutomationTestingFolder']";
@@ -352,6 +368,7 @@ public class IoCloudDriveCopyFunctionality extends BaseClass {
 
 	public void verifyCopyFilesFunctionalityFromIoCloudToIoCloudDrive() throws Exception {
 		try {
+			getDriverInstance();
 			navigateToIoCloudDrive("TC 001 : Verify Copy Function From IoCloud To IoCloud Drive");
 			copyFilesFromSourceFolder();
 			clickWebElement(leftPanelIoCloudButton);
@@ -385,6 +402,7 @@ public class IoCloudDriveCopyFunctionality extends BaseClass {
 
 	public void verifyCopyFilesFunctionalityFromIoCloudToAwsDrive() {
 		try {
+			getDriverInstance();
 			navigateToIoCloudDrive("TC 002 : Verify Copy Function From IoCloud To AWS Drive");
 			copyFilesFromSourceFolder();
 			clickWebElement(leftPanelIoHubButton);
@@ -419,6 +437,7 @@ public class IoCloudDriveCopyFunctionality extends BaseClass {
 
 	public void verifyCopyFilesFunctionFromIoCloudToBoxDrive() throws Exception {
 		try {
+			getDriverInstance();
 			navigateToIoCloudDrive("TC 003 : Verify Copy Function From IoCloud To Box Drive");
 			copyFilesFromSourceFolder();
 			clickWebElement(leftPanelIoHubButton);
@@ -453,6 +472,7 @@ public class IoCloudDriveCopyFunctionality extends BaseClass {
 
 	public void verifyCopyFilesFunctionFromIoCloudToDropbox() throws Exception {
 		try {
+			getDriverInstance();
 			navigateToIoCloudDrive("TC 004 : Verify Copy Function From IoCloud To Dropbox Drive");
 			copyFilesFromSourceFolder();
 			clickWebElement(leftPanelIoHubButton);
@@ -487,6 +507,7 @@ public class IoCloudDriveCopyFunctionality extends BaseClass {
 
 	public void verifyCopyFilesFunctionFromIoCloudToFTPDrive() throws Exception {
 		try {
+			getDriverInstance();
 			navigateToIoCloudDrive("TC 005 : Verify Copy Function From IoCloud To FTP Drive");
 			copyFilesFromSourceFolder();
 			clickWebElement(leftPanelIoHubButton);
@@ -521,6 +542,7 @@ public class IoCloudDriveCopyFunctionality extends BaseClass {
 
 	public void verifyCopyFilesFunctionFromIoCloudToGoogleCloudDrive() throws Exception {
 		try {
+			getDriverInstance();
 			navigateToIoCloudDrive("TC 006 : Verify Copy Function From IoCloud To GoogleCloud Drive");
 			copyFilesFromSourceFolder();
 			clickWebElement(leftPanelIoHubButton);
@@ -555,6 +577,7 @@ public class IoCloudDriveCopyFunctionality extends BaseClass {
 
 	public void verifyCopyFilesFunctionFromIoCloudToGoogleDrive() throws Exception {
 		try {
+			getDriverInstance();
 			navigateToIoCloudDrive("TC 007 : Verify Copy Function From IoCloud To Google Drive");
 			copyFilesFromSourceFolder();
 			clickWebElement(leftPanelIoHubButton);
@@ -589,6 +612,7 @@ public class IoCloudDriveCopyFunctionality extends BaseClass {
 
 	public void verifyCopyFilesFunctionFromIoCloudToAzureDrive() throws Exception {
 		try {
+			getDriverInstance();
 			navigateToIoCloudDrive("TC 008 : Verify Copy Function From IoCloud To Azure Drive");
 			copyFilesFromSourceFolder();
 			clickWebElement(leftPanelIoHubButton);
@@ -623,6 +647,7 @@ public class IoCloudDriveCopyFunctionality extends BaseClass {
 
 	public void verifyCopyFilesFunctionFromIoCloudToOneDrive() throws Exception {
 		try {
+			getDriverInstance();
 			navigateToIoCloudDrive("TC 009 : Verify Copy Function From IoCloud To OneDrive");
 			copyFilesFromSourceFolder();
 			clickWebElement(leftPanelIoHubButton);
@@ -657,6 +682,7 @@ public class IoCloudDriveCopyFunctionality extends BaseClass {
 	
 	public void verifyCopyFilesFunctionFromIoCloudToOOSDrive() throws Exception {
 		try {
+			getDriverInstance();
 			navigateToIoCloudDrive("TC 010 : Verify Copy Function From IoCloud To OOS Drive");
 			copyFilesFromSourceFolder();
 			clickWebElement(leftPanelIoHubButton);
@@ -691,6 +717,7 @@ public class IoCloudDriveCopyFunctionality extends BaseClass {
 	
 	public void verifyCopyFilesFunctionFromIoCloudToSFTPDrive() throws Exception {
 		try {
+			getDriverInstance();
 			navigateToIoCloudDrive("TC 011 : Verify Copy Function From IoCloud To SFTP Drive");
 			copyFilesFromSourceFolder();
 			clickWebElement(leftPanelIoHubButton);
@@ -725,6 +752,7 @@ public class IoCloudDriveCopyFunctionality extends BaseClass {
 
 	public void verifyCopyFilesFunctionFromIoCloudToSharepointDrive() throws Exception {
 		try {
+			getDriverInstance();
 			navigateToIoCloudDrive("TC 012 : Verify Copy Function From IoCloud To Sharepoint Drive");
 			copyFilesFromSourceFolder();
 			clickWebElement(leftPanelIoHubButton);

@@ -2,30 +2,112 @@ package com.iomovo.pagespackage.DashboardFunctionality;
 
 import static org.testng.Assert.assertTrue;
 
+import java.time.Duration;
+
+import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.WebDriverWait;
-
 import com.iomovo.basepackage.BaseClass;
 
 public class ProfilePage extends BaseClass{
+	
+	public ProfilePage() {
+		if (getDriver() == null) {
+            throw new IllegalStateException("❌ WebDriver is null in ProfilePage. Ensure it is initialized in BaseClass.");
+        }
+    }
 
-	WebDriver driver;
-	WebDriverWait wait;
+    public ProfilePage(WebDriver driver) {
+        BaseClass.tdriver.set(driver);
+        BaseClass.wait.set(new WebDriverWait(driver, Duration.ofSeconds(10))); // Ensure WebDriverWait is set
+    }
 
-	public ProfilePage(WebDriver driver, WebDriverWait wait) {
-		this.driver = driver;
-		this.wait = wait;
-	}
+    private WebDriver getDriverInstance() {
+        WebDriver driver = tdriver.get();
+        if (driver == null) {
+            throw new IllegalStateException("❌ WebDriver is null in ProfilePage. Ensure it is initialized in BaseClass.");
+        }
+        return driver;
+    }
 
+//    /**
+//     * Helper method to click an element and log the action.
+//     */
+//    private void clickAndLog(By locator, String logMessage) {
+//        WebDriverWait wait = new WebDriverWait(getDriverInstance(), Duration.ofSeconds(10));
+//        wait.until(ExpectedConditions.elementToBeClickable(locator)).click();
+//        logPassStepInExtentReport(logMessage);
+//    }
+//
+//    /**
+//     * Helper method to check if an element is displayed.
+//     */
+//    private boolean isElementDisplayed(By locator) {
+//        try {
+//            return new WebDriverWait(getDriverInstance(), Duration.ofSeconds(10))
+//                    .until(ExpectedConditions.visibilityOfElementLocated(locator))
+//                    .isDisplayed();
+//        } catch (Exception e) {
+//            return false;
+//        }
+//    }
+
+//    /**
+//     * Helper method to log and fail test execution.
+//     */
+//    private void logAndFailTest(String methodName, Exception e) {
+//        logFailStepInExtentReport("Test Failed: " + methodName + ". Exception: " + e.getMessage());
+//        Assert.fail(methodName + " failed due to an exception: " + e.getMessage());
+//    }
+//
+//    /**
+//     * Helper method to navigate to a tab and verify redirection.
+//     */
+//    private void navigateToTab(By tabButton, By confirmationElement, String tabName) {
+//        try {
+//            clickAndLog(tabButton, "Navigating to " + tabName);
+//            Assert.assertTrue(isElementDisplayed(confirmationElement), "Failed To Navigate To " + tabName);
+//            logPassStepInExtentReportWithScreenshot("Navigated To " + tabName + " Successfully");
+//        } catch (Exception e) {
+//            logFailStepInExtentReport("Navigation failed: " + tabName + ". Exception: " + e.getMessage());
+//            throw e;
+//        }
+//    }
+    
+//    /**
+//     * Helper method to enter text into an input field and log the action.
+//     * @throws Exception 
+//     */
+//    private void enterTextAndLog(By locator, String text, String logMessage) throws Exception {
+//        WebElement element = uiElement(locator);
+//        element.sendKeys(Keys.chord(Keys.CONTROL, "a"), Keys.DELETE); // Clear existing text
+//        element.sendKeys(text);
+//        logPassStepInExtentReport(logMessage);
+//    }
+//
+//    /**
+//     * Helper method to select an option from a dropdown using arrow keys.
+//     * @throws Exception 
+//     */
+//    private void selectDropdownUsingArrowKeys(By locator, int arrowPresses) throws Exception {
+//        WebElement element = uiElement(locator);
+//        Actions actions = new Actions(getDriver());
+//        actions.moveToElement(element).click().perform();
+//        for (int i = 0; i < arrowPresses; i++) {
+//            actions.sendKeys(Keys.ARROW_DOWN).perform();
+//        }
+//        actions.sendKeys(Keys.ENTER).perform();
+//    }
+	
 	// All X-paths after clicking the PROFILE BUTTON.
-	String profileButtonLink = "//button[@aria-label='Profile']";
+	By profileButtonLink = By.xpath("//button[@aria-label='Profile']");
 	String signoutButtonLink = "//a[contains(text(),'Sign out')]";
 	String logoutSuccessLink = "//form[@id='localAccountForm']//following::div[@class='intro']";
-	String viewAccountButtonLink = "//a[contains(text(),'View Account')]";
-	String accountViewDetailsConfirmation = "//h6/b[text()='Account Details']";
+	By viewAccountButtonLink = By.xpath("//a[contains(text(),'View Account')]");
+	By accountViewDetailsConfirmation = By.xpath("//h6/b[text()='Account Details']");
 
 	String viewAccountButtonLink_GeneralButton = "//span[text()='General']";
 	String viewAccountButtonLink_PlanlButton = "//span[text()='Plan']";
@@ -36,25 +118,24 @@ public class ProfilePage extends BaseClass{
 	String viewAccountButtonLink_SchedulerButton = "//span[text()='Scheduler']";
 	String viewAccountButtonLink_PreferencesButton = "//span[text()='Preferences']";
 
-	String viewAccountGeneralPageButton = "//span[text()='General']";
-	String viewAccountPlanPageButton = "//span[text()='Plan']";
-	String viewAccountPlanPageConfirmation = "//h6/b[text()='Plan Details']";
-	String viewAccountMarketplacePageButton = "//span[text()='Marketplace']";
-	String viewAccountMarketplacePageConfirmation = "//h6/b[text()='Marketplace']";
-	String viewAccountBillingPageButton = "//span[text()='Billing']";
-	String viewAccountBillingPageConfirmation = "//h6/b[text()='Billing']";
-	String viewAccountActivitiesPageButton = "//span[text()='Activities']";
-	String viewAccountActivitiesPageConfirmation = "//h6/b[text()='Activites']";
-	String viewAccountSchedulerPageButton = "//span[text()='Scheduler']";
-	String viewAccountSchedulerPageConfirmation = "//h6/b[text()='Scheduler']";
-	String viewAccountConnectorsPageButton = "//span[text()='Connectors']";
-	String viewAccountConnectorsPageConfirmation = "//h6/b[text()='Active Connectors']";
-	String viewAccountSiteAdministrationPageButton = "//span[text()='Site Administration']";
-	String viewAccountSiteAdministrationConfirmation = "//h6/b[text()='Site Administration']";
-	String viewAccountUsersPageButton = "//span[text()='Users']";
-	String viewAccountUsersPageConfirmation = "//h6/b[text()='Users List']";
-	String viewAccountGroupsPageButton = "//span[text()='Groups']"; 
-	String viewAccountGroupsPageConfirmation = "//h6/b[text()='Groups']";
+	By viewAccountGeneralPageButton = By.xpath("//span[text()='General']");
+	By viewAccountPlanPageButton = By.xpath("//span[text()='Plan']");
+	By viewAccountMarketplacePageButton = By.xpath("//span[text()='Marketplace']");
+	By viewAccountConnectorsPageButton = By.xpath("//span[text()='Connectors']");
+	By viewAccountSchedulerPageButton = By.xpath("//span[text()='Scheduler']");
+	By viewAccountSiteAdministrationPageButton = By.xpath("//span[text()='Site Administration']");
+	By viewAccountUsersPageButton = By.xpath("//span[text()='Users']");
+	By viewAccountGroupsPageButton = By.xpath("//span[text()='Groups']");
+	By viewAccountAutomationPageButton = By.xpath("//span[text()='Automation']");
+	
+	By viewAccountPlanPageConfirmation = By.xpath("//h6/b[text()='Plan Details']");
+	By viewAccountMarketplacePageConfirmation = By.xpath("//h6/b[text()='Marketplace']");
+	By viewAccountConnectorsPageConfirmation = By.xpath("//h6/b[text()='Active Connectors']");
+	By viewAccountSchedulerPageConfirmation = By.xpath("//h6/b[text()='Scheduler']");
+	By viewAccountSiteAdministrationConfirmation = By.xpath("//h6/b[text()='Site Administration']");
+	By viewAccountUsersPageConfirmation = By.xpath("//h6/b[text()='Users List']");
+	By viewAccountGroupsPageConfirmation = By.xpath("//h6/b[text()='Groups']");
+	By viewAccountAutomationPageConfirmation = By.xpath("//h6/b[text()='Default Settings']");
 
 	String supportButtonLink = "//a[text()='Support']";
 	String supportPageDivTitleLabel = "//div[contains(text(),'ioMoVo Customer Support')]";
@@ -85,19 +166,19 @@ public class ProfilePage extends BaseClass{
 	String viewAccountPhoneNumberTextBoxID = "//input[@type='tel']";
 	String viewAccountSelectCountryButton = "//Button[@aria-label='Select country']";
 	String viewAccountDailCode = "//span[text()='India']";
-	String viewAccountEditAddressDetailsButton = "//span[text()='Edit Address Details']";
-	String viewAccountAddress1TextBox = "//input[@id='address1']";
-	String viewAccountAddress2TextBox = "//input[@id='address2']";
-	String viewAccountCityTextBox = "//input[@id='city']";
-	String viewAccountStateTextBox = "//input[@id='state']";
-	String viewAccountZipTextBox = "//input[@id='postalCode']";
+	By viewAccountEditAddressDetailsButton = By.xpath("//span[text()='Edit Address Details']");
+	By viewAccountAddress1TextBox = By.xpath("//input[@id='address1']");
+	By viewAccountAddress2TextBox = By.xpath("//input[@id='address2']");
+	By viewAccountCityTextBox = By.xpath("//input[@id='city']");
+	By viewAccountStateTextBox = By.xpath("//input[@id='state']");
+	By viewAccountZipTextBox = By.xpath("//input[@id='postalCode']");
 	String viewAccountCountryCodeDropdownButton = "//button[@aria-label='Select country']";
 	String viewAccountCountry = "//li[@data-country-code='in']";
 	String profileUpdateConfirmation = "//div[text()='Profile Successfully Updated']";
-	String addressUpdateConfirmation = "//div[text()='Billing Address Successfully Updated']";
-	String viewAccountCountryTextBox = "//input[@id='controllable-states-demo']";
+	By addressUpdateConfirmation = By.xpath("//div[text()='Billing Address Successfully Updated']");
+	By viewAccountCountryTextBox = By.xpath("//input[@id='controllable-states-demo']");
 	String viewAccountClearCountryTextBox = "(//button[@title='Clear'])[2]";
-	String viewAccountSaveButton = "//span[text()='Save']";
+	By viewAccountSaveButton = By.xpath("//span[text()='Save']");
 	String accountDeactivateButton = "//span[text()='Deactivate Account']";
 	String accountDeactivateConfirmation = "//h4[contains(text(),'deactivated')]";
 
@@ -119,8 +200,292 @@ public class ProfilePage extends BaseClass{
 	String zipcode = prop.getProperty("zipcode");
 	String country = prop.getProperty("country");
 
+		
+//	public void verifyUserAbleToSignOutFromCurrentAccountTest() {
+//        try {
+//            getDriverInstance();
+//            logConsoleOutputMessage("strUrl: " + strUrl);
+//            refreshWebPage();
+//            clickWebElement(profileButtonLink);
+//            explicitWaitInSeconds(5);
+//            logPassStepInExtentReport("Profile Button Clicked Successfully");
+//
+//            clickWebElement(signoutButtonLink);
+//            logPassStepInExtentReportWithScreenshot("Sign Out Button Clicked Successfully");
+//            isWebElementDisplayed(logoutSuccessLink);
+//
+//            assertTrue(isWebElementDisplayed(logoutSuccessLink), "Failed to navigate to Login Page.");
+//            logPassStepInExtentReportWithScreenshot("Redirected to Login Page Successfully");
+//        } catch (Exception e) {
+//            logAndFailTest("verifyUserAbleToSignOutFromCurrentAccountTest", e);
+//        }
+//    }
+//	
+//	public void verifyUserAbleToViewAccountTest() {
+//        try {
+//            getDriverInstance();
+//            logConsoleOutputMessage("strUrl: " + strUrl);
+//            refreshWebPage();
+//            clickWebElement(profileButtonLink);
+//            explicitWaitInSeconds(5);
+//            logPassStepInExtentReport("Profile Button Clicked Successfully");
+//
+//            clickWebElement(viewAccountButtonLink);
+//            explicitWaitInSeconds(5);
+//            logPassStepInExtentReportWithScreenshot("View Account Button Clicked Successfully");
+//
+//            assertTrue(isWebElementDisplayed(accountViewDetailsConfirmation), "Failed to navigate to User Account.");
+//            logPassStepInExtentReportWithScreenshot("Redirected to User Account Successfully");
+//        } catch (Exception e) {
+//            logAndFailTest("verifyUserAbleToViewAccountTest", e);
+//        }
+//    }
+//
+//    public void verifyUserIsRedirectedToSupportPageFromProfileTest() {
+//        try {
+//            getDriverInstance();
+//            logConsoleOutputMessage("strUrl: " + strUrl);
+//            refreshWebPage();
+//            clickWebElement(profileButtonLink);
+//            explicitWaitInSeconds(5);
+//            logPassStepInExtentReport("Profile Button Clicked Successfully");
+//
+//            clickWebElement(supportButtonLink);
+//            explicitWaitInSeconds(5);
+//            logPassStepInExtentReportWithScreenshot("Support Button Clicked Successfully");
+//            explicitWaitInSeconds(5);
+//
+//            swithToWindowBasedOnTitle("ioMoVo Customer Support | Knowledge Base");
+//
+//            assertTrue(isWebElementDisplayed(supportPageDivTitleLabel), "Failed to navigate to Support Page.");
+//            logPassStepInExtentReportWithScreenshot("Navigated to Support Page Successfully");
+//        } catch (Exception e) {
+//            logAndFailTest("verifyUserIsRedirectedToSupportPageFromProfileTest", e);
+//        }
+//    }
+//
+//    public void verifyUserAbleToDeleteOrChangeTheProfilePicFromUserAccountWithWebCamTest() {
+//        try {
+//            getDriverInstance();
+//            logConsoleOutputMessage("strUrl: " + strUrl);
+//            clickWebElement(viewAccountButtonLink);
+//            explicitWaitInSeconds(5);
+//            logPassStepInExtentReport("View Account Button Clicked Successfully");
+//
+//            if (isWebElementDisplayed(viewAccountDeleteProfilePictureButton)) {
+//                logPassStepInExtentReportWithScreenshot("Image Found. Deleting...");
+//                clickWebElement(viewAccountDeleteProfilePictureButton);
+//                explicitWaitInSeconds(10);
+//
+//                assertTrue(isWebElementDisplayed(viewAccountUploadProfilePictureButtonDeleteStatus), "Image removal failed.");
+//                logPassStepInExtentReportWithScreenshot("Image Removed Successfully");
+//            }
+//
+//            clickWebElement(viewAccountUploadPictureButton);
+//            logPassStepInExtentReport("Clicked Upload Button");
+//
+//            clickWebElement(viewAccountTakePictureButton);
+//            explicitWaitInSeconds(5);
+//            logPassStepInExtentReportWithScreenshot("Webcam Started Successfully");
+//
+//            clickWebElement(viewAccountClickPictureButton);
+//            explicitWaitInSeconds(3);
+//            logPassStepInExtentReport("User Image Clicked Successfully");
+//
+//            clickWebElement(viewAccountUpdatePictureButton);
+//            explicitWaitInSeconds(5);
+//
+//            assertTrue(isWebElementDisplayed(viewAccountUploadProfilePictureButtonSuccessStatus), "Image upload failed.");
+//            logPassStepInExtentReportWithScreenshot("User Profile WebCam Image Updated Successfully");
+//        } catch (Exception e) {
+//            logAndFailTest("verifyUserAbleToDeleteOrChangeTheProfilePicFromUserAccountWithWebCamTest", e);
+//        }
+//    }
+//
+//    public void verifyUserAbleToUpdateTheProfileDetailsFromUserAccountTest() {
+//        try {
+//            getDriverInstance();
+//            logConsoleOutputMessage("strUrl: " + strUrl);
+//            clickWebElement(viewAccountButtonLink);
+//            explicitWaitInSeconds(5);
+//            logPassStepInExtentReport("View Account Button Clicked Successfully");
+//
+//            clickWebElement(viewAccountEditProfileDetailsButton);
+//            logPassStepInExtentReport("Edit Profile Button Clicked Successfully");
+//
+//            WebElement firstName = uiElement(viewAccountFirstNameTextBoxID);
+//            firstName.sendKeys(Keys.chord(Keys.CONTROL, "a"), Keys.DELETE);
+//            firstName.sendKeys(strfirstname);
+//            logPassStepInExtentReport("Updated First Name");
+//
+//            WebElement lastName = uiElement(viewAccountLastNameTextBoxID);
+//            lastName.sendKeys(Keys.chord(Keys.CONTROL, "a"), Keys.DELETE);
+//            lastName.sendKeys(strlastname);
+//            logPassStepInExtentReport("Updated Last Name");
+//
+//            clickWebElement(viewAccountCountryCodeDropdownButton);
+//            explicitWaitInSeconds(5);
+//            clickWebElement(viewAccountCountry);
+//            explicitWaitInSeconds(3);
+//            setTextInTextField(viewAccountPhoneNumberTextBoxID, strnumber);
+//            logPassStepInExtentReport("Selected Country and Entered Phone Number");
+//
+//            clickWebElement(viewAccountSaveButton);
+//            explicitWaitInSeconds(5);
+//
+//            assertTrue(isWebElementDisplayed(profileUpdateConfirmation), "Profile update failed.");
+//            logPassStepInExtentReportWithScreenshot("Profile Updated Successfully");
+//        } catch (Exception e) {
+//            logAndFailTest("verifyUserAbleToUpdateTheProfileDetailsFromUserAccountTest", e);
+//        }
+//    }
+//    
+//    public void verifyUserAbleToUpdateTheAddressDetailsFromUserAccountTest() {
+//        try {
+//            getDriverInstance();
+//            logConsoleOutputMessage("strUrl: " + strUrl);
+//            isWebElementDisplayed(viewAccountButtonLink);
+//            clickAndLog(viewAccountButtonLink, "View Account Button Clicked Successfully");
+//            clickAndLog(viewAccountEditAddressDetailsButton, "Edit Address Button Clicked Successfully");
+//
+//            // Update Address Details
+//            updateAddressDetails(address1, address2, city, state, zipcode, country);
+//
+//            // Save and Verify
+//            clickAndLog(viewAccountSaveButton, "Successfully Updated Address Details");
+//            Assert.assertTrue(isElementDisplayed(addressUpdateConfirmation), "Address update failed.");
+//            logPassStepInExtentReportWithScreenshot("Successfully Updated the Billing Address Details");
+//
+//        } catch (Exception e) {
+//            logAndFailTest("verifyUserAbleToUpdateTheAddressDetailsFromUserAccountTest", e);
+//        }
+//    }
+//
+//    /**
+//     * Helper method to update address details in the form.
+//     * @throws Exception 
+//     */
+//    private void updateAddressDetails(String address1, String address2, String city, String state, String zipcode, String country) throws Exception {
+//        
+//			enterTextAndLog(viewAccountAddress1TextBox, address1, "Updated Address1");
+//			enterTextAndLog(viewAccountAddress2TextBox, address2, "Updated Address2");
+//			enterTextAndLog(viewAccountCityTextBox, city, "Updated City");
+//			enterTextAndLog(viewAccountStateTextBox, state, "Updated State");
+//			enterTextAndLog(viewAccountZipTextBox, zipcode, "Updated Zip Code");
+//
+//			// Select Country
+//			enterTextAndLog(viewAccountCountryTextBox, country, "Updated Country");
+//			selectDropdownUsingArrowKeys(viewAccountCountryTextBox, 2);
+//			logPassStepInExtentReport("Selected the desired Country");
+//    }
+//
+//    public void verifyUserIsAbleToDeactivateAccountTestTest() {
+//        try {
+//            getDriverInstance();
+//            logConsoleOutputMessage("strUrl: " + strUrl);
+//            clickWebElement(viewAccountButtonLink);
+//            logPassStepInExtentReport("View Account Link Clicked Successfully");
+//
+//            clickWebElement(accountDeactivateButton);
+//            logPassStepInExtentReportWithScreenshot("Deactivation Button Clicked Successfully");
+//
+//            assertTrue(isWebElementDisplayed(accountDeactivateConfirmation), "Failed to Deactivate Account.");
+//            logPassStepInExtentReportWithScreenshot("User Account Deactivated Successfully");
+//        } catch (Exception e) {
+//            logAndFailTest("verifyUserIsAbleToDeactivateAccountTestTest", e);
+//        }
+//    }
+//
+//    public void verifyUserAbleToSwitchAccountTest() {
+//        try {
+//            getDriverInstance();
+//            logConsoleOutputMessage("strUrl: " + strUrl);
+//            refreshWebPage();
+//
+//            if (isWebElementDisplayed(PersonalAccountStatus)) {
+//                logPassStepInExtentReportWithScreenshot("User is Currently Logged in with Personal IoMoVo Account");
+//
+//                clickWebElement(profileButtonLink);
+//                clickWebElement(switchAccountButtonLink);
+//                logPassStepInExtentReport("Clicked on Switch Account Successfully");
+//
+//                assertTrue(isWebElementDisplayed(accountSwitchingButton), "Failed to switch accounts.");
+//                clickWebElement(accountSwitchingButton);
+//                logPassStepInExtentReportWithScreenshot("User Successfully Switched to IoMoVo Team Account");
+//            } else if (isWebElementDisplayed(TeamAccountStatus)) {
+//                logPassStepInExtentReportWithScreenshot("User is Currently Logged in with IoMoVo Team Account");
+//
+//                clickWebElement(profileButtonLink);
+//                clickWebElement(switchAccountButtonLink);
+//                logPassStepInExtentReport("Clicked on Switch Account Successfully");
+//
+//                assertTrue(isWebElementDisplayed(accountSwitchingButton), "Failed to switch accounts.");
+//                clickWebElement(accountSwitchingButton);
+//                logPassStepInExtentReportWithScreenshot("User Successfully Switched to IoMoVo Personal Account");
+//            }
+//        } catch (Exception e) {
+//            logAndFailTest("verifyUserAbleToSwitchAccountTest", e);
+//        }
+//    }
+//
+//    public void verifyUserAbleToSignInFromDifferentAccountTest() {
+//        try {
+//            getDriverInstance();
+//            logConsoleOutputMessage("strUrl: " + strUrl);
+//            clickWebElement(profileButtonLink);
+//            logPassStepInExtentReport("Profile Button Clicked Successfully");
+//
+//            clickWebElement(signInWithDifferentAccountLInk);
+//            logPassStepInExtentReportWithScreenshot("Clicked on Sign-in with Different Account");
+//
+//            assertTrue(isWebElementDisplayed(logoutSuccessLink), "Failed to navigate to Login Page.");
+//            logPassStepInExtentReportWithScreenshot("Redirected to Login Page Successfully");
+//        } catch (Exception e) {
+//            logAndFailTest("verifyUserAbleToSignInFromDifferentAccountTest", e);
+//        }
+//    }
+//    
+//    public void verifyUserIsRedirectedToOtherTabsPageFromViewAccountPageTest() {
+//        try {
+//            getDriverInstance();
+//            logConsoleOutputMessage("strUrl: " + strUrl);
+//            refreshWebPage();
+//            
+//            clickAndLog(profileButtonLink, "Profile Button Clicked Successfully");
+//            clickAndLog(viewAccountButtonLink, "View Account Button Clicked Successfully");
+//
+//            Assert.assertTrue(isElementDisplayed(accountViewDetailsConfirmation), "Failed To Navigate To View Account");
+//            logPassStepInExtentReportWithScreenshot("Redirected To View Account Successfully");
+//
+//            // Navigate through all tabs and verify redirection
+//            navigateToAllTabs();
+//
+//        } catch (Exception e) {
+//            logFailStepInExtentReport("Test failed: verifyUserIsRedirectedToOtherTabsPageFromViewAccountPageTest. Exception: " + e.getMessage());
+//            throw e;
+//        }
+//    }
+//
+//    /**
+//     * Helper method to navigate through all tabs.
+//     */
+//    private void navigateToAllTabs() {
+//        navigateToTab(viewAccountPlanPageButton, viewAccountPlanPageConfirmation, "Plan Page");
+//        navigateToTab(viewAccountMarketplacePageButton, viewAccountMarketplacePageConfirmation, "Marketplace Page");
+//        navigateToTab(viewAccountAutomationPageButton, viewAccountAutomationPageConfirmation, "Billing Page");
+//        navigateToTab(viewAccountConnectorsPageButton, viewAccountConnectorsPageConfirmation, "Connectors Page");
+//        navigateToTab(viewAccountSchedulerPageButton, viewAccountSchedulerPageConfirmation, "Scheduler Page");
+//        navigateToTab(viewAccountSiteAdministrationPageButton, viewAccountSiteAdministrationConfirmation, "Site Administration Page");
+//        navigateToTab(viewAccountUsersPageButton, viewAccountUsersPageConfirmation, "Users Page");
+//        navigateToTab(viewAccountGroupsPageButton, viewAccountGroupsPageConfirmation, "Groups Page");
+//        navigateToTab(viewAccountAutomationPageButton, viewAccountAutomationPageConfirmation, "Activities Page");
+//    }
+//}
+
+
 	public void verifyUserAbleToSignOutFromCurrentAccountTest() throws Exception {
 		try {
+			getDriverInstance();
 			logConsoleOutputMessage("strUrl: " + strUrl);
 			refreshWebPage();
 			clickWebElement(profileButtonLink);
@@ -146,6 +511,7 @@ public class ProfilePage extends BaseClass{
 
 	public void verifyUserAbleToViewAccountTest() throws Exception {
 		try {
+			getDriverInstance();
 			logConsoleOutputMessage("strUrl: " + strUrl);
 			refreshWebPage();
 			clickWebElement(profileButtonLink);
@@ -172,6 +538,7 @@ public class ProfilePage extends BaseClass{
 
 	public void verifyUserIsRedirectedToSupportPageFromProfileTest() throws Exception {
 		try {
+			getDriverInstance();
 			logConsoleOutputMessage("strUrl: " + strUrl);
 			refreshWebPage();
 			clickWebElement(profileButtonLink);
@@ -199,6 +566,7 @@ public class ProfilePage extends BaseClass{
 
 	public void verifyUserAbleToDeleteOrChangeTheProfilePicFromUserAccountWithWebCamTest() throws Exception {
 		try {
+			getDriverInstance();
 			logConsoleOutputMessage("strUrl: " + strUrl);
 			clickWebElement(viewAccountButtonLink);
 			explicitWaitInSeconds(5);
@@ -243,6 +611,7 @@ public class ProfilePage extends BaseClass{
 
 	public void verifyUserAbleToDeleteOrChangeTheProfilePicFromUserAccountWithUploadImageTest() throws Exception {
 		try {
+			getDriverInstance();
 			logConsoleOutputMessage("strUrl: " + strUrl);
 			clickWebElement(viewAccountButtonLink);
 			explicitWaitInSeconds(5);
@@ -283,6 +652,7 @@ public class ProfilePage extends BaseClass{
 
 	public void verifyUserAbleToUpdateTheProfileDetailsFromUserAccountTest() throws Exception {
 		try {
+			getDriverInstance();
 			logConsoleOutputMessage("strUrl: " + strUrl);
 			clickWebElement(viewAccountButtonLink);
 			explicitWaitInSeconds(5);
@@ -325,6 +695,7 @@ public class ProfilePage extends BaseClass{
 
 	public void verifyUserAbleToUpdateTheAddressDetailsFromUserAccountTest() throws Exception {
 		try {
+			WebDriver driver = getDriverInstance();
 			logConsoleOutputMessage("strUrl: " + strUrl);
 			clickWebElement(viewAccountButtonLink);
 			explicitWaitInSeconds(5);
@@ -383,6 +754,7 @@ public class ProfilePage extends BaseClass{
 
 	public void verifyUserIsAbleToDeactivateAccountTestTest() throws Exception {
 		try {
+			getDriverInstance();
 			logConsoleOutputMessage("strUrl: " + strUrl);
 			clickWebElement(viewAccountButtonLink);
 			explicitWaitInSeconds(5);
@@ -406,6 +778,7 @@ public class ProfilePage extends BaseClass{
 
 	public void verifyUserAbleToSwitchAccountTest() throws Exception {
 		try {
+			getDriverInstance();
 			logConsoleOutputMessage("strUrl: " + strUrl);
 			refreshWebPage();
 			explicitWaitInSeconds(5);
@@ -461,6 +834,7 @@ public class ProfilePage extends BaseClass{
 
 	public void verifyUserAbleToSignInFromDifferentAccountTest() throws Exception {
 		try {
+			getDriverInstance();
 			logConsoleOutputMessage("strUrl: " + strUrl);
 			clickWebElement(profileButtonLink);
 			explicitWaitInSeconds(5);
@@ -485,6 +859,7 @@ public class ProfilePage extends BaseClass{
 
 	public void verifyUserIsRedirectedToOtherTabsPageFromViewAccountPageTest() throws Exception {
 		try {
+			getDriverInstance();
 			logConsoleOutputMessage("strUrl: " + strUrl);
 			refreshWebPage();
 			clickWebElement(profileButtonLink);
@@ -526,23 +901,12 @@ public class ProfilePage extends BaseClass{
 
 			explicitWaitInSeconds(3);
 
-			clickWebElement(viewAccountBillingPageButton);
+			clickWebElement(viewAccountAutomationPageButton);
 			explicitWaitInSeconds(3);
-			if (isWebElementDisplayed(viewAccountBillingPageConfirmation)) {
+			if (isWebElementDisplayed(viewAccountAutomationPageConfirmation)) {
 				logPassStepInExtentReportWithScreenshot("Navigated To Billing Page Succesfully");
 			} else {
 				logFailStepInExtentReport("Failed To Navigate To Billing Page");
-				assertTrue(true);
-			}
-
-			explicitWaitInSeconds(3);
-
-			clickWebElement(viewAccountActivitiesPageButton);
-			explicitWaitInSeconds(3);
-			if (isWebElementDisplayed(viewAccountActivitiesPageConfirmation)) {
-				logPassStepInExtentReportWithScreenshot("Navigated To Activities Page Succesfully");
-			} else {
-				logFailStepInExtentReport("Failed To Navigate To Activities Page");
 				assertTrue(true);
 			}
 
@@ -600,6 +964,17 @@ public class ProfilePage extends BaseClass{
 				logFailStepInExtentReport("Failed To Navigate To Groups Page");
 				assertTrue(true);
 			}	
+			
+			explicitWaitInSeconds(3);
+
+			clickWebElement(viewAccountAutomationPageButton);
+			explicitWaitInSeconds(3);
+			if (isWebElementDisplayed(viewAccountAutomationPageConfirmation)) {
+				logPassStepInExtentReportWithScreenshot("Navigated To Activities Page Succesfully");
+			} else {
+				logFailStepInExtentReport("Failed To Navigate To Activities Page");
+				assertTrue(true);
+			}
 
 		} catch (Exception e) {
 			e.printStackTrace();

@@ -1,59 +1,101 @@
 package com.iomovo.copytests;
 
+import org.testng.Assert;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
-import com.iomovo.basetest.BaseTestClass;
+import com.iomovo.basepackage.BaseClass;
 import com.iomovo.pagespackage.CopyFunctionality.AzureDriveCopyFunctionality;
 import com.iomovo.pagespackage.DashboardFunctionality.LoginPage;
 
 
-public class AzureToOtherDrivesCopyTest extends BaseTestClass {
+public class AzureToOtherDrivesCopyTest extends BaseClass {
 	
-	LoginPage loginPage;
-	AzureDriveCopyFunctionality Azure;
-     
+	private LoginPage loginPage;
+    private AzureDriveCopyFunctionality  Azure;
 	
+    /**
+     * Setup method runs before each test.
+     * Initializes WebDriver, logs in, and sets up required page objects.
+     */
     @BeforeMethod
     public void setUp() {
+    	driver = getDriver();
         if (driver == null) {
-            throw new IllegalStateException("WebDriver is null in IoCloudCenterPanelTest. Check BaseTestClass initialization.");
+            throw new IllegalStateException("❌ WebDriver is null in HomePageTopPanelTest. Check BaseTestClass initialization.");
         }
-        loginPage = new LoginPage();
-        Azure = new AzureDriveCopyFunctionality(driver, wait);
+
+        loginPage = new LoginPage(driver, getWait());
+        Azure = new AzureDriveCopyFunctionality(driver, getWait());
+
+        performLogin(); // Login before each test
+    }
+
+    /**
+     * Perform login before executing test cases.
+     */
+    private void performLogin() {
+        try {
+            loginPage.loginMethod();
+        } catch (Exception e) {
+            Assert.fail("❌ Login failed before test execution. Exception: " + e.getMessage());
+        }
     }
 
 	//These Below Methods are for Login Functionality tests
 
-	@Test
-	public void verifyCopyFilesFunctionalityFromAzureToOtherDrives() {
-		try {
-			loginPage.loginMethod();
+    @Test
+    public void verifyCopyFilesFunctionalityFromAzureToIoCloudDrive() throws Exception {
+        Azure.verifyCopyFilesFunctionalityFromAzureToIoCloudDrive();
+    }
 
-			Azure.verifyCopyFilesFunctionalityFromAzureToIoCloudDrive();
-			
-			Azure.verifyCopyFilesFunctionalityFromAzureToAWSDrive();
-			
-			Azure.verifyCopyFilesFunctionalityFromAzureToBoxDrive();
+    @Test
+    public void verifyCopyFilesFunctionalityFromAzureToAWSDrive() throws Exception {
+        Azure.verifyCopyFilesFunctionalityFromAzureToAWSDrive();
+    }
 
-			Azure.verifyCopyFilesFunctionalityFromAzureToDropBoxDrive();
+    @Test
+    public void verifyCopyFilesFunctionalityFromAzureToBoxDrive() throws Exception {
+        Azure.verifyCopyFilesFunctionalityFromAzureToBoxDrive();
+    }
 
-			Azure.verifyCopyFilesFunctionalityFromAzureToFTPDrive();
+    @Test
+    public void verifyCopyFilesFunctionalityFromAzureToDropBoxDrive() throws Exception {
+        Azure.verifyCopyFilesFunctionalityFromAzureToDropBoxDrive();
+    }
 
-			Azure.verifyCopyFilesFunctionalityFromAzureToGoogleCloudDrive();
+    @Test
+    public void verifyCopyFilesFunctionalityFromAzureToFTPDrive() throws Exception {
+        Azure.verifyCopyFilesFunctionalityFromAzureToFTPDrive();
+    }
 
-			Azure.verifyCopyFilesFunctionalityFromAzureToGoogleDrive();
+    @Test
+    public void verifyCopyFilesFunctionalityFromAzureToGoogleCloudDrive() throws Exception {
+        Azure.verifyCopyFilesFunctionalityFromAzureToGoogleCloudDrive();
+    }
 
-			Azure.verifyCopyFilesFunctionalityFromAzureToAzureDrive();
+    @Test
+    public void verifyCopyFilesFunctionalityFromAzureToGoogleDrive() throws Exception {
+        Azure.verifyCopyFilesFunctionalityFromAzureToGoogleDrive();
+    }
 
-			Azure.verifyCopyFilesFunctionalityFromAzureToOneDrive();
+    @Test
+    public void verifyCopyFilesFunctionalityFromAzureToAzureDrive() throws Exception {
+        Azure.verifyCopyFilesFunctionalityFromAzureToAzureDrive();
+    }
 
-			Azure.verifyCopyFilesFunctionalityFromAzureToSFTPDrive();
-			
-			Azure.verifyCopyFilesFunctionalityFromAzureToSharePointDrive();
+    @Test
+    public void verifyCopyFilesFunctionalityFromAzureToOneDrive() throws Exception {
+        Azure.verifyCopyFilesFunctionalityFromAzureToOneDrive();
+    }
 
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-	}
+    @Test
+    public void verifyCopyFilesFunctionalityFromAzureToSFTPDrive() throws Exception {
+        Azure.verifyCopyFilesFunctionalityFromAzureToSFTPDrive();
+    }
+
+    @Test
+    public void verifyCopyFilesFunctionalityFromAzureToSharePointDrive() throws Exception {
+        Azure.verifyCopyFilesFunctionalityFromAzureToSharePointDrive();
+    }
 }

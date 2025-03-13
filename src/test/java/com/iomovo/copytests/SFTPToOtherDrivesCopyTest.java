@@ -1,60 +1,103 @@
 package com.iomovo.copytests;
 
+import org.testng.Assert;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
-import com.iomovo.basetest.BaseTestClass;
+import com.iomovo.basepackage.BaseClass;
 import com.iomovo.pagespackage.CopyFunctionality.SftpDriveCopyFunctionality;
 import com.iomovo.pagespackage.DashboardFunctionality.LoginPage;
 
 
-public class SFTPToOtherDrivesCopyTest extends BaseTestClass {
+public class SFTPToOtherDrivesCopyTest extends BaseClass {
 	
-	LoginPage loginPage;
-	 SftpDriveCopyFunctionality SFTP;
-   
+	private LoginPage loginPage;
+    private SftpDriveCopyFunctionality  SFTP;
 	
-  @BeforeMethod
-  public void setUp() {
-      if (driver == null) {
-          throw new IllegalStateException("WebDriver is null in IoCloudCenterPanelTest. Check BaseTestClass initialization.");
-      }
-      loginPage = new LoginPage();
-      SFTP = new SftpDriveCopyFunctionality(driver, wait);
-  }
-	
-	
-	@Test
-	public void verifyCopyFilesFunctionalityFromSFTPToOtherDrives() {
-		try {
-			loginPage.loginMethod();
+    /**
+     * Setup method runs before each test.
+     * Initializes WebDriver, logs in, and sets up required page objects.
+     */
+    @BeforeMethod
+    public void setUp() {
+    	driver = getDriver();
+        if (driver == null) {
+            throw new IllegalStateException("❌ WebDriver is null in HomePageTopPanelTest. Check BaseTestClass initialization.");
+        }
 
-			SFTP.verifyCopyFilesFunctionalityFromSFTPToIoCloudDrive();
-			
-			SFTP.verifyCopyFilesFunctionalityFromSFTPToAWSDrive();
-			
-			SFTP.verifyCopyFilesFunctionalityFromSFTPToBoxDrive();
-			
-			SFTP.verifyCopyFilesFunctionalityFromSFTPToDropBoxDrive();
-			
-			SFTP.verifyCopyFilesFunctionalityFromSFTPToFTPDrive();
-			
-			SFTP.verifyCopyFilesFunctionalityFromSFTPToGoogleCloudDrive();
-			
-			SFTP.verifyCopyFilesFunctionalityFromSFTPToGoogleDrive();
-			
-			SFTP.verifyCopyFilesFunctionalityFromSFTPToAzureDrive();
-			
-			SFTP.verifyCopyFilesFunctionalityFromSFTPToOneDrive();
-			
-			SFTP.verifyCopyFilesFunctionalityFromSFTPToSFTPDrive();
-			
-			SFTP.verifyCopyFilesFunctionalityFromSFTPToSharePointDrive();
+        loginPage = new LoginPage(driver, getWait());
+        SFTP = new SftpDriveCopyFunctionality(driver, getWait());
 
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-	}
+        performLogin(); // Login before each test
+    }
+
+    /**
+     * Perform login before executing test cases.
+     */
+    private void performLogin() {
+        try {
+            loginPage.loginMethod();
+        } catch (Exception e) {
+            Assert.fail("❌ Login failed before test execution. Exception: " + e.getMessage());
+        }
+    }
+	
+	
+    @Test
+    public void verifyCopyFilesFunctionalityFromSFTPToIoCloudDrive() throws Exception {
+        SFTP.verifyCopyFilesFunctionalityFromSFTPToIoCloudDrive();
+    }
+
+    @Test
+    public void verifyCopyFilesFunctionalityFromSFTPToAWSDrive() throws Exception {
+        SFTP.verifyCopyFilesFunctionalityFromSFTPToAWSDrive();
+    }
+
+    @Test
+    public void verifyCopyFilesFunctionalityFromSFTPToBoxDrive() throws Exception {
+        SFTP.verifyCopyFilesFunctionalityFromSFTPToBoxDrive();
+    }
+
+    @Test
+    public void verifyCopyFilesFunctionalityFromSFTPToDropBoxDrive() throws Exception {
+        SFTP.verifyCopyFilesFunctionalityFromSFTPToDropBoxDrive();
+    }
+
+    @Test
+    public void verifyCopyFilesFunctionalityFromSFTPToFTPDrive() throws Exception {
+        SFTP.verifyCopyFilesFunctionalityFromSFTPToFTPDrive();
+    }
+
+    @Test
+    public void verifyCopyFilesFunctionalityFromSFTPToGoogleCloudDrive() throws Exception {
+        SFTP.verifyCopyFilesFunctionalityFromSFTPToGoogleCloudDrive();
+    }
+
+    @Test
+    public void verifyCopyFilesFunctionalityFromSFTPToGoogleDrive() throws Exception {
+        SFTP.verifyCopyFilesFunctionalityFromSFTPToGoogleDrive();
+    }
+
+    @Test
+    public void verifyCopyFilesFunctionalityFromSFTPToAzureDrive() throws Exception {
+        SFTP.verifyCopyFilesFunctionalityFromSFTPToAzureDrive();
+    }
+
+    @Test
+    public void verifyCopyFilesFunctionalityFromSFTPToOneDrive() throws Exception {
+        SFTP.verifyCopyFilesFunctionalityFromSFTPToOneDrive();
+    }
+
+    @Test
+    public void verifyCopyFilesFunctionalityFromSFTPToSFTPDrive() throws Exception {
+        SFTP.verifyCopyFilesFunctionalityFromSFTPToSFTPDrive();
+    }
+
+    @Test
+    public void verifyCopyFilesFunctionalityFromSFTPToSharePointDrive() throws Exception {
+        SFTP.verifyCopyFilesFunctionalityFromSFTPToSharePointDrive();
+    }
+}
 		
 //	@Test
 //	public void verifyErasingTheCopiedDataSucccessfullyFromIoHubDrives2() {
@@ -69,5 +112,4 @@ public class SFTPToOtherDrivesCopyTest extends BaseTestClass {
 //			e.printStackTrace();
 //		}
 //	}
-}
 

@@ -12,8 +12,16 @@ import com.iomovo.basepackage.BaseClass;
 public class FTPAudio_VideoConvertFunctionality extends BaseClass {
 
 	public FTPAudio_VideoConvertFunctionality(WebDriver driver, WebDriverWait wait) {
-		BaseClass.driver = driver;
-        BaseClass.wait = wait;
+		BaseClass.tdriver.set(driver);  
+		BaseClass.wait.set(wait);
+	}
+
+	private WebDriver getDriverInstance() {
+		WebDriver driver = tdriver.get();
+		if (driver == null) {
+			throw new IllegalStateException("❌ WebDriver is null in LoginPage. Ensure it is initialized in BaseTestClass.");
+		}
+		return driver;
 	}
 
 	String ftpSearchBar = "//input[@id='free-solo-demo']";
@@ -79,6 +87,7 @@ public class FTPAudio_VideoConvertFunctionality extends BaseClass {
 	public void verifyAudioConvertFunctionalityInFTP() throws Exception {
 
 		try {
+			WebDriver driver = getDriverInstance();
 			logPassStepInExtentReport("TC 001 : Verify Audio Convert Functionality (.MP3) Format File In FTP ");
 
 			clickWebElement(leftPanelIoHubButton);
@@ -161,7 +170,7 @@ public class FTPAudio_VideoConvertFunctionality extends BaseClass {
 
 	public void verifyVideoConvertFunctionalityInFTP() throws Exception {
 		try {
-			refreshWebPage();
+			WebDriver driver = getDriverInstance();
 			logPassStepInExtentReport("TC 002 : Verify Video Convert Functionality (.MP4) Format File In FTP");
 
 			clickWebElement(leftPanelIoHubButton);
@@ -253,7 +262,7 @@ public class FTPAudio_VideoConvertFunctionality extends BaseClass {
 	public void verifyVideo2AudioConvertFunctionalityInFTP() throws Exception {
 
 		try {
-			refreshWebPage();
+			WebDriver driver = getDriverInstance();
 			logPassStepInExtentReport("TC 003 : Verify Video To Audio Convert Functionality (.MP4) Format File In FTP");
 
 			clickWebElement(leftPanelIoHubButton);

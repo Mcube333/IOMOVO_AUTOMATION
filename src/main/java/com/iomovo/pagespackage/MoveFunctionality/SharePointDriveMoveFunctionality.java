@@ -10,8 +10,16 @@ import com.iomovo.basepackage.BaseClass;
 public class SharePointDriveMoveFunctionality extends BaseClass {
 
 	public SharePointDriveMoveFunctionality(WebDriver driver, WebDriverWait wait) {
-		BaseClass.driver = driver;
-        BaseClass.wait = wait;
+		BaseClass.tdriver.set(driver);  
+		BaseClass.wait.set(wait);
+	}
+
+	private WebDriver getDriverInstance() {
+		WebDriver driver = tdriver.get();
+		if (driver == null) {
+			throw new IllegalStateException("❌ WebDriver is null in LoginPage. Ensure it is initialized in BaseTestClass.");
+		}
+		return driver;
 	}
 
 	String copyDataFolderSelection = "//a[text()='AVI Data Folder']";
@@ -475,6 +483,7 @@ public class SharePointDriveMoveFunctionality extends BaseClass {
 
 	public void verifyMoveFilesFunctionalityFromSharePointDriveToIoCloudDrive() throws Exception {
 		try {
+			getDriverInstance();
 			navigateToSharepointDrive("TC 001 : Verify Move Files Functionality From SharePoint To ioCloud Drive");
 			moveFilesFromSourceFolder();
 			clickWebElement(leftPanelIoCloudButton);
@@ -504,6 +513,7 @@ public class SharePointDriveMoveFunctionality extends BaseClass {
 	
 	public void verifyMoveFilesFunctionalityFromSharePointDriveToAWSDrive() throws Exception {
 		try {
+			getDriverInstance();
 			navigateToSharepointDrive("TC 002 : Verify Move Files Functionality From SharePoint To Aws Drive");
 			moveFilesFromSourceFolder();
 			clickWebElement(leftPanelIoHubButton);
@@ -534,6 +544,7 @@ public class SharePointDriveMoveFunctionality extends BaseClass {
 	
 	public void verifyMoveFilesFunctionalityFromSharePointDriveToBOXDrive() throws Exception {
 		try {
+			getDriverInstance();
 			navigateToSharepointDrive("TC 003 : Verify Move Function From SharePoint To Box Drive");
 			moveFilesFromSourceFolder();
 			clickWebElement(leftPanelIoHubButton);
@@ -564,6 +575,7 @@ public class SharePointDriveMoveFunctionality extends BaseClass {
 	
 	public void verifyMoveFilesFunctionalityFromSharePointDriveToDropBoxDrive() throws Exception {
 		try {
+			getDriverInstance();
 			navigateToSharepointDrive("TC 004 : Verify Move Function From SharePoint To DropBox Drive");
 			moveFilesFromSourceFolder();
 			clickWebElement(leftPanelIoHubButton);
@@ -594,6 +606,7 @@ public class SharePointDriveMoveFunctionality extends BaseClass {
 	
 	public void verifyMoveFilesFunctionalityFromSharePointDriveToFTPDrive() throws Exception {
 		try {
+			getDriverInstance();
 			navigateToSharepointDrive("TC 005 : Verify Move Function From SharePoint To FTP Drive");
 			moveFilesFromSourceFolder();
 			clickWebElement(leftPanelIoHubButton);
@@ -624,6 +637,7 @@ public class SharePointDriveMoveFunctionality extends BaseClass {
 	
 	public void verifyMoveFilesFunctionalityFromSharePointDriveToGoogleCloudDrive() throws Exception {
 		try {
+			getDriverInstance();
 			navigateToSharepointDrive("TC 006 : Verify Move Function From SharePoint To GoogleCloud Drive");
 			moveFilesFromSourceFolder();
 			clickWebElement(leftPanelIoHubButton);
@@ -654,6 +668,7 @@ public class SharePointDriveMoveFunctionality extends BaseClass {
 	
 	public void verifyMoveFilesFunctionalityFromSharePointDriveToGoogleDrive() throws Exception {
 		try {
+			getDriverInstance();
 			navigateToSharepointDrive("TC 007 : Verify Move Function From SharePoint To Google Drive");
 			moveFilesFromSourceFolder();
 			clickWebElement(leftPanelIoHubButton);
@@ -684,6 +699,7 @@ public class SharePointDriveMoveFunctionality extends BaseClass {
 	
 	public void verifyMoveFilesFunctionalityFromSharePointDriveToAzureDrive() throws Exception {
 		try {
+			getDriverInstance();
 			navigateToSharepointDrive("TC 008 : Verify Move Function From SharePoint To Azure Drive");
 			moveFilesFromSourceFolder();
 			clickWebElement(leftPanelIoHubButton);
@@ -714,6 +730,7 @@ public class SharePointDriveMoveFunctionality extends BaseClass {
 
 	public void verifyMoveFilesFunctionalityFromSharePointDriveToOneDrive() throws Exception {
 		try {
+			getDriverInstance();
 			navigateToSharepointDrive("TC 009 : Verify Move Function From SharePoint To OneDrive");
 			moveFilesFromSourceFolder();
 			clickWebElement(leftPanelIoHubButton);
@@ -744,6 +761,7 @@ public class SharePointDriveMoveFunctionality extends BaseClass {
 	
 	public void verifyMoveFilesFunctionalityFromSharePointToOOSDrive() throws Exception {
 		try {
+			getDriverInstance();
 			navigateToSharepointDrive("TC 010 : Verify Move Function From SharePoint To OOS Drive");
 			moveFilesFromSourceFolder();
 			clickWebElement(leftPanelIoHubButton);
@@ -774,6 +792,7 @@ public class SharePointDriveMoveFunctionality extends BaseClass {
 	
 	public void verifyMoveFilesFunctionalityFromSharePointDriveToSFTPDrive() throws Exception {
 		try {
+			getDriverInstance();
 			navigateToSharepointDrive("TC 011 : Verify Move Function From SharePoint To SFTP Drive");
 			moveFilesFromSourceFolder();
 			clickWebElement(leftPanelIoHubButton);
@@ -804,6 +823,7 @@ public class SharePointDriveMoveFunctionality extends BaseClass {
 	
 	public void verifyMoveFilesFunctionalityFromSharePointDriveToSharePointDrive() throws Exception {
 		try {
+			getDriverInstance();
 			navigateToSharepointDrive("TC 012 : Verify Move Function From SharePoint To SharePoint Drive");
 			moveFilesFromSourceFolder();
 			clickWebElement(leftPanelIoHubButton);

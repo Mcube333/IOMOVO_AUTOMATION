@@ -12,10 +12,17 @@ import com.iomovo.basepackage.BaseClass;
 public class SharePointAudio_VideoConvertFunctionality extends BaseClass {
 
 	public SharePointAudio_VideoConvertFunctionality(WebDriver driver, WebDriverWait wait) {
-		BaseClass.driver = driver;
-        BaseClass.wait = wait;
+		BaseClass.tdriver.set(driver);  
+		BaseClass.wait.set(wait);
 	}
 
+	private WebDriver getDriverInstance() {
+		WebDriver driver = tdriver.get();
+		if (driver == null) {
+			throw new IllegalStateException("❌ WebDriver is null in LoginPage. Ensure it is initialized in BaseTestClass.");
+		}
+		return driver;
+	}
 	
 	String sharePointFolderSelectonRoot = "//div/span[text()='ioMoVoQATeam']";
 	String switchToGridViewButton = "//button[@title='Switch to Grid View']";
@@ -80,6 +87,7 @@ public class SharePointAudio_VideoConvertFunctionality extends BaseClass {
 	public void verifyAudioConvertFunctionalityInSharePoint() throws Exception {
 
 		try {
+			WebDriver driver = getDriverInstance();
 			logPassStepInExtentReport("TC 001 : Verify Audio Convert Functionality (.MP3) Format File In SharePoint");
 
 			clickWebElement(leftPanelIoHubButton);
@@ -164,6 +172,7 @@ public class SharePointAudio_VideoConvertFunctionality extends BaseClass {
 
 	public void verifyVideoConvertFunctionalityInSharePoint() throws Exception {
 		try {
+			WebDriver driver = getDriverInstance();
 			logPassStepInExtentReport("TC 002 : Verify Video Convert Functionality (.MP4) Format File In SharePoint");
 
 			clickWebElement(leftPanelIoHubButton);
@@ -257,6 +266,7 @@ public class SharePointAudio_VideoConvertFunctionality extends BaseClass {
 	public void verifyVideo2AudioConvertFunctionalityInSharePoint() throws Exception {
 
 		try {
+			WebDriver driver = getDriverInstance();
 			logPassStepInExtentReport("TC 003 : Verify Video To Audio Convert Functionality (.MP4) Format File In SharePoint");
 
 			clickWebElement(leftPanelIoHubButton);

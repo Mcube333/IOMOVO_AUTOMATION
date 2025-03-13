@@ -1,16 +1,33 @@
 package com.iomovo.pagespackage.CopyFunctionality;
 
 import static org.testng.Assert.assertTrue;
+
+import java.time.Duration;
+
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import com.iomovo.basepackage.BaseClass;
 
 public class AwsDriveCopyFunctionality extends BaseClass {
 
-	public AwsDriveCopyFunctionality(WebDriver driver, WebDriverWait wait) {
-		BaseClass.driver = driver;
-        BaseClass.wait = wait;
-	}
+	public AwsDriveCopyFunctionality() {
+		if (getDriver() == null) {
+            throw new IllegalStateException("❌ WebDriver is null in ProfilePage. Ensure it is initialized in BaseClass.");
+        }
+    }
+	
+    public AwsDriveCopyFunctionality(WebDriver driver, WebDriverWait wait) {
+        BaseClass.tdriver.set(driver);
+        BaseClass.wait.set(new WebDriverWait(driver, Duration.ofSeconds(10))); // Ensure WebDriverWait is set
+    }
+
+    private WebDriver getDriverInstance() {
+        WebDriver driver = tdriver.get();
+        if (driver == null) {
+            throw new IllegalStateException("❌ WebDriver is null in ProfilePage. Ensure it is initialized in BaseClass.");
+        }
+        return driver;
+    }
 
 	String copyDataFolderSelection = "//a[text()='automationfolder']";
 	String moveDataFolderSelectionRoot = "//a[text()='automationfolder']";
@@ -354,6 +371,7 @@ public class AwsDriveCopyFunctionality extends BaseClass {
 	
 	public void verifyCopyFilesFunctionalityFromAWSToIoCloudDrive() throws Exception {
 		try {
+			getDriverInstance();
 			navigateToAwsDrive("TC 001 : Verify Copy Function From AWS To IoCloud Drive");
 			copyFilesFromSourceFolder();
 			clickWebElement(leftPanelIoCloudButton);
@@ -383,6 +401,7 @@ public class AwsDriveCopyFunctionality extends BaseClass {
 	
 	public void verifyCopyFilesFunctionalityFromAWSToAWSDrive() throws Exception {
 	    try {
+	    	getDriverInstance();
 	        navigateToAwsDrive("TC 002 : Verify Copy Function From AWS To AWS Drive");
 	        copyFilesFromSourceFolder();
 	        clickWebElement(leftPanelIoHubButton);
@@ -412,6 +431,7 @@ public class AwsDriveCopyFunctionality extends BaseClass {
 
 	public void verifyCopyFilesFunctionalityFromAWSToBoxDrive() throws Exception {
 		try {
+			getDriverInstance();
 			navigateToAwsDrive("TC 003 : Verify Copy Function From AWS To Box Drive");
 			copyFilesFromSourceFolder();
 			clickWebElement(leftPanelIoHubButton);
@@ -442,6 +462,7 @@ public class AwsDriveCopyFunctionality extends BaseClass {
 
 	public void verifyCopyFilesFunctionalityFromAWSToDropBoxDrive() throws Exception {
 		try {
+			getDriverInstance();
 			navigateToAwsDrive("TC 004 : Verify Copy Function From AWS To DropBox Drive");
 			copyFilesFromSourceFolder();
 			clickWebElement(leftPanelIoHubButton);
@@ -472,6 +493,7 @@ public class AwsDriveCopyFunctionality extends BaseClass {
 
 	public void verifyCopyFilesFunctionalityFromAWSToFTPDrive() throws Exception {
 		try {
+			getDriverInstance();
 			navigateToAwsDrive("TC 005 : Verify Copy Function From AWS To FTP Drive");
 			copyFilesFromSourceFolder();
 			clickWebElement(leftPanelIoHubButton);
@@ -502,6 +524,7 @@ public class AwsDriveCopyFunctionality extends BaseClass {
 
 	public void verifyCopyFilesFunctionalityFromAWSToGoogleCloudDrive() throws Exception {
 		try {
+			getDriverInstance();
 			navigateToAwsDrive("TC 006 : Verify Copy Function From AWS To GoogleCloud Drive");
 			copyFilesFromSourceFolder();
 			clickWebElement(leftPanelIoHubButton);
@@ -532,6 +555,7 @@ public class AwsDriveCopyFunctionality extends BaseClass {
 
 	public void verifyCopyFilesFunctionalityFromAWSToGoogleDrive() throws Exception {
 		try {
+			getDriverInstance();
 			navigateToAwsDrive("TC 007 : Verify Copy Function From AWS To Google Drive");
 			copyFilesFromSourceFolder();
 			clickWebElement(leftPanelIoHubButton);
@@ -562,6 +586,7 @@ public class AwsDriveCopyFunctionality extends BaseClass {
 
 	public void verifyCopyFilesFunctionalityFromAWSToAzureDrive() throws Exception {
 		try {
+			getDriverInstance();
 			navigateToAwsDrive("TC 008 : Verify Copy Function From AWS To Azure Drive");
 			copyFilesFromSourceFolder();
 			clickWebElement(leftPanelIoHubButton);
@@ -592,6 +617,7 @@ public class AwsDriveCopyFunctionality extends BaseClass {
 
 	public void verifyCopyFilesFunctionalityFromAWSToOneDrive() throws Exception {
 		try {
+			getDriverInstance();
 			navigateToAwsDrive("TC 009 : Verify Copy Function From AWS To OneDrive");
 			copyFilesFromSourceFolder();
 			clickWebElement(leftPanelIoHubButton);
@@ -622,6 +648,7 @@ public class AwsDriveCopyFunctionality extends BaseClass {
 
 	public void verifyCopyFilesFunctionalityFromAWSToOOSDrive() throws Exception {
 		try {
+			getDriverInstance();
 			navigateToAwsDrive("TC 010 : Verify Copy Function From AWS To OOS Drive");
 			copyFilesFromSourceFolder();
 			clickWebElement(leftPanelIoHubButton);
@@ -652,6 +679,7 @@ public class AwsDriveCopyFunctionality extends BaseClass {
 	
 	public void verifyCopyFilesFunctionalityFromAWSToSFTPDrive() throws Exception {
 		try {
+			getDriverInstance();
 			navigateToAwsDrive("TC 011 : Verify Copy Function From AWS To SFTP Drive");
 			copyFilesFromSourceFolder();
 			clickWebElement(leftPanelIoHubButton);
@@ -682,6 +710,7 @@ public class AwsDriveCopyFunctionality extends BaseClass {
 
 	public void verifyCopyFilesFunctionalityFromAWSToSharePointDrive() throws Exception {
 		try {
+			getDriverInstance();
 			navigateToAwsDrive("TC 012 : Verify Copy Function From AWS To SharePoint Drive");
 			copyFilesFromSourceFolder();
 			clickWebElement(leftPanelIoHubButton);

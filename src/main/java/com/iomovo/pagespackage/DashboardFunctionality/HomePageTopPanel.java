@@ -2,6 +2,8 @@ package com.iomovo.pagespackage.DashboardFunctionality;
 
 import static org.testng.Assert.assertTrue;
 
+import java.time.Duration;
+
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
@@ -9,10 +11,24 @@ import com.iomovo.basepackage.BaseClass;
 
 public class HomePageTopPanel extends BaseClass {
 
-	public HomePageTopPanel(WebDriver driver, WebDriverWait wait) {
-		BaseClass.driver = driver;
-        BaseClass.wait = wait;
-	}
+	public HomePageTopPanel() {
+		if (getDriver() == null) {
+            throw new IllegalStateException("❌ WebDriver is null in ProfilePage. Ensure it is initialized in BaseClass.");
+        }
+    }
+	
+    public HomePageTopPanel(WebDriver driver, WebDriverWait wait) {
+        BaseClass.tdriver.set(driver);
+        BaseClass.wait.set(new WebDriverWait(driver, Duration.ofSeconds(10))); // Ensure WebDriverWait is set
+    }
+
+    private WebDriver getDriverInstance() {
+        WebDriver driver = tdriver.get();
+        if (driver == null) {
+            throw new IllegalStateException("❌ WebDriver is null in ProfilePage. Ensure it is initialized in BaseClass.");
+        }
+        return driver;
+    }
 
 	// All X-paths of Home Page TOP SECTION.
 	String topPanelUploadButton = "//button[@type='button'][@title='Upload Files']";
@@ -72,6 +88,212 @@ public class HomePageTopPanel extends BaseClass {
 	String pdfFileName = "sample.pdf";
 	String videoFileName = "One Planet.mp4";
 	String settingsPageConfirmation = "//h6[text()='Account Detail']";
+	
+//	/**
+//     * Generic method to upload a file through the Top Panel.
+//     * This eliminates duplicate code for document, audio, and video uploads.
+//	 * @throws Exception 
+//     */
+//    public void uploadFile(String filePath, String fileName) throws Exception {
+//        try {
+//            logConsoleOutputMessage("Uploading file: " + fileName);
+//            refreshWebPage();
+//            clickWebElement(topPanelUploadButton);
+//            explicitWaitInSeconds(5);
+//            uploadFileUsingRobotClass(filePath, fileName);
+//            logPassStepInExtentReport("✅ File uploaded successfully: " + fileName);
+//        } catch (Exception e) {
+//            logFailStepInExtentReport("❌ File upload failed: " + fileName + ". Exception: " + e.getMessage());
+//            throw e; // Let TestNG handle the exception
+//        }
+//    }
+//
+//    /**
+//     * Uploads a file multiple times and performs actions like Append, Replace, and Duplicate.
+//     * @throws Exception 
+//     */
+//    public void uploadFileMultipleTimesWithActions(String filePath, String fileName) throws Exception {
+//        try {
+//            uploadFile(filePath, fileName);
+//            verifyFileUploadSuccess(fileName);
+//
+//            logInfoStepInExtentReport("Uploading the same file again for APPEND test");
+//            uploadFile(filePath, fileName);
+//            clickWebElement(appendVersionLink);
+//            verifyFileUploadSuccess(fileName);
+//
+//            logInfoStepInExtentReport("Uploading the same file again for REPLACE CURRENT VERSION test");
+//            uploadFile(filePath, fileName);
+//            clickWebElement(replaceCurrentVersionLink);
+//            verifyFileUploadSuccess(fileName);
+//
+//            logInfoStepInExtentReport("Uploading the same file again for DUPLICATE test");
+//            uploadFile(filePath, fileName);
+//            clickWebElement(duplicateLink);
+//            verifyFileUploadSuccess(fileName);
+//        } catch (Exception e) {
+//            logFailStepInExtentReport("❌ Failed during multiple file upload tests. Exception: " + e.getMessage());
+//            throw e;
+//        }
+//    }
+//
+//    /**
+//     * Verifies if a file upload was successful.
+//     * @throws Exception 
+//     */
+//    private void verifyFileUploadSuccess(String fileName) throws Exception {
+//        clickWebElement(topPanelNotificationButton);
+//        String uploadedLabel = "//p[contains(text(),'has been uploaded')]";
+//        if (isWebElementDisplayed(uploadedLabel)) {
+//            logPassStepInExtentReportWithScreenshot("✅ File uploaded successfully: " + fileName);
+//        } else {
+//            logFailStepInExtentReport("❌ File upload failed: " + fileName);
+//            assertTrue(false);
+//        }
+//        clickWebElement(closeNotificationButton);
+//    }
+//
+//    /**
+//     * Deletes a file while uploading via the Top Panel.
+//     * @throws Exception 
+//     */
+//    public void deleteFileDuringUpload(String filePath, String fileName) throws Exception {
+//        try {
+//            uploadFile(filePath, fileName);
+//            explicitWaitInSeconds(3);
+//            clickWebElement(uploadCancelButton);
+//            acceptSingleAlertIfPresent();
+//            logPassStepInExtentReport("✅ File upload canceled successfully.");
+//        } catch (Exception e) {
+//            logFailStepInExtentReport("❌ File upload cancelation failed. Exception: " + e.getMessage());
+//            throw e;
+//        }
+//    }
+//
+//    /**
+//     * Captures an image through the Top Panel.
+//     * @throws Exception 
+//     */
+//    public void captureImage(boolean autoSync) throws Exception {
+//        try {
+//            refreshWebPage();
+//            explicitWaitInSeconds(3);
+//            clickWebElement(topPanelCaptureButton);
+//            if (autoSync) {
+//                clickWebElement(autosyncButton);
+//                logPassStepInExtentReport("✅ Auto-sync enabled for image capture.");
+//            }
+//            clickWebElement(takePictureButton);
+//            acceptSingleAlertIfPresent();
+//            verifyFileUploadSuccess("Captured Image");
+//        } catch (Exception e) {
+//            logFailStepInExtentReport("❌ Image capture failed. Exception: " + e.getMessage());
+//            throw e;
+//        }
+//    }
+//
+//    /**
+//     * Records a video through the Top Panel.
+//     * @throws Exception 
+//     */
+//    public void recordVideo(boolean autoSync) throws Exception {
+//        try {
+//            refreshWebPage();
+//            explicitWaitInSeconds(3);
+//            clickWebElement(topPanelCaptureButton);
+//            if (autoSync) {
+//                clickWebElement(autosyncButton);
+//                logPassStepInExtentReport("✅ Auto-sync enabled for video recording.");
+//            }
+//            clickWebElement(videoRecordStartButton);
+//            explicitWaitInSeconds(5);
+//            clickWebElement(videoRecordMuteButton);
+//            clickWebElement(videoRecordStopButton);
+//            verifyFileUploadSuccess("Recorded Video");
+//        } catch (Exception e) {
+//            logFailStepInExtentReport("❌ Video recording failed. Exception: " + e.getMessage());
+//            throw e;
+//        }
+//    }
+//
+//    /**
+//     * Redirects user to the settings page via the Top Panel.
+//     * @throws Exception 
+//     */
+//    public void navigateToSettings() throws Exception {
+//        try {
+//            clickWebElement(topPanelSettingsButton);
+//            explicitWaitInSeconds(5);
+//            if (isWebElementDisplayed(settingsPage)) {
+//                logPassStepInExtentReportWithScreenshot("✅ Successfully navigated to the Settings Page.");
+//            } else {
+//                logFailStepInExtentReport("❌ Failed to navigate to the Settings Page.");
+//                assertTrue(false);
+//            }
+//        } catch (Exception e) {
+//            logFailStepInExtentReport("❌ Settings navigation failed. Exception: " + e.getMessage());
+//            throw e;
+//        }
+//    }
+//
+//    /**
+//     * Switches between dark mode and normal mode.
+//     * @throws Exception 
+//     */
+//    public void toggleDarkMode() throws Exception {
+//        try {
+//            clickWebElement(switchToDarkModeButton);
+//            explicitWaitInSeconds(5);
+//            clickWebElement(topPanelRefreshButton);
+//            logPassStepInExtentReportWithScreenshot("✅ Successfully switched display mode.");
+//        } catch (Exception e) {
+//            logFailStepInExtentReport("❌ Failed to switch display mode. Exception: " + e.getMessage());
+//            throw e;
+//        }
+//    }
+//
+//    /**
+//     * Clears notifications from the Top Panel.
+//     * @throws Exception 
+//     */
+//    public void clearNotifications() throws Exception {
+//        try {
+//            clickWebElement(topPanelNotificationButton);
+//            explicitWaitInSeconds(5);
+//            if (isWebElementDisplayed(clearNotificationButton)) {
+//                clickWebElement(clearNotificationButton);
+//                explicitWaitInSeconds(3);
+//                logPassStepInExtentReportWithScreenshot("✅ Successfully cleared all notifications.");
+//            } else {
+//                logPassStepInExtentReport("✅ No notifications available to clear.");
+//            }
+//            clickWebElement(closeNotificationButton);
+//        } catch (Exception e) {
+//            logFailStepInExtentReport("❌ Failed to clear notifications. Exception: " + e.getMessage());
+//            throw e;
+//        }
+//    }
+//
+//    /**
+//     * Navigates to the Support Page via the Top Panel.
+//     * @throws Exception 
+//     */
+//    public void navigateToSupportPage() throws Exception {
+//        try {
+//            clickWebElement(topPanelSupportButton);
+//            swithToNextNewWindow();
+//            if (isWebElementDisplayed(supportPageDivTitleLabel)) {
+//                logPassStepInExtentReportWithScreenshot("✅ Successfully navigated to the Support Page.");
+//            } else {
+//                logFailStepInExtentReport("❌ Failed to navigate to the Support Page.");
+//                assertTrue(false);
+//            }
+//        } catch (Exception e) {
+//            logFailStepInExtentReport("❌ Support page navigation failed. Exception: " + e.getMessage());
+//            throw e;
+//        }
+//    }
+//}
 
 	public void uploadFilesFunctionality(String docFilesPath, String samplePdfFile) throws Exception {
 		try {
@@ -186,21 +408,25 @@ public class HomePageTopPanel extends BaseClass {
 	}
 
 	public void verifyUserAbleToUploadDocumentFileMultipleTimesFromTopPanelUploadButtonAndTakeCertainActionsTest() throws Exception {
+		getDriverInstance();
 		uploadSameFileMultipleTimesAndTakeCertainActionsFunctionality(docFilesPath, pdfFileName);
 	}
 
 	public void verifyUserAbleToUploadAudioFileMultipleTimesFromTopPanelUploadButtonAndTakeCertainActionsTest() throws Exception {
+		getDriverInstance();
 		uploadSameFileMultipleTimesAndTakeCertainActionsFunctionality(audioFilesPath, audioFileName);
 	}
 
 	public void verifyUserAbleToUploadVideoFileMultipleTimesFromTopPanelUploadButtonAndTakeCertainActionsTest() throws Exception {
+		getDriverInstance();
 		uploadSameFileMultipleTimesAndTakeCertainActionsFunctionality(videoFilesPath, videoFileName);
 	}
 
 	//uploading same file again and check if the file can be DELETED while uploading file
 
-	public void verifyUserAbleToDeleteFIleWhileUploadingFromTopPanelTest() throws Exception {
+	public void verifyUserAbleToDeleteFIleWhileUploadingFromTopPanel() throws Exception {
 		try {
+			getDriverInstance();
 			logConsoleOutputMessage("strUrl: " + strUrl);
 			logPassStepInExtentReport("TC 005 : verify User Able To Delete FIle While Uploading From Top Panel Test");
 			uploadFilesFunctionality(videoFilesPath, videoFileName);
@@ -219,8 +445,9 @@ public class HomePageTopPanel extends BaseClass {
 		}
 	}
 
-	public void verifyUserIsAbleToRecordTheVideoFromTopPanelWithoutAutoSyncTest() throws Exception {
+	public void verifyUserIsAbleToRecordTheVideoFromTopPanelWithoutAutoSync() throws Exception {
 		try {
+			getDriverInstance();
 			logConsoleOutputMessage("strUrl: " + strUrl);
 			logPassStepInExtentReport("TC 006 : verify User Is Able To Record The Video From Top Panel Without AutoSync Test");
 			refreshWebPage();
@@ -258,8 +485,9 @@ public class HomePageTopPanel extends BaseClass {
 		}
 	}
 
-	public void verifyUserIsAbleToRecordTheVideoFromTopPanelWithAutoSyncTest() throws Exception {
+	public void verifyUserIsAbleToRecordTheVideoFromTopPanelWithAutoSync() throws Exception {
 		try {
+			getDriverInstance();
 			logConsoleOutputMessage("strUrl: " + strUrl);
 			logPassStepInExtentReport("TC 007 : verify User Is Able To Record The Video From Top Panel With AutoSync Test");
 			refreshWebPage();
@@ -297,8 +525,9 @@ public class HomePageTopPanel extends BaseClass {
 		}
 	}
 
-	public void verifyUserIsAbleToCaptureImageFromTopPanelWithoutAutoSyncTest() throws Exception {
+	public void verifyUserIsAbleToCaptureImageFromTopPanelWithoutAutoSync() throws Exception {
 		try {
+			getDriverInstance();
 			logConsoleOutputMessage("strUrl: " + strUrl);
 			logPassStepInExtentReport("TC 008 : verify User Is Able To Capture Image From Top Panel Without AutoSync Test");
 			refreshWebPage();
@@ -330,8 +559,9 @@ public class HomePageTopPanel extends BaseClass {
 		}
 	}
 
-	public void verifyUserIsAbleToCaptureImageFromTopPanelWithAutoSyncTest() throws Exception {
+	public void verifyUserIsAbleToCaptureImageFromTopPanelWithAutoSync() throws Exception {
 		try {
+			getDriverInstance();
 			logConsoleOutputMessage("strUrl: " + strUrl);
 			logPassStepInExtentReport("TC 009 : verify User Is Able To Capture Image From Top Panel With AutoSync Test");
 			refreshWebPage();
@@ -363,8 +593,9 @@ public class HomePageTopPanel extends BaseClass {
 		}
 	}
 
-	public void verifyUserIsAbleToRecordTheScreenFromTopPanelTest() throws Exception {
+	public void verifyUserIsAbleToRecordTheScreenFromTopPanel() throws Exception {
 		try {
+			getDriverInstance();
 			logConsoleOutputMessage("strUrl: " + strUrl);
 			logPassStepInExtentReport("TC 010 : verify User Is Able To Record The Screen From Top Panel Test");
 			refreshWebPage();
@@ -396,8 +627,9 @@ public class HomePageTopPanel extends BaseClass {
 		}
 	}
 
-	public void verifyUserIsRedirectedToSettingsPageFromTopPanelTest() throws Exception {
+	public void verifyUserIsRedirectedToSettingsPageFromTopPanel() throws Exception {
 		try {
+			getDriverInstance();
 			logConsoleOutputMessage("strUrl: " + strUrl);
 			logPassStepInExtentReport("TC 011 : verify User Is Redirected To Settings Page From Top Panel Test");
 			refreshWebPage();
@@ -419,8 +651,9 @@ public class HomePageTopPanel extends BaseClass {
 		}
 	}
 
-	public void verifyUserIsAbleToSwitchToDarkModeFromTopPanelTest() throws Exception {
+	public void verifyUserIsAbleToSwitchToDarkModeFromTopPanel() throws Exception {
 		try {
+			getDriverInstance();
 			logConsoleOutputMessage("strUrl: " + strUrl);
 			logPassStepInExtentReport("TC 012 : verify User Is Able To Switch To Dark Mode From Top Panel Test");
 			refreshWebPage();
@@ -466,8 +699,9 @@ public class HomePageTopPanel extends BaseClass {
 		}
 	}
 
-	public void verifyUserAbleToClearNotificationFromTopPanelTest() throws Exception {
+	public void verifyUserAbleToClearNotificationFromTopPanel() throws Exception {
 		try {
+			getDriverInstance();
 			logConsoleOutputMessage("strUrl: " + strUrl);
 			logPassStepInExtentReport("TC 013 : verify User Able To Clear Notification From Top Panel Test");
 			refreshWebPage();
@@ -495,8 +729,9 @@ public class HomePageTopPanel extends BaseClass {
 		}
 	}
 
-	public void verifyUserIsRedirectedToSupportPageFromTopPanelTest() throws Exception {
+	public void verifyUserIsRedirectedToSupportPageFromTopPanel() throws Exception {
 		try {
+			getDriverInstance();
 			logConsoleOutputMessage("strUrl: " + strUrl);
 			logPassStepInExtentReport("TC 014 : verify User Is Redirected To Support Page From Top Panel Test");
 			refreshWebPage();

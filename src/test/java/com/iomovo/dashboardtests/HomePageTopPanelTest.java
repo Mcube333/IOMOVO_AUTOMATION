@@ -1,190 +1,111 @@
 package com.iomovo.dashboardtests;
 
+import org.openqa.selenium.WebDriver;
+import org.testng.Assert;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
-import com.iomovo.basetest.BaseTestClass;
+import com.iomovo.basepackage.BaseClass;
 import com.iomovo.pagespackage.DashboardFunctionality.HomePageTopPanel;
 import com.iomovo.pagespackage.DashboardFunctionality.LoginPage;
 
+public class HomePageTopPanelTest extends BaseClass {
 
-public class HomePageTopPanelTest extends BaseTestClass 
-{
-	/**
-	 * This Method Runs Before Suite. Logs, extent report and properties file are
-	 * loaded and configured. Screen Recording is started to monitor the execution.
-	 * 
-	 * @author Mudassir
-	 * @throws FileNotFoundException
-	 */
-	
-	LoginPage loginPage;
-	HomePageTopPanel topPanel;
-	
-	@BeforeMethod
+	private WebDriver driver;
+	private LoginPage loginPage;
+    private HomePageTopPanel topPanel;
+
+    /**
+     * Setup method runs before each test.
+     * Initializes WebDriver, logs in, and sets up required page objects.
+     */
+    @BeforeMethod
     public void setUp() {
+    	driver = getDriver();
         if (driver == null) {
-            throw new IllegalStateException("WebDriver is null in IoCloudCenterPanelTest. Check BaseTestClass initialization.");
+            throw new IllegalStateException("❌ WebDriver is null in HomePageTopPanelTest. Check BaseTestClass initialization.");
         }
-        loginPage = new LoginPage();
-        topPanel = new HomePageTopPanel(driver, wait);
+
+        loginPage = new LoginPage(driver, getWait());
+        topPanel = new HomePageTopPanel(driver, getWait());
+
+        performLogin(); // Login before each test
     }
 
-	//These Below Methods are for Home Page TOP PANEL Functionality tests
+    /**
+     * Perform login before executing test cases.
+     */
+    private void performLogin() {
+        try {
+            loginPage.loginMethod();
+        } catch (Exception e) {
+            Assert.fail("❌ Login failed before test execution. Exception: " + e.getMessage());
+        }
+    }
 
-		@Test
-		public void verifyUserAbleToUploadDocumentFileMultipleTimesFromTopPanelUploadButtonAndTakeCertainActionsTest() {
-			try {
-				loginPage.loginMethod(); 
 
-				topPanel.verifyUserAbleToUploadDocumentFileMultipleTimesFromTopPanelUploadButtonAndTakeCertainActionsTest();
+    @Test
+    public void verifyUserAbleToUploadDocumentFileMultipleTimesFromTopPanelUploadButtonAndTakeCertainActionsTest() throws Exception {
+    	topPanel.verifyUserAbleToUploadDocumentFileMultipleTimesFromTopPanelUploadButtonAndTakeCertainActionsTest();
+    }
 
-			} catch (Exception e) {
-				e.printStackTrace();
-			}
-		}
+    @Test
+    public void verifyUserAbleToUploadAudioFileMultipleTimesFromTopPanelUploadButtonAndTakeCertainActionsTest() throws Exception {
+    	topPanel.verifyUserAbleToUploadAudioFileMultipleTimesFromTopPanelUploadButtonAndTakeCertainActionsTest();
+    }
 
-		@Test
-		public void verifyUserAbleToUploadAudioFileMultipleTimesFromTopPanelUploadButtonAndTakeCertainActionsTest() {
-			try {
-				loginPage.loginMethod(); 
+    @Test
+    public void verifyUserAbleToUploadVideoFileMultipleTimesFromTopPanelUploadButtonAndTakeCertainActionsTest() throws Exception {
+    	topPanel.verifyUserAbleToUploadVideoFileMultipleTimesFromTopPanelUploadButtonAndTakeCertainActionsTest();
+    }
 
-				topPanel.verifyUserAbleToUploadAudioFileMultipleTimesFromTopPanelUploadButtonAndTakeCertainActionsTest();
+    @Test
+    public void verifyUserAbleToDeleteFIleWhileUploadingFromTopPanel() throws Exception {
+    	topPanel.verifyUserAbleToDeleteFIleWhileUploadingFromTopPanel();
+    }
 
-			} catch (Exception e) {
-				e.printStackTrace();
-			}
-		}
+    @Test
+    public void verifyUserIsAbleToRecordTheVideoFromTopPanelWithoutAutoSync() throws Exception {
+    	topPanel.verifyUserIsAbleToRecordTheVideoFromTopPanelWithoutAutoSync();
+    }
 
-		@Test
-		public void verifyUserAbleToUploadVideoFileMultipleTimesFromTopPanelUploadButtonAndTakeCertainActionsTest() {
-			try {
-				loginPage.loginMethod(); 
+    @Test
+    public void verifyUserIsAbleToRecordTheVideoFromTopPanelWithAutoSync() throws Exception {
+    	topPanel.verifyUserIsAbleToRecordTheVideoFromTopPanelWithAutoSync();
+    }
 
-				topPanel.verifyUserAbleToUploadVideoFileMultipleTimesFromTopPanelUploadButtonAndTakeCertainActionsTest();
+    @Test
+    public void verifyUserIsAbleToCaptureImageFromTopPanelWithoutAutoSync() throws Exception {
+    	topPanel.verifyUserIsAbleToCaptureImageFromTopPanelWithoutAutoSync();
+    }
 
-			} catch (Exception e) {
-				e.printStackTrace();
-			}
-		}
+    @Test
+    public void verifyUserIsAbleToCaptureImageFromTopPanelWithAutoSync() throws Exception {
+    	topPanel.verifyUserIsAbleToCaptureImageFromTopPanelWithAutoSync();
+    }
 
-		@Test
-		public void verifyUserAbleToDeleteFIleWhileUploadingFromTopPanelTest() {
-			try {
-				loginPage.loginMethod(); 
+    @Test
+    public void verifyUserIsAbleToRecordTheScreenFromTopPanel() throws Exception {
+    	topPanel.verifyUserIsAbleToRecordTheScreenFromTopPanel();
+    }
 
-				topPanel.verifyUserAbleToDeleteFIleWhileUploadingFromTopPanelTest();
+    @Test
+    public void verifyUserIsRedirectedToSettingsPageFromTopPanel() throws Exception {
+    	topPanel.verifyUserIsRedirectedToSettingsPageFromTopPanel();
+    }
 
-			} catch (Exception e) {
-				e.printStackTrace();
-			}
-		}
+    @Test
+    public void verifyUserIsAbleToSwitchToDarkModeFromTopPanel() throws Exception {
+    	topPanel.verifyUserIsAbleToSwitchToDarkModeFromTopPanel();
+    }
 
-		@Test
-		public void verifyUserIsAbleToRecordTheVideoFromTopPanelWithoutAutoSyncTest() {
-			try {
-				loginPage.loginMethod(); 
+    @Test
+    public void verifyUserAbleToClearNotificationFromTopPanel() throws Exception {
+    	topPanel.verifyUserAbleToClearNotificationFromTopPanel();
+    }
 
-				topPanel.verifyUserIsAbleToRecordTheVideoFromTopPanelWithoutAutoSyncTest();
-
-			} catch (Exception e) {
-				e.printStackTrace();
-			}
-		}
-
-		@Test
-		public void verifyUserIsAbleToRecordTheVideoFromTopPanelWithAutoSyncTest() {
-			try {
-				loginPage.loginMethod(); 
-
-				topPanel.verifyUserIsAbleToRecordTheVideoFromTopPanelWithAutoSyncTest();
-
-			} catch (Exception e) {
-				e.printStackTrace();
-			}
-		}
-
-		@Test
-		public void verifyUserIsAbleToCaptureImageFromTopPanelWithoutAutoSyncTest() {
-			try {
-				loginPage.loginMethod(); 
-
-				topPanel.verifyUserIsAbleToCaptureImageFromTopPanelWithoutAutoSyncTest();
-
-			} catch (Exception e) {
-				e.printStackTrace();
-			}
-		}
-
-		@Test
-		public void verifyUserIsAbleToCaptureImageFromTopPanelWithAutoSyncTest() {
-			try {
-				loginPage.loginMethod(); 
-
-				topPanel.verifyUserIsAbleToCaptureImageFromTopPanelWithAutoSyncTest();
-
-			} catch (Exception e) {
-				e.printStackTrace();
-			}
-		}
-
-		@Test
-		public void verifyUserIsAbleToRecordTheScreenFromTopPanelTest() {
-			try {
-				loginPage.loginMethod(); 
-
-				topPanel.verifyUserIsAbleToRecordTheScreenFromTopPanelTest();
-
-			} catch (Exception e) {
-				e.printStackTrace();
-			}
-		}
-
-		@Test
-		public void verifyUserIsRedirectedToSettingsPageFromTopPanelTest() {
-			try {
-				loginPage.loginMethod(); 
-
-				topPanel.verifyUserIsRedirectedToSettingsPageFromTopPanelTest();
-
-			} catch (Exception e) {
-				e.printStackTrace();
-			}
-		}
-
-		@Test
-		public void verifyUserIsAbleToSwitchToDarkModeFromTopPanelTest() {
-			try {
-				loginPage.loginMethod(); 
-
-				topPanel.verifyUserIsAbleToSwitchToDarkModeFromTopPanelTest();
-
-			} catch (Exception e) {
-				e.printStackTrace();
-			}
-		}
-
-		@Test
-		public void verifyUserAbleToClearNotificationFromTopPanelTest() {
-			try {
-				loginPage.loginMethod(); 
-
-				topPanel.verifyUserAbleToClearNotificationFromTopPanelTest();
-
-			} catch (Exception e) {
-				e.printStackTrace();
-			}
-		}
-
-		@Test
-		public void verifyUserIsRedirectedToSupportPageFromTopPanelTest() {
-			try {
-				loginPage.loginMethod(); 
-
-				topPanel.verifyUserIsRedirectedToSupportPageFromTopPanelTest();
-
-			} catch (Exception e) {
-				e.printStackTrace();
-			}
-		}
+    @Test
+    public void verifyUserIsRedirectedToSupportPageFromTopPanel() throws Exception {
+    	topPanel.verifyUserIsRedirectedToSupportPageFromTopPanel();
+    }
 }

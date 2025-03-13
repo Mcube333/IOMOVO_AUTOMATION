@@ -1,183 +1,107 @@
 package com.iomovo.dashboardtests;
 
+import org.openqa.selenium.WebDriver;
+import org.testng.Assert;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
-import com.iomovo.basetest.BaseTestClass;
+import com.iomovo.basepackage.BaseClass;
 import com.iomovo.pagespackage.DashboardFunctionality.HomePageRightPanel;
 import com.iomovo.pagespackage.DashboardFunctionality.LoginPage;
 
 
-public class HomePageRightPanelTest extends BaseTestClass 
+public class HomePageRightPanelTest extends BaseClass 
 {
 
-	LoginPage loginPage;
-	HomePageRightPanel rightPanel;
+	private WebDriver driver;
+	private LoginPage loginPage;
+    private HomePageRightPanel rightPanel;
 	
-	@BeforeMethod
+    /**
+     * Setup method runs before each test.
+     * Initializes WebDriver, logs in, and sets up required page objects.
+     */
+    @BeforeMethod
     public void setUp() {
+    	driver = getDriver();
         if (driver == null) {
-            throw new IllegalStateException("WebDriver is null in IoCloudCenterPanelTest. Check BaseTestClass initialization.");
+            throw new IllegalStateException("❌ WebDriver is null in HomePageTopPanelTest. Check BaseTestClass initialization.");
         }
-        loginPage = new LoginPage();
-        rightPanel = new HomePageRightPanel(driver, wait);
+
+        loginPage = new LoginPage(driver, getWait());
+        rightPanel = new HomePageRightPanel(driver, getWait());
+
+        performLogin(); // Login before each test
+    }
+
+    /**
+     * Perform login before executing test cases.
+     */
+    private void performLogin() {
+        try {
+            loginPage.loginMethod();
+        } catch (Exception e) {
+            Assert.fail("❌ Login failed before test execution. Exception: " + e.getMessage());
+        }
     }
 	
-	//These Below Methods are for HOME PAGE RIGHT PANEL Functionality tests
+    @Test
+    public void verifyUserAbleToRedirectToMyFilesFromTheRightPanelIoCloudTest() throws Exception {
+        rightPanel.verifyUserAbleToRedirectToMyFilesFromTheRightPanelIoCloudTest();
+    }
 
-		@Test
-		public void verifyUserAbleToRedirectToMyFilesFromTheRightPanelIoCloudTest() {
-			try {
-				loginPage.loginMethod();
+    @Test
+    public void verifyUserAbleToUploadDocumentFileMultipleTimesFromRightPanelUploadButtonAndTakeCertainActionsTest() throws Exception {
+        rightPanel.verifyUserAbleToUploadDocumentFileMultipleTimesFromRightPanelUploadButtonAndTakeCertainActionsTest();
+    }
 
-				HomePageRightPanel RightPanel = new HomePageRightPanel(driver, wait);
-				RightPanel.verifyUserAbleToRedirectToMyFilesFromTheRightPanelIoCloudTest();
+    @Test
+    public void verifyUserAbleToUploadAudioFileMultipleTimesFromRightPanelUploadButtonAndTakeCertainActionsTest() throws Exception {
+        rightPanel.verifyUserAbleToUploadAudioFileMultipleTimesFromRightPanelUploadButtonAndTakeCertainActionsTest();
+    }
 
-			} catch (Exception e) {
-				e.printStackTrace();
-			}
-		}
+    @Test
+    public void verifyUserAbleToUploadVideoFileMultipleTimesFromRightPanelUploadButtonAndTakeCertainActionsTest() throws Exception {
+        rightPanel.verifyUserAbleToUploadVideoFileMultipleTimesFromRightPanelUploadButtonAndTakeCertainActionsTest();
+    }
 
-		@Test
-		public void verifyUserAbleToUploadDocumentFileMultipleTimesFromRightPanelUploadButtonAndTakeCertainActionsTest() {
-			try {
-				loginPage.loginMethod();
-				
-				HomePageRightPanel RightPanel = new HomePageRightPanel(driver, wait);
-				RightPanel.verifyUserAbleToUploadDocumentFileMultipleTimesFromRightPanelUploadButtonAndTakeCertainActionsTest();
+    @Test
+    public void verifyUserIsAbleToRedirectToRecentlyAddedFilesFromTheRightPanelIoCloudTest() throws Exception {
+        rightPanel.verifyUserIsAbleToRedirectToRecentlyAddedFilesFromTheRightPanelIoCloudTest();
+    }
 
-			} catch (Exception e) {
-				e.printStackTrace();
-			}
-		}
+    @Test
+    public void verifyUserIsAbleToRedirectToFilesSharedWithMeFromTheRightPanelIoCloudTest() throws Exception {
+        rightPanel.verifyUserIsAbleToRedirectToFilesSharedWithMeFromTheRightPanelIoCloudTest();
+    }
 
-		@Test
-		public void verifyUserAbleToUploadAudioFileMultipleTimesFromRightPanelUploadButtonAndTakeCertainActionsTest() {
-			try {
-				loginPage.loginMethod();
+    @Test
+    public void verifyUserIsAbleToRedirectToRecycleBinFromTheRightPanelIoCloudTest() throws Exception {
+        rightPanel.verifyUserIsAbleToRedirectToRecycleBinFromTheRightPanelIoCloudTest();
+    }
 
-				HomePageRightPanel RightPanel = new HomePageRightPanel(driver, wait);
-				RightPanel.verifyUserAbleToUploadAudioFileMultipleTimesFromRightPanelUploadButtonAndTakeCertainActionsTest();
+    @Test
+    public void verifyUserIsAbleToRedirectToIOHubFromTheRightPanelTest() throws Exception {
+        rightPanel.verifyUserIsAbleToRedirectToIOHubFromTheRightPanelTest();
+    }
 
-			} catch (Exception e) {
-				e.printStackTrace();
-			}
-		}
+    @Test
+    public void verifyUserIsAbleToRedirectToActivityLogFromTheRightPanelQuickLinksTest() throws Exception {
+        rightPanel.verifyUserIsAbleToRedirectToActivityLogFromTheRightPanelquicklinksTest();
+    }
 
-		@Test
-		public void verifyUserAbleToUploadVideoFileMultipleTimesFromRightPanelUploadButtonAndTakeCertainActionsTest() {
-			try {
-				loginPage.loginMethod();
+    @Test
+    public void verifyUserIsAbleToRedirectToAccountSettingsFromTheRightPanelQuickLinksTest() throws Exception {
+        rightPanel.verifyUserIsAbleToRedirectToAccountSettingsFromTheRightPanelquicklinksTest();
+    }
 
-				HomePageRightPanel RightPanel = new HomePageRightPanel(driver, wait);
-				RightPanel.verifyUserAbleToUploadVideoFileMultipleTimesFromRightPanelUploadButtonAndTakeCertainActionsTest();
+    @Test
+    public void verifyUserIsAbleToRedirectToBillingInformationFromTheRightPanelQuickLinksTest() throws Exception {
+        rightPanel.verifyUserIsAbleToRedirectToBillingInformationFromTheRightPanelquicklinksTest();
+    }
 
-			} catch (Exception e) {
-				e.printStackTrace();
-			}
-		}
-
-		@Test
-		public void verifyUserIsAbleToRedirectToRecentlyAddedFilesFromTheRightPanelIoCloudTest() {
-			try {
-				loginPage.loginMethod();
-				
-				HomePageRightPanel RightPanel = new HomePageRightPanel(driver, wait);
-				RightPanel.verifyUserIsAbleToRedirectToRecentlyAddedFilesFromTheRightPanelIoCloudTest();
-
-			} catch (Exception e) {
-				e.printStackTrace();
-			}
-		}
-
-		@Test
-		public void verifyUserIsAbleToRedirectToFilesSharedWithMeFromTheRightPanelIoCloudTest() {
-			try {
-				loginPage.loginMethod();
-
-				HomePageRightPanel RightPanel = new HomePageRightPanel(driver, wait);
-				RightPanel.verifyUserIsAbleToRedirectToFilesSharedWithMeFromTheRightPanelIoCloudTest();
-
-			} catch (Exception e) {
-				e.printStackTrace();
-			}
-		}
-
-		@Test
-		public void verifyUserIsAbleToRedirectToRecycleBinFromTheRightPanelIoCloudTest() {
-			try {
-				loginPage.loginMethod();
-
-				HomePageRightPanel RightPanel = new HomePageRightPanel(driver, wait);
-				RightPanel.verifyUserIsAbleToRedirectToRecycleBinFromTheRightPanelIoCloudTest();
-
-			} catch (Exception e) {
-				e.printStackTrace();
-			}
-		}
-
-		@Test
-		public void verifyUserIsAbleToRedirectToIOHubFromTheRightPanelTest() {
-			try {
-				loginPage.loginMethod();
-
-				HomePageRightPanel RightPanel = new HomePageRightPanel(driver, wait);
-				RightPanel.verifyUserIsAbleToRedirectToIOHubFromTheRightPanelTest();
-
-			} catch (Exception e) {
-				e.printStackTrace();
-			}
-		}
-
-		@Test
-		public void verifyUserIsAbleToRedirectToActivityLogFromTheRightPanelquicklinksTest() {
-			try {
-				loginPage.loginMethod();
-
-				HomePageRightPanel RightPanel = new HomePageRightPanel(driver, wait);
-				RightPanel.verifyUserIsAbleToRedirectToActivityLogFromTheRightPanelquicklinksTest();
-
-			} catch (Exception e) {
-				e.printStackTrace();
-			}
-		}
-
-		@Test
-		public void verifyUserIsAbleToRedirectToAccountSettingsFromTheRightPanelquicklinksTest() {
-			try {
-				loginPage.loginMethod();
-
-				HomePageRightPanel RightPanel = new HomePageRightPanel(driver, wait);
-				RightPanel.verifyUserIsAbleToRedirectToAccountSettingsFromTheRightPanelquicklinksTest();
-
-			} catch (Exception e) {
-				e.printStackTrace();
-			}
-		}
-
-		@Test
-		public void verifyUserIsAbleToRedirectToBillingInformationFromTheRightPanelquicklinksTest() {
-			try {
-				loginPage.loginMethod();
-
-				HomePageRightPanel RightPanel = new HomePageRightPanel(driver, wait);
-				RightPanel.verifyUserIsAbleToRedirectToBillingInformationFromTheRightPanelquicklinksTest();
-
-			} catch (Exception e) {
-				e.printStackTrace();
-			}
-		}
-
-		@Test
-		public void verifyUserIsAbleToRedirectToUpgradeFromTheRightPanelquicklinksTest() {
-			try {
-				loginPage.loginMethod();
-
-				HomePageRightPanel RightPanel = new HomePageRightPanel(driver, wait);
-				RightPanel.verifyUserIsAbleToRedirectToUpgradeFromTheRightPanelquicklinksTest();
-
-			} catch (Exception e) {
-				e.printStackTrace();
-			}
-		}
+    @Test
+    public void verifyUserIsAbleToRedirectToUpgradeFromTheRightPanelQuickLinksTest() throws Exception {
+        rightPanel.verifyUserIsAbleToRedirectToUpgradeFromTheRightPanelquicklinksTest();
+    }
 }

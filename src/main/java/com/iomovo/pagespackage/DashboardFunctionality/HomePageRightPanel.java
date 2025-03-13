@@ -2,6 +2,8 @@ package com.iomovo.pagespackage.DashboardFunctionality;
 
 import static org.testng.Assert.assertTrue;
 
+import java.time.Duration;
+
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
@@ -9,10 +11,24 @@ import com.iomovo.basepackage.BaseClass;
 
 public class HomePageRightPanel extends BaseClass {
 
-	public HomePageRightPanel(WebDriver driver, WebDriverWait wait) {
-		BaseClass.driver = driver;
-        BaseClass.wait = wait;
-	}
+	public HomePageRightPanel() {
+		if (getDriver() == null) {
+            throw new IllegalStateException("❌ WebDriver is null in ProfilePage. Ensure it is initialized in BaseClass.");
+        }
+    }
+	
+    public HomePageRightPanel(WebDriver driver, WebDriverWait wait) {
+        BaseClass.tdriver.set(driver);
+        BaseClass.wait.set(new WebDriverWait(driver, Duration.ofSeconds(10))); // Ensure WebDriverWait is set
+    }
+
+    private WebDriver getDriverInstance() {
+        WebDriver driver = tdriver.get();
+        if (driver == null) {
+            throw new IllegalStateException("❌ WebDriver is null in ProfilePage. Ensure it is initialized in BaseClass.");
+        }
+        return driver;
+    }
 
 	// All X-paths of Home Page RIGHT PANEL.
 	String rightPanelIOCloudDropdown = "//h6[text()='ioCloud']";
@@ -198,19 +214,23 @@ public class HomePageRightPanel extends BaseClass {
 	}
 
 	public void verifyUserAbleToUploadDocumentFileMultipleTimesFromRightPanelUploadButtonAndTakeCertainActionsTest() throws Exception {
+		getDriverInstance();
 		uploadSameFileMultipleTimesAndTakeCertainActionsFunctionality(docFilesPath, pdfFileName);
 	}
 
 	public void verifyUserAbleToUploadAudioFileMultipleTimesFromRightPanelUploadButtonAndTakeCertainActionsTest() throws Exception {
+		getDriverInstance();
 		uploadSameFileMultipleTimesAndTakeCertainActionsFunctionality(audioFilesPath, audioFileName);
 	}
 
 	public void verifyUserAbleToUploadVideoFileMultipleTimesFromRightPanelUploadButtonAndTakeCertainActionsTest() throws Exception {
+		getDriverInstance();
 		uploadSameFileMultipleTimesAndTakeCertainActionsFunctionality(videoFilesPath, videoFileName);
 	}
 
 	public void verifyUserAbleToRedirectToMyFilesFromTheRightPanelIoCloudTest() throws Exception {
 		try {
+			getDriverInstance();
 			logConsoleOutputMessage("strUrl: " + strUrl);
 			logPassStepInExtentReport("TC 002 : verify User Able To Redirect To My Files From The Right Panel IoCloud Test");
 			refreshWebPage();
@@ -236,6 +256,7 @@ public class HomePageRightPanel extends BaseClass {
 
 	public void verifyUserIsAbleToRedirectToRecentlyAddedFilesFromTheRightPanelIoCloudTest() throws Exception {
 		try {
+			getDriverInstance();
 			logConsoleOutputMessage("strUrl: " + strUrl);
 			logPassStepInExtentReport("TC 003 : verify User Is Able To redirect to recently added files from the right panel IoCloud test");
 			refreshWebPage();
@@ -261,6 +282,7 @@ public class HomePageRightPanel extends BaseClass {
 
 	public void verifyUserIsAbleToRedirectToFilesSharedWithMeFromTheRightPanelIoCloudTest() throws Exception {
 		try {
+			getDriverInstance();
 			logConsoleOutputMessage("strUrl: " + strUrl);
 			logPassStepInExtentReport("TC 004 : verify User Is Able To redirect to files shared with me from the right panel IoCloud test");
 			refreshWebPage();
@@ -286,6 +308,7 @@ public class HomePageRightPanel extends BaseClass {
 
 	public void verifyUserIsAbleToRedirectToRecycleBinFromTheRightPanelIoCloudTest() throws Exception {
 		try {
+			getDriverInstance();
 			logConsoleOutputMessage("strUrl: " + strUrl);
 			logPassStepInExtentReport("TC 005 : verify User Is Able To redirect to recycle bin from the right panel IoCloud test");
 			refreshWebPage();
@@ -311,6 +334,7 @@ public class HomePageRightPanel extends BaseClass {
 
 	public void verifyUserIsAbleToRedirectToIOHubFromTheRightPanelTest() throws Exception {
 		try {
+			getDriverInstance();
 			logConsoleOutputMessage("strUrl: " + strUrl);
 			logPassStepInExtentReport("TC 006 : verify User Is Able To redirect to IO hub from the right panel test");
 			refreshWebPage();
@@ -340,6 +364,7 @@ public class HomePageRightPanel extends BaseClass {
 
 	public void verifyUserIsAbleToRedirectToActivityLogFromTheRightPanelquicklinksTest() throws Exception {
 		try {
+			getDriverInstance();
 			logConsoleOutputMessage("strUrl: " + strUrl);
 			logPassStepInExtentReport("TC 007 : verify User Is Able To redirect to activity log from the right panel quick links test");
 			refreshWebPage();
@@ -369,6 +394,7 @@ public class HomePageRightPanel extends BaseClass {
 
 	public void verifyUserIsAbleToRedirectToAccountSettingsFromTheRightPanelquicklinksTest() throws Exception {
 		try {
+			getDriverInstance();
 			logConsoleOutputMessage("strUrl: " + strUrl);
 			logPassStepInExtentReport("TC 008 : verify User Is Able To redirect to account settings from the right panel quick links test");
 			refreshWebPage();
@@ -399,6 +425,7 @@ public class HomePageRightPanel extends BaseClass {
 
 	public void verifyUserIsAbleToRedirectToBillingInformationFromTheRightPanelquicklinksTest() throws Exception {
 		try {
+			getDriverInstance();
 			logConsoleOutputMessage("strUrl: " + strUrl);
 			logPassStepInExtentReport("TC 009 : verify User Is Able To redirect to Billing Information from the right panel quick links test");
 			refreshWebPage();
@@ -429,6 +456,7 @@ public class HomePageRightPanel extends BaseClass {
 
 	public void verifyUserIsAbleToRedirectToUpgradeFromTheRightPanelquicklinksTest() throws Exception {
 		try {
+			getDriverInstance();
 			logConsoleOutputMessage("strUrl: " + strUrl);
 			logPassStepInExtentReport("TC 010 : verify User Is Able To redirect to upgrade from the right panel quick links test");
 			refreshWebPage();

@@ -1,47 +1,68 @@
 package com.iomovo.encode;
 
+import org.testng.Assert;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
-import com.iomovo.basetest.BaseTestClass;
+import com.iomovo.basepackage.BaseClass;
 import com.iomovo.pagespackage.DashboardFunctionality.LoginPage;
 import com.iomovo.pagespackage.EncodeFunctionality.GoogleDriveVideoEncodeFunctionality;
 
-public class GoogleDriveVideoEncodeFunctionalityTest extends BaseTestClass {
+public class GoogleDriveVideoEncodeFunctionalityTest extends BaseClass {
 	
-	LoginPage loginPage;
-	GoogleDriveVideoEncodeFunctionality GoogleDrive;
-     
-	
+	private LoginPage loginPage;
+    private GoogleDriveVideoEncodeFunctionality GoogleDrive;
+
+    /**
+     * Setup method runs before each test.
+     * Initializes WebDriver, logs in, and sets up required page objects.
+     */
     @BeforeMethod
     public void setUp() {
+        driver = getDriver(); // ✅ Use inherited WebDriver from BaseClass
         if (driver == null) {
-            throw new IllegalStateException("WebDriver is null in IoCloudCenterPanelTest. Check BaseTestClass initialization.");
+            throw new IllegalStateException("❌ WebDriver is null in DropBoxToIoHubMoveTest. Check BaseClass initialization.");
         }
-        loginPage = new LoginPage();
-        GoogleDrive = new GoogleDriveVideoEncodeFunctionality(driver, wait);
+
+        loginPage = new LoginPage(driver, getWait());
+        GoogleDrive = new GoogleDriveVideoEncodeFunctionality(driver, getWait());
+
+        performLogin(); // ✅ Ensures user is logged in before each test
+    }
+
+    /**
+     * Perform login before executing test cases.
+     */
+    private void performLogin() {
+        try {
+            loginPage.loginMethod();
+        } catch (Exception e) {
+            Assert.fail("❌ Login failed before test execution. Exception: " + e.getMessage());
+        }
     }
 	
-	@Test
-	public void AWSS3VideoEncodeFunctionality() {
-		
-		try {
-			
-			loginPage.loginMethod();
-			
-			GoogleDrive.VerifyVideoEncodeFunctionalityto1080pinGoogleDrive();
-			
-			GoogleDrive.VerifyVideoEncodeFunctionalityto720pinGoogleDrive();
-			
-			GoogleDrive.VerifyVideoEncodeFunctionalityto480pinGoogleDrive();
-			
-			GoogleDrive.VerifyVideoEncodeFunctionalityto360pinGoogleDrive();
-			
-			GoogleDrive.VerifyVideoEncodeFunctionalityto240pinGoogleDrive();
-			
-		} catch (Exception e) {
-			e.printStackTrace();
-			
-		}
-	}
+    @Test
+    public void verifyVideoEncodeFunctionalityTo1080pInGoogleDrive() throws Exception {
+        GoogleDrive.VerifyVideoEncodeFunctionalityto1080pinGoogleDrive();
+    }
+
+    @Test
+    public void verifyVideoEncodeFunctionalityTo720pInGoogleDrive() throws Exception {
+        GoogleDrive.VerifyVideoEncodeFunctionalityto720pinGoogleDrive();
+    }
+
+    @Test
+    public void verifyVideoEncodeFunctionalityTo480pInGoogleDrive() throws Exception {
+        GoogleDrive.VerifyVideoEncodeFunctionalityto480pinGoogleDrive();
+    }
+
+    @Test
+    public void verifyVideoEncodeFunctionalityTo360pInGoogleDrive() throws Exception {
+        GoogleDrive.VerifyVideoEncodeFunctionalityto360pinGoogleDrive();
+    }
+
+    @Test
+    public void verifyVideoEncodeFunctionalityTo240pInGoogleDrive() throws Exception {
+        GoogleDrive.VerifyVideoEncodeFunctionalityto240pinGoogleDrive();
+    }
 }

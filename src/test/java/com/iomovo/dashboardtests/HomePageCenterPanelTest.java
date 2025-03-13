@@ -1,134 +1,94 @@
 package com.iomovo.dashboardtests;
 
+import org.openqa.selenium.WebDriver;
+import org.testng.Assert;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
-import com.iomovo.basetest.BaseTestClass;
+import com.iomovo.basepackage.BaseClass;
 import com.iomovo.pagespackage.DashboardFunctionality.HomePageCenterPanel;
 import com.iomovo.pagespackage.DashboardFunctionality.LoginPage;
 
 
-public class HomePageCenterPanelTest extends BaseTestClass {
-	LoginPage loginPage;
-	HomePageCenterPanel CenterPanel;
+public class HomePageCenterPanelTest extends BaseClass {
+	
+	private WebDriver driver;
+	private LoginPage loginPage;
+	private HomePageCenterPanel CenterPanel;
 
-	@BeforeMethod
-	public void setUp() {
-		if (driver == null) {
-			throw new IllegalStateException("WebDriver is null in IoCloudCenterPanelTest. Check BaseTestClass initialization.");
-		}
-		loginPage = new LoginPage();
-		CenterPanel = new HomePageCenterPanel(driver, wait);
-	}
+    /**
+     * Setup method runs before each test.
+     * Initializes WebDriver, logs in, and sets up required page objects.
+     */
+    @BeforeMethod
+    public void setUp() {
+    	driver = getDriver();
+        if (driver == null) {
+            throw new IllegalStateException("❌ WebDriver is null in HomePageTopPanelTest. Check BaseTestClass initialization.");
+        }
+
+        loginPage = new LoginPage(driver, getWait());
+        CenterPanel = new HomePageCenterPanel(driver, getWait());
+
+        performLogin(); // Login before each test
+    }
+
+    /**
+     * Perform login before executing test cases.
+     */
+    private void performLogin() {
+        try {
+            loginPage.loginMethod();
+        } catch (Exception e) {
+            Assert.fail("❌ Login failed before test execution. Exception: " + e.getMessage());
+        }
+    }
 
 	//These Below Methods are for Home Page CENTER PANEL Functionality tests
 
 	@Test
-	public void verifyUserAbleToUploadSameDocumentFileMultipleTimesAndTakeCertainActionsTest() {
-		try {
-			loginPage.loginMethod();
-
+	public void verifyUserAbleToUploadSameDocumentFileMultipleTimesAndTakeCertainActionsTest() throws Exception {
 			CenterPanel.verifyUserAbleToUploadSameDocumentFileMultipleTimesAndTakeCertainActionsTest();
-
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
 	}
 
 	@Test
-	public void verifyUserAbleToUploadSameAudioFileMultipleTimesAndTakeCertainActionsTest() {
-		try {
-			loginPage.loginMethod();
-
+	public void verifyUserAbleToUploadSameAudioFileMultipleTimesAndTakeCertainActionsTest() throws Exception {
 			CenterPanel.verifyUserAbleToUploadSameAudioFileMultipleTimesAndTakeCertainActionsTest();
-
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
 	}
 
 	@Test
-	public void verifyUserAbleToUploadSameVideoFileMultipleTimesAndTakeCertainActionsTest() {
-		try {
-			loginPage.loginMethod();
-
+	public void verifyUserAbleToUploadSameVideoFileMultipleTimesAndTakeCertainActionsTest() throws Exception {
 			CenterPanel.verifyUserAbleToUploadSameVideoFileMultipleTimesAndTakeCertainActionsTest();
-
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
 	}
 
 	@Test
-	public void verifyUserAbleToDeleteFIleWhileUploadingTest() {
-		try {
-			loginPage.loginMethod();
-
+	public void verifyUserAbleToDeleteFIleWhileUploadingTest() throws Exception {
 			CenterPanel.verifyUserAbleToDeleteFileWhileUploadingTest();
-
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
 	}
 
 	@Test
-	public void verifyUserIsAbleToCaptureImageWithoutAutoSyncTest() {
-		try {
-			loginPage.loginMethod();
-
+	public void verifyUserIsAbleToCaptureImageWithoutAutoSyncTest() throws Exception {
 			CenterPanel.verifyUserIsAbleToCaptureImageWithoutAutoSyncTest();
-
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
 	}
 
 	@Test
-	public void verifyUserIsAbleToCaptureImageWithAutoSyncTest() {
-		try {
-			loginPage.loginMethod();
-
+	public void verifyUserIsAbleToCaptureImageWithAutoSyncTest() throws Exception {
 			CenterPanel.verifyUserIsAbleToCaptureImageWithAutoSyncTest();
-
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
 	}
 
 
 	@Test
-	public void verifyUserIsAbleToRecordTheVideoWithoutAutoSyncTest() {
-		try {
-			loginPage.loginMethod();
-
+	public void verifyUserIsAbleToRecordTheVideoWithoutAutoSyncTest() throws Exception {
 			CenterPanel.verifyUserIsAbleToRecordTheVideoWithoutAutoSyncTest();
-
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
 	}
 
 	@Test
-	public void verifyUserIsAbleToRecordTheVideoWithAutoSyncTest() {
-		try {
-			loginPage.loginMethod();
-
+	public void verifyUserIsAbleToRecordTheVideoWithAutoSyncTest() throws Exception {
 			CenterPanel.verifyUserIsAbleToRecordTheVideoWithAutoSyncTest();
-
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
 	}
 
 	@Test
-	public void verifyUserIsAbleToCaptureTheScreenTest() {
-		try {
-			loginPage.loginMethod();
-
+	public void verifyUserIsAbleToCaptureTheScreenTest() throws Exception {
 			CenterPanel.verifyUserIsAbleToCaptureTheScreenTest();
-
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
 	}
 }

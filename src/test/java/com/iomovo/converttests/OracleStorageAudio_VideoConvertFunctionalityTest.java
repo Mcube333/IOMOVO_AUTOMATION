@@ -1,44 +1,59 @@
 package com.iomovo.converttests;
 
+import org.testng.Assert;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
-import com.iomovo.basetest.BaseTestClass;
+import com.iomovo.basepackage.BaseClass;
 import com.iomovo.pagespackage.ConvertFunctionality.OracleStorageAudio_VideoConvertFunctionality;
 import com.iomovo.pagespackage.DashboardFunctionality.LoginPage;
 
 
-public class OracleStorageAudio_VideoConvertFunctionalityTest extends BaseTestClass {
+public class OracleStorageAudio_VideoConvertFunctionalityTest extends BaseClass {
 	
-	LoginPage loginPage;
-	OracleStorageAudio_VideoConvertFunctionality Oracle;
-     
+	private LoginPage loginPage;
+    private OracleStorageAudio_VideoConvertFunctionality  Oracle;
+	
+    /**
+     * Setup method runs before each test.
+     * Initializes WebDriver, logs in, and sets up required page objects.
+     */
     @BeforeMethod
     public void setUp() {
+    	driver = getDriver();
         if (driver == null) {
-            throw new IllegalStateException("WebDriver is null in IoCloudCenterPanelTest. Check BaseTestClass initialization.");
+            throw new IllegalStateException("❌ WebDriver is null in HomePageTopPanelTest. Check BaseTestClass initialization.");
         }
-        loginPage = new LoginPage();
-        Oracle = new OracleStorageAudio_VideoConvertFunctionality(driver, wait);
+
+        loginPage = new LoginPage(driver, getWait());
+        Oracle = new OracleStorageAudio_VideoConvertFunctionality(driver, getWait());
+
+        performLogin(); // Login before each test
+    }
+
+    /**
+     * Perform login before executing test cases.
+     */
+    private void performLogin() {
+        try {
+            loginPage.loginMethod();
+        } catch (Exception e) {
+            Assert.fail("❌ Login failed before test execution. Exception: " + e.getMessage());
+        }
     }
 	
-	@Test
-	public void verifyAudio_VideoConvertFunctionalityInOracleStorage() {
-		
-		try {
-			
-			loginPage.loginMethod();
-			
-			Oracle.verifyAudioConvertFunctionalityInOracleStorage();
-			
-			Oracle.verifyVideoConvertFunctionalityInOracleStorage();
-			
-			Oracle.verifyVideo2AudioConvertFunctionalityInOracleStorage();
-			
-		} catch (Exception e) {
-			e.printStackTrace();
-			
-		}
-	}
-	
+    @Test
+    public void verifyAudioConvertFunctionalityInOracleStorage() throws Exception {
+        Oracle.verifyAudioConvertFunctionalityInOracleStorage();
+    }
+
+    @Test
+    public void verifyVideoConvertFunctionalityInOracleStorage() throws Exception {
+        Oracle.verifyVideoConvertFunctionalityInOracleStorage();
+    }
+
+    @Test
+    public void verifyVideo2AudioConvertFunctionalityInOracleStorage() throws Exception {
+        Oracle.verifyVideo2AudioConvertFunctionalityInOracleStorage();
+    }
 }

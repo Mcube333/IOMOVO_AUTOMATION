@@ -2,6 +2,8 @@ package com.iomovo.pagespackage.CopyFunctionality;
 
 import static org.testng.Assert.assertTrue;
 
+import java.time.Duration;
+
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
@@ -9,10 +11,24 @@ import com.iomovo.basepackage.BaseClass;
 
 public class SharePointCopyFunctionality extends BaseClass {
 
-	public SharePointCopyFunctionality(WebDriver driver, WebDriverWait wait) {
-		BaseClass.driver = driver;
-        BaseClass.wait = wait;
-	}
+	public SharePointCopyFunctionality() {
+		if (getDriver() == null) {
+            throw new IllegalStateException("❌ WebDriver is null in ProfilePage. Ensure it is initialized in BaseClass.");
+        }
+    }
+	
+    public SharePointCopyFunctionality(WebDriver driver, WebDriverWait wait) {
+        BaseClass.tdriver.set(driver);
+        BaseClass.wait.set(new WebDriverWait(driver, Duration.ofSeconds(10))); // Ensure WebDriverWait is set
+    }
+
+    private WebDriver getDriverInstance() {
+        WebDriver driver = tdriver.get();
+        if (driver == null) {
+            throw new IllegalStateException("❌ WebDriver is null in ProfilePage. Ensure it is initialized in BaseClass.");
+        }
+        return driver;
+    }
 
 	String copyDataFolderSelection = "//a[text()='AVI Data Folder']";
 	String moveDataFolderSelectionRoot = "//a[text()='AutomationTestingFolder']";
@@ -354,6 +370,7 @@ public class SharePointCopyFunctionality extends BaseClass {
 
 	public void verifyCopyFilesFunctionalityFromSharePointToIoCloudDrive() throws Exception {
 		try {
+			getDriverInstance();
 			navigateToSharePointDrive("TC 001 : Verify Copy Function From SharePoint To IoCloud Drive");
 			copyFilesFromSourceFolder();
 			clickWebElement(leftPanelIoCloudButton);
@@ -383,6 +400,7 @@ public class SharePointCopyFunctionality extends BaseClass {
 
 	public void verifyCopyFilesFunctionalityFromSharePointToAWSDrive() throws Exception {
 		try {
+			getDriverInstance();
 			navigateToSharePointDrive("TC 002 : Verify Copy Function From SharePoint To AWS Drive");
 			copyFilesFromSourceFolder();
 			clickWebElement(leftPanelIoHubButton);
@@ -413,6 +431,7 @@ public class SharePointCopyFunctionality extends BaseClass {
 
 	public void verifyCopyFilesFunctionalityFromSharePointToBoxDrive() throws Exception {
 		try {
+			getDriverInstance();
 			logConsoleOutputMessage("strUrl: " + strUrl);
 			logPassStepInExtentReport("TC 003 : Verify Copy Function From SharePoint To BOX Drive");
 			clickWebElement(leftPanelIoHubButton);
@@ -472,6 +491,7 @@ public class SharePointCopyFunctionality extends BaseClass {
 
 	public void verifyCopyFilesFunctionalityFromSharePointToDropBoxDrive() throws Exception {
 		try {
+			getDriverInstance();
 			logConsoleOutputMessage("strUrl: " + strUrl);
 			logPassStepInExtentReport("TC 004 : Verify Copy Function From SharePoint To DROPBOX Drive");
 			clickWebElement(leftPanelIoHubButton);
@@ -532,6 +552,7 @@ public class SharePointCopyFunctionality extends BaseClass {
 
 	public void verifyCopyFilesFunctionalityFromSharePointToFTPDrive() throws Exception {
 		try {
+			getDriverInstance();
 			logConsoleOutputMessage("strUrl: " + strUrl);
 			logPassStepInExtentReport("TC 005 : Verify Copy Function From SharePoint To FTP Drive");
 			clickWebElement(leftPanelIoHubButton);
@@ -593,6 +614,7 @@ public class SharePointCopyFunctionality extends BaseClass {
 
 	public void verifyCopyFilesFunctionalityFromSharePointToGoogleCloudDrive() throws Exception {
 		try {
+			getDriverInstance();
 			logConsoleOutputMessage("strUrl: " + strUrl);
 			logPassStepInExtentReport("TC 006 : Verify Copy Function From SharePoint To GOOGLE CLOUD Drive");
 			clickWebElement(leftPanelIoHubButton);
@@ -654,6 +676,7 @@ public class SharePointCopyFunctionality extends BaseClass {
 
 	public void verifyCopyFilesFunctionalityFromSharePointToGoogleDrive() throws Exception {
 		try {
+			getDriverInstance();
 			logConsoleOutputMessage("strUrl: " + strUrl);
 			logPassStepInExtentReport("TC 007 : Verify Copy Function From SharePoint To GOOGLE DRIVE Drive");
 			clickWebElement(leftPanelIoHubButton);
@@ -713,6 +736,7 @@ public class SharePointCopyFunctionality extends BaseClass {
 
 	public void verifyCopyFilesFunctionalityFromSharePointToAzureDrive() throws Exception {
 		try {
+			getDriverInstance();
 			logConsoleOutputMessage("strUrl: " + strUrl);
 			logPassStepInExtentReport("TC 008 : Verify Copy Function From SharePoint To AZURE Drive");
 			clickWebElement(leftPanelIoHubButton);
@@ -774,6 +798,7 @@ public class SharePointCopyFunctionality extends BaseClass {
 
 	public void verifyCopyFilesFunctionalityFromSharePointToOneDrive() throws Exception {
 		try {
+			getDriverInstance();
 			logConsoleOutputMessage("strUrl: " + strUrl);
 			logPassStepInExtentReport("TC 009 : Verify Copy Function From SharePoint To ONE Drive");
 			clickWebElement(leftPanelIoHubButton);
@@ -835,6 +860,7 @@ public class SharePointCopyFunctionality extends BaseClass {
 
 	public void verifyCopyFilesFunctionalityFromSharePointToSFTPDrive() throws Exception {
 		try {
+			getDriverInstance();
 			logConsoleOutputMessage("strUrl: " + strUrl);
 			logPassStepInExtentReport("TC 010 : Verify Copy Function From SharePoint To SFTP Drive");
 			clickWebElement(leftPanelIoHubButton);
@@ -896,6 +922,7 @@ public class SharePointCopyFunctionality extends BaseClass {
 
 	public void verifyCopyFilesFunctionalityFromSharePointToSharePointDrive() throws Exception {
 		try {
+			getDriverInstance();
 			logConsoleOutputMessage("strUrl: " + strUrl);
 			logPassStepInExtentReport("TC 011 : Verify Copy Function From SharePoint To Sharepoint Drive");
 			clickWebElement(leftPanelIoHubButton);

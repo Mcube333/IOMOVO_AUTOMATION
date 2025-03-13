@@ -12,8 +12,16 @@ import com.iomovo.basepackage.BaseClass;
 public class DropBoxAudio_VideoConvertFunctionality extends BaseClass {
 
 	public DropBoxAudio_VideoConvertFunctionality(WebDriver driver, WebDriverWait wait) {
-		BaseClass.driver = driver;
-        BaseClass.wait = wait;
+		BaseClass.tdriver.set(driver);  
+		BaseClass.wait.set(wait);
+	}
+
+	private WebDriver getDriverInstance() {
+		WebDriver driver = tdriver.get();
+		if (driver == null) {
+			throw new IllegalStateException("❌ WebDriver is null in LoginPage. Ensure it is initialized in BaseTestClass.");
+		}
+		return driver;
 	}
 
 	String automationFolder = "//span[text()='automationfolder']";
@@ -76,6 +84,7 @@ public class DropBoxAudio_VideoConvertFunctionality extends BaseClass {
 	public void verifyAudioConvertFunctionalityInDropBox() throws Exception {
 
 		try {
+			WebDriver driver = getDriverInstance();
 			logPassStepInExtentReport("TC 001 : Verify Audio Convert Functionality (.MP3) Format File In DropBox ");
 
 			clickWebElement(leftPanelIoHubButton);
@@ -154,6 +163,7 @@ public class DropBoxAudio_VideoConvertFunctionality extends BaseClass {
 
 	public void verifyVideoConvertFunctionalityInDropBox() throws Exception {
 		try {
+			WebDriver driver = getDriverInstance();
 			logPassStepInExtentReport("TC 002 : Verify Video Convert Functionality (.MP4) Format File In DropBox");
 
 			clickWebElement(leftPanelIoHubButton);
@@ -243,6 +253,7 @@ public class DropBoxAudio_VideoConvertFunctionality extends BaseClass {
 	public void verifyVideo2AudioConvertFunctionalityInDropBox() throws Exception {
 
 		try {
+			WebDriver driver = getDriverInstance();
 			logPassStepInExtentReport("TC 003 : Verify Video To Audio Convert Functionality (.MP4) Format File In DropBox");
 
 			clickWebElement(leftPanelIoHubButton);

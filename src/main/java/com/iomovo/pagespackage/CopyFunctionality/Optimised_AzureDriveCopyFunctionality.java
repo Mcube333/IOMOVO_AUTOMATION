@@ -2,16 +2,32 @@ package com.iomovo.pagespackage.CopyFunctionality;
 
 import static org.testng.Assert.assertTrue;
 
+import java.time.Duration;
+
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import com.iomovo.basepackage.BaseClass;
 
 public class Optimised_AzureDriveCopyFunctionality extends BaseClass {
 
-	public Optimised_AzureDriveCopyFunctionality(WebDriver driver, WebDriverWait wait) {
-		BaseClass.driver = driver;
-        BaseClass.wait = wait;
-	}
+	public Optimised_AzureDriveCopyFunctionality() {
+		if (getDriver() == null) {
+            throw new IllegalStateException("❌ WebDriver is null in ProfilePage. Ensure it is initialized in BaseClass.");
+        }
+    }
+	
+    public Optimised_AzureDriveCopyFunctionality(WebDriver driver, WebDriverWait wait) {
+        BaseClass.tdriver.set(driver);
+        BaseClass.wait.set(new WebDriverWait(driver, Duration.ofSeconds(10))); // Ensure WebDriverWait is set
+    }
+
+    private WebDriver getDriverInstance() {
+        WebDriver driver = tdriver.get();
+        if (driver == null) {
+            throw new IllegalStateException("❌ WebDriver is null in ProfilePage. Ensure it is initialized in BaseClass.");
+        }
+        return driver;
+    }
 
 	String copyDataFolderSelection = "//a[text()='AVI Data Folder']";
 	String moveDataFolderSelectionRoot = "//a[text()='AutomationTestingFolder']";
@@ -373,50 +389,62 @@ public class Optimised_AzureDriveCopyFunctionality extends BaseClass {
 	 * Example usage for AWS to IoCloud.
 	 */
 	public void verifyCopyFilesFunctionalityFromAzureToIoCloudDrive() throws Exception {
+		getDriverInstance();
 		verifyCopyFilesFunctionality(leftPanelIoCloudButton, "automationfolder/Copy Folder/AzureToIoCloud", "TC 001 : Verify Copy Function From AWS To IoCloud Drive");
 	}
 
 	public void verifyCopyFilesFunctionalityFromAzureToAWSDrive() throws Exception {
+		getDriverInstance();
 		verifyCopyFilesFunctionality(LeftPanelAWSDriveButton, "automationfolder/Copy Folder/AzureToAWS", "TC 002 : Verify Copy Function From AWS To AWS Drive");
 	}
 
 	public void verifyCopyFilesFunctionalityFromAzureToBoxDrive() throws Exception {
+		getDriverInstance();
 		verifyCopyFilesFunctionality(LeftPanelBoxDriveButton, "automationfolder/Copy Folder/AzureToBox", "TC 003 : Verify Copy Function From AWS To BOX Drive");
 	}
 
 	public void verifyCopyFilesFunctionalityFromAzureToDropBoxDrive() throws Exception {
+		getDriverInstance();
 		verifyCopyFilesFunctionality(LeftPanelDropBoxDriveButton, "automationfolder/Copy Folder/AzureToDropBox", "TC 004 : Verify Copy Function From AWS To DROPBOX Drive");
 	}
 
 	public void verifyCopyFilesFunctionalityFromAzureToFTPDrive() throws Exception {
+		getDriverInstance();
 		verifyCopyFilesFunctionality(LeftPanelFTPDriveButton, "automationfolder/Copy Folder/AzureToFTP", "TC 005 : Verify Copy Function From AWS To FTP Drive");
 	}
 
 	public void verifyCopyFilesFunctionalityFromAzureToGoogleCloudDrive() throws Exception {
+		getDriverInstance();
 		verifyCopyFilesFunctionality(LeftPanelGoogleCloudDriveButton, "automationfolder/Copy Folder/AzureToGoogleCloud", "TC 006 : Verify Copy Function From AWS To GoogleCloud Drive");
 	}
 
 	public void verifyCopyFilesFunctionalityFromAzureToGoogleDrive() throws Exception {
+		getDriverInstance();
 		verifyCopyFilesFunctionality(LeftPanelGoogleDriveButton, "automationfolder/Copy Folder/AzureToGoogleDrive", "TC 007 : Verify Copy Function From AWS To Google Drive");
 	}
 
 	public void verifyCopyFilesFunctionalityFromAzureToAzureDrive() throws Exception {
+		getDriverInstance();
 		verifyCopyFilesFunctionality(LeftPanelAzureDriveButton, "automationfolder/Copy Folder/AzureToAzure", "TC 008 : Verify Copy Function From AWS To Azure Drive");
 	}
 
 	public void verifyCopyFilesFunctionalityFromAzureToOneDrive() throws Exception {
+		getDriverInstance();
 		verifyCopyFilesFunctionality(LeftPanelOneDriveButton, "automationfolder/Copy Folder/AzureToOneDrive", "TC 009 : Verify Copy Function From AWS To One Drive");
 	}
 
 	public void verifyCopyFilesFunctionalityFromAzureToOOSDrive() throws Exception {
+		getDriverInstance();
 		verifyCopyFilesFunctionality(LeftPanelOracleDriveButton, "automationfolder/Copy Folder/AzureToOOS", "TC 009 : Verify Copy Function From AWS To OOS Drive");
 	}
 
 	public void verifyCopyFilesFunctionalityFromAzureToSFTPDrive() throws Exception {
+		getDriverInstance();
 		verifyCopyFilesFunctionality(LeftPanelSFTPDriveButton, "automationfolder/Copy Folder/AzureToSFTP", "TC 010 : Verify Copy Function From AWS To SFTP Drive");
 	}
 
 	public void verifyCopyFilesFunctionalityFromAzureToSharePointDrive() throws Exception {
+		getDriverInstance();
 		verifyCopyFilesFunctionality(LeftPanelSharePointDriveButton, "ioMoVoQATeam/automationfolder/Copy Folder/AzureToSharePoint", "TC 011 : Verify Copy Function From AWS To SharePoint Drive");
 	}
 }

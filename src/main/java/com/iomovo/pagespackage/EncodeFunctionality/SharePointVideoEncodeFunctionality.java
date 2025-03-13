@@ -2,6 +2,8 @@ package com.iomovo.pagespackage.EncodeFunctionality;
 
 import static org.testng.Assert.assertTrue;
 
+import java.time.Duration;
+
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
@@ -9,10 +11,24 @@ import com.iomovo.basepackage.BaseClass;
 
 public class SharePointVideoEncodeFunctionality extends BaseClass{
 
-	public SharePointVideoEncodeFunctionality(WebDriver driver, WebDriverWait wait) {
-		BaseClass.driver = driver;
-        BaseClass.wait = wait;
-	}
+	public SharePointVideoEncodeFunctionality() {
+		if (getDriver() == null) {
+            throw new IllegalStateException("❌ WebDriver is null in ProfilePage. Ensure it is initialized in BaseClass.");
+        }
+    }
+	
+    public SharePointVideoEncodeFunctionality(WebDriver driver, WebDriverWait wait) {
+        BaseClass.tdriver.set(driver);
+        BaseClass.wait.set(new WebDriverWait(driver, Duration.ofSeconds(10))); // Ensure WebDriverWait is set
+    }
+
+    private WebDriver getDriverInstance() {
+        WebDriver driver = tdriver.get();
+        if (driver == null) {
+            throw new IllegalStateException("❌ WebDriver is null in ProfilePage. Ensure it is initialized in BaseClass.");
+        }
+        return driver;
+    }
 
 	String automationFolder = "//span[text()='automationfolder']";
 	String convertFolder = "//a[text()='Convert Folder']";
@@ -119,22 +135,27 @@ public class SharePointVideoEncodeFunctionality extends BaseClass{
 	}
 
 	public void VerifyVideoEncodeFunctionalityto1080pinSharePointDrive() throws Exception {
+		getDriverInstance();
 	    verifyVideoEncoding(resolution1080P, "TC 001: Verify Video Encode Functionality to 1080p in SharePoint Drive");
 	}
 
 	public void VerifyVideoEncodeFunctionalityto720pinSharePointDrive() throws Exception {
+		getDriverInstance();
 	    verifyVideoEncoding(resolution720P, "TC 002: Verify Video Encode Functionality to 720p in SharePoint Drive");
 	}
 
 	public void VerifyVideoEncodeFunctionalityto480pinSharePointDrive() throws Exception {
+		getDriverInstance();
 	    verifyVideoEncoding(resolution480P, "TC 003: Verify Video Encode Functionality to 480p in SharePoint Drive");
 	}
 	
 	public void VerifyVideoEncodeFunctionalityto360pinSharePointDrive() throws Exception {
+		getDriverInstance();
 	    verifyVideoEncoding(resolution360P, "TC 004: Verify Video Encode Functionality to 360p in SharePoint Drive");
 	}
 	
 	public void VerifyVideoEncodeFunctionalityto240pinSharePointDrive() throws Exception {
+		getDriverInstance();
 	    verifyVideoEncoding(resolution240P, "TC 005: Verify Video Encode Functionality to 240p in SharePoint Drive");
 	}
 

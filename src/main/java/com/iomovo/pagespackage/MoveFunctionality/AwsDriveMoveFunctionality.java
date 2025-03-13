@@ -10,8 +10,16 @@ import com.iomovo.basepackage.BaseClass;
 public class AwsDriveMoveFunctionality extends BaseClass {
 
 	public AwsDriveMoveFunctionality(WebDriver driver, WebDriverWait wait) {
-		BaseClass.driver = driver;
-        BaseClass.wait = wait;
+		BaseClass.tdriver.set(driver);  
+		BaseClass.wait.set(wait);
+	}
+
+	private WebDriver getDriverInstance() {
+		WebDriver driver = tdriver.get();
+		if (driver == null) {
+			throw new IllegalStateException("❌ WebDriver is null in LoginPage. Ensure it is initialized in BaseTestClass.");
+		}
+		return driver;
 	}
 
 	String copyDataFolderSelection = "//a[text()='AVI Data Folder']";
@@ -504,6 +512,7 @@ public class AwsDriveMoveFunctionality extends BaseClass {
 
 	public void verifyMoveFilesFunctionalityFromAWSToIoCloudDrive() throws Exception {
 		try {
+			getDriverInstance();
 			navigateToAwsDrive("TC 001 : Verify Move Files Functionality From Aws To ioCloud Drive");
 			moveFilesFromSourceFolder();
 			clickWebElement(leftPanelIoCloudButton);
@@ -533,6 +542,7 @@ public class AwsDriveMoveFunctionality extends BaseClass {
 	
 	public void verifyMoveFilesFunctionalityFromAwsToAwsDrive() throws Exception {
 		try {
+			getDriverInstance();
 			navigateToAwsDrive("TC 002 : Verify Move Files Functionality From Aws To Aws Drive");
 			moveFilesFromSourceFolder();
 			clickWebElement(leftPanelIoHubButton);
@@ -563,6 +573,7 @@ public class AwsDriveMoveFunctionality extends BaseClass {
 
 	public void verifyMoveFilesFunctionalityFromAWSToBOXDrive() throws Exception {
 		try {
+			getDriverInstance();
 			navigateToAwsDrive("TC 003 : Verify Move Function From AWS To Box Drive");
 			moveFilesFromSourceFolder();
 			clickWebElement(leftPanelIoHubButton);
@@ -593,6 +604,7 @@ public class AwsDriveMoveFunctionality extends BaseClass {
 	
 	public void verifyMoveFilesFunctionalityFromAWSToDropBoxDrive() throws Exception {
 		try {
+			getDriverInstance();
 			navigateToAwsDrive("TC 004 : Verify Move Function From AWS To DropBox Drive");
 			moveFilesFromSourceFolder();
 			clickWebElement(leftPanelIoHubButton);
@@ -623,6 +635,7 @@ public class AwsDriveMoveFunctionality extends BaseClass {
 	
 	public void verifyMoveFilesFunctionalityFromAWSToFTPDrive() throws Exception {
 		try {
+			getDriverInstance();
 			navigateToAwsDrive("TC 005 : Verify Move Function From AWS To FTP Drive");
 			moveFilesFromSourceFolder();
 			clickWebElement(leftPanelIoHubButton);
@@ -653,6 +666,7 @@ public class AwsDriveMoveFunctionality extends BaseClass {
 	
 	public void verifyMoveFilesFunctionalityFromAWSToGoogleCloudDrive() throws Exception {
 		try {
+			getDriverInstance();
 			navigateToAwsDrive("TC 006 : Verify Move Function From AWS To GoogleCloud Drive");
 			moveFilesFromSourceFolder();
 			clickWebElement(leftPanelIoHubButton);
@@ -683,6 +697,7 @@ public class AwsDriveMoveFunctionality extends BaseClass {
 	
 	public void verifyMoveFilesFunctionalityFromAWSToGoogleDrive() throws Exception {
 		try {
+			getDriverInstance();
 			navigateToAwsDrive("TC 007 : Verify Move Function From AWS To Google Drive");
 			moveFilesFromSourceFolder();
 			clickWebElement(leftPanelIoHubButton);
@@ -713,6 +728,7 @@ public class AwsDriveMoveFunctionality extends BaseClass {
 	
 	public void verifyMoveFilesFunctionalityFromAWSToAzureDrive() throws Exception {
 		try {
+			getDriverInstance();
 			navigateToAwsDrive("TC 008 : Verify Move Function From AWS To Azure Drive");
 			moveFilesFromSourceFolder();
 			clickWebElement(leftPanelIoHubButton);
@@ -743,6 +759,7 @@ public class AwsDriveMoveFunctionality extends BaseClass {
 
 	public void verifyMoveFilesFunctionalityFromAWSToOneDrive() throws Exception {
 		try {
+			getDriverInstance();
 			navigateToAwsDrive("TC 009 : Verify Move Function From AWS To OneDrive");
 			moveFilesFromSourceFolder();
 			clickWebElement(leftPanelIoHubButton);
@@ -773,6 +790,7 @@ public class AwsDriveMoveFunctionality extends BaseClass {
 	
 	public void verifyMoveFilesFunctionalityFromAWSToOOSDrive() throws Exception {
 		try {
+			getDriverInstance();
 			navigateToAwsDrive("TC 010 : Verify Move Function From AWS To OOS Drive");
 			moveFilesFromSourceFolder();
 			clickWebElement(leftPanelIoHubButton);
@@ -803,6 +821,7 @@ public class AwsDriveMoveFunctionality extends BaseClass {
 	
 	public void verifyMoveFilesFunctionalityFromAWSToSFTPDrive() throws Exception {
 		try {
+			getDriverInstance();
 			navigateToAwsDrive("TC 011 : Verify Move Function From AWS To SFTP Drive");
 			moveFilesFromSourceFolder();
 			clickWebElement(leftPanelIoHubButton);
@@ -833,6 +852,7 @@ public class AwsDriveMoveFunctionality extends BaseClass {
 	
 	public void verifyMoveFilesFunctionalityFromAWSToSharePointDrive() throws Exception {
 		try {
+			getDriverInstance();
 			navigateToAwsDrive("TC 012 : Verify Move Function From AWS To SharePoint Drive");
 			moveFilesFromSourceFolder();
 			clickWebElement(leftPanelIoHubButton);

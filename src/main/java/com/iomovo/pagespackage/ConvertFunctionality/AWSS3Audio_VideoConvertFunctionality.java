@@ -12,18 +12,26 @@ import com.iomovo.basepackage.BaseClass;
 public class AWSS3Audio_VideoConvertFunctionality extends BaseClass {
 
 	public AWSS3Audio_VideoConvertFunctionality(WebDriver driver, WebDriverWait wait) {
-		BaseClass.driver = driver;
-        BaseClass.wait = wait;
+		BaseClass.tdriver.set(driver);  
+		BaseClass.wait.set(wait);
 	}
 
-	String automationFolder = "//span[text()='automationfolder']";
-	String convertFolder = "//a[text()='Convert Folder']";
-	String convertAudioFolder = "//a[text()='Audio Convert Folder']";
-	String audioFileSelection = "//a[text()='AudioFile.mp3']";
+	private WebDriver getDriverInstance() {
+		WebDriver driver = tdriver.get();
+		if (driver == null) {
+			throw new IllegalStateException("❌ WebDriver is null in LoginPage. Ensure it is initialized in BaseTestClass.");
+		}
+		return driver;
+	}
+
+	String automationFolder = "//td[@role='cell']//a[@title='automationfolder']";
+	String convertFolder = "//td[@role='cell']//a[@title='Convert Folder']";
+	String convertAudioFolder = "//td[@role='cell']//a[@title='Audio Convert Folder']";
+	String audioFileSelection = "//td[@role='cell']//a[@title='AudioFile.mp3']";
 	String audioFileEllipseButton = "//td/a[text()='AudioFile.mp3']//following::button[@type='button']";
-	String convertVideoFolder = "//a[text()='Video Convert Folder']";
-	String convertVideo2AudioFolder = "//a[text()='Video 2 Audio Convert Folder']";
-	String videoFileSelection = "//td/a[text()='VideoFile.mp4']";
+	String convertVideoFolder = "//td[@role='cell']//a[@title='Video Convert Folder']";
+	String convertVideo2AudioFolder = "//td[@role='cell']//a[@title='Video 2 Audio Convert Folder']";
+	String videoFileSelection = "//td[@role='cell']//a[@title='VideoFile.mp4']";
 	String videoFileEllipseButton = "//td/a[text()='VideoFile.mp4']//following::button[@type='button']";
 	String convertEllipseButton = "//div[text()='Convert']";
 
@@ -76,6 +84,7 @@ public class AWSS3Audio_VideoConvertFunctionality extends BaseClass {
 	public void verifyAudioConvertFunctionalityInAWSS3() throws Exception {
 
 		try {
+			WebDriver driver = getDriverInstance();
 			logPassStepInExtentReport("TC 001 : Verify Audio Convert Functionality (.MP3) Format File In AWSS3 ");
 
 			clickWebElement(leftPanelIoHubButton);
@@ -87,8 +96,10 @@ public class AWSS3Audio_VideoConvertFunctionality extends BaseClass {
 			clickWebElement(automationFolder);
 			doubleClickUsingActionClassWithoutScrolling(automationFolder);
 			logPassStepInExtentReport("Automation Folder Selected successfully");
+			waitUntilElementGetsAppeared(convertFolder);
 			doubleClickUsingActionClassWithoutScrolling(convertFolder);
 			logPassStepInExtentReport("Convert Folder Selected successfully");
+			waitUntilElementGetsAppeared(convertAudioFolder);
 			doubleClickUsingActionClassWithoutScrolling(convertAudioFolder);
 			logPassStepInExtentReport("Audio Convert Folder Selected successfully");
 			explicitWaitInSeconds(3);
@@ -155,6 +166,7 @@ public class AWSS3Audio_VideoConvertFunctionality extends BaseClass {
 
 	public void verifyVideoConvertFunctionalityInAWSS3() throws Exception {
 		try {
+			WebDriver driver = getDriverInstance();
 			logPassStepInExtentReport("TC 002 : Verify Video Convert Functionality (.MP4) Format File In AWSS3");
 
 			clickWebElement(leftPanelIoHubButton);
@@ -243,6 +255,7 @@ public class AWSS3Audio_VideoConvertFunctionality extends BaseClass {
 	public void verifyVideo2AudioConvertFunctionalityInAWSS3() throws Exception {
 
 		try {
+			WebDriver driver = getDriverInstance();
 			logPassStepInExtentReport("TC 003 : Verify Video To Audio Convert Functionality (.MP4) Format File In AWSS3");
 
 			clickWebElement(leftPanelIoHubButton);

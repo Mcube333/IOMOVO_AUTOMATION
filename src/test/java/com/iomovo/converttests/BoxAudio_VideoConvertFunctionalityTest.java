@@ -1,49 +1,63 @@
 package com.iomovo.converttests;
 
+import org.testng.Assert;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
-import com.iomovo.basetest.BaseTestClass;
+import com.iomovo.basepackage.BaseClass;
 import com.iomovo.pagespackage.ConvertFunctionality.BoxAudio_VideoConvertFunctionality;
 import com.iomovo.pagespackage.DashboardFunctionality.LoginPage;
 
 
-public class BoxAudio_VideoConvertFunctionalityTest extends BaseTestClass 
-{
+public class BoxAudio_VideoConvertFunctionalityTest extends BaseClass {
 	
-	LoginPage loginPage;
-	BoxAudio_VideoConvertFunctionality Box;
-     
+	private LoginPage loginPage;
+    private BoxAudio_VideoConvertFunctionality  Box;
 	
+    /**
+     * Setup method runs before each test.
+     * Initializes WebDriver, logs in, and sets up required page objects.
+     */
     @BeforeMethod
     public void setUp() {
+    	driver = getDriver();
         if (driver == null) {
-            throw new IllegalStateException("WebDriver is null in IoCloudCenterPanelTest. Check BaseTestClass initialization.");
+            throw new IllegalStateException("❌ WebDriver is null in HomePageTopPanelTest. Check BaseTestClass initialization.");
         }
-        loginPage = new LoginPage();
-        Box = new BoxAudio_VideoConvertFunctionality(driver, wait);
+
+        loginPage = new LoginPage(driver, getWait());
+        Box = new BoxAudio_VideoConvertFunctionality(driver, getWait());
+
+        performLogin(); // Login before each test
+    }
+
+    /**
+     * Perform login before executing test cases.
+     */
+    private void performLogin() {
+        try {
+            loginPage.loginMethod();
+        } catch (Exception e) {
+            Assert.fail("❌ Login failed before test execution. Exception: " + e.getMessage());
+        }
     }
     
     
 	//These Below Methods are for Login Functionality tests
 
 	
-	@Test
-	public void verifyAudio_VideoConvertFunctionalityInBox() {
-		
-		try {
-			
-			loginPage.loginMethod();
-			
-			Box.verifyAudioConvertFunctionalityInBox();
-			
-			Box.verifyVideoConvertFunctionalityInBox();
-			
-			Box.verifyVideo2AudioConvertFunctionalityInBox();
-			
-		} catch (Exception e) {
-			e.printStackTrace();
-			
-		}
-	}
+    @Test
+    public void verifyAudioConvertFunctionalityInBox() throws Exception {
+        Box.verifyAudioConvertFunctionalityInBox();
+    }
+
+    @Test
+    public void verifyVideoConvertFunctionalityInBox() throws Exception {
+        Box.verifyVideoConvertFunctionalityInBox();
+    }
+
+    @Test
+    public void verifyVideo2AudioConvertFunctionalityInBox() throws Exception {
+        Box.verifyVideo2AudioConvertFunctionalityInBox();
+    }
 }

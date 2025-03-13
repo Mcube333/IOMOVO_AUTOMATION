@@ -10,8 +10,16 @@ import com.iomovo.basepackage.BaseClass;
 public class FtpDriveMoveFunctionality extends BaseClass {
 
 	public FtpDriveMoveFunctionality(WebDriver driver, WebDriverWait wait) {
-		BaseClass.driver = driver;
-        BaseClass.wait = wait;
+		BaseClass.tdriver.set(driver);  
+		BaseClass.wait.set(wait);
+	}
+
+	private WebDriver getDriverInstance() {
+		WebDriver driver = tdriver.get();
+		if (driver == null) {
+			throw new IllegalStateException("❌ WebDriver is null in LoginPage. Ensure it is initialized in BaseTestClass.");
+		}
+		return driver;
 	}
 
 	String copyDataFolderSelection = "//a[text()='AVI Data Folder']";
@@ -474,6 +482,7 @@ public class FtpDriveMoveFunctionality extends BaseClass {
 
 	public void verifyMoveFilesFunctionalityFromFTPToIoCloudDrive() throws Exception {
 		try {
+			getDriverInstance();
 			navigateToFtpDrive("TC 001 : Verify Move Files Functionality From FTP To ioCloud Drive");
 			moveFilesFromSourceFolder();
 			clickWebElement(leftPanelIoCloudButton);
@@ -503,6 +512,7 @@ public class FtpDriveMoveFunctionality extends BaseClass {
 	
 	public void verifyMoveFilesFunctionalityFromFTPToAWSDrive() throws Exception {
 		try {
+			getDriverInstance();
 			navigateToFtpDrive("TC 002 : Verify Move Files Functionality From Ftp To Aws Drive");
 			moveFilesFromSourceFolder();
 			clickWebElement(leftPanelIoHubButton);
@@ -533,6 +543,7 @@ public class FtpDriveMoveFunctionality extends BaseClass {
 	
 	public void verifyMoveFilesFunctionalityFromFTPToBOXDrive() throws Exception {
 		try {
+			getDriverInstance();
 			navigateToFtpDrive("TC 003 : Verify Move Function From Ftp To Box Drive");
 			moveFilesFromSourceFolder();
 			clickWebElement(leftPanelIoHubButton);
@@ -563,6 +574,7 @@ public class FtpDriveMoveFunctionality extends BaseClass {
 	
 	public void verifyMoveFilesFunctionalityFromFTPToDropBoxDrive() throws Exception {
 		try {
+			getDriverInstance();
 			navigateToFtpDrive("TC 004 : Verify Move Function From FTP To DropBox Drive");
 			moveFilesFromSourceFolder();
 			clickWebElement(leftPanelIoHubButton);
@@ -593,6 +605,7 @@ public class FtpDriveMoveFunctionality extends BaseClass {
 	
 	public void verifyMoveFilesFunctionalityFromFTPToFTPDrive() throws Exception {
 		try {
+			getDriverInstance();
 			navigateToFtpDrive("TC 005 : Verify Move Function From Ftp To FTP Drive");
 			moveFilesFromSourceFolder();
 			clickWebElement(leftPanelIoHubButton);
@@ -623,6 +636,7 @@ public class FtpDriveMoveFunctionality extends BaseClass {
 	
 	public void verifyMoveFilesFunctionalityFromFTPToGoogleCloudDrive() throws Exception {
 		try {
+			getDriverInstance();
 			navigateToFtpDrive("TC 006 : Verify Move Function From FTP To GoogleCloud Drive");
 			moveFilesFromSourceFolder();
 			clickWebElement(leftPanelIoHubButton);
@@ -653,6 +667,7 @@ public class FtpDriveMoveFunctionality extends BaseClass {
 	
 	public void verifyMoveFilesFunctionalityFromFTPToGoogleDrive() throws Exception {
 		try {
+			getDriverInstance();
 			navigateToFtpDrive("TC 007 : Verify Move Function From FTP To Google Drive");
 			moveFilesFromSourceFolder();
 			clickWebElement(leftPanelIoHubButton);
@@ -683,6 +698,7 @@ public class FtpDriveMoveFunctionality extends BaseClass {
 	
 	public void verifyMoveFilesFunctionalityFromFTPToAzureDrive() throws Exception {
 		try {
+			getDriverInstance();
 			navigateToFtpDrive("TC 008 : Verify Move Function From FTP To Azure Drive");
 			moveFilesFromSourceFolder();
 			clickWebElement(leftPanelIoHubButton);
@@ -713,6 +729,7 @@ public class FtpDriveMoveFunctionality extends BaseClass {
 
 	public void verifyMoveFilesFunctionalityFromFTPToOneDrive() throws Exception {
 		try {
+			getDriverInstance();
 			navigateToFtpDrive("TC 009 : Verify Move Function From FTP To OneDrive");
 			moveFilesFromSourceFolder();
 			clickWebElement(leftPanelIoHubButton);
@@ -743,6 +760,7 @@ public class FtpDriveMoveFunctionality extends BaseClass {
 	
 	public void verifyMoveFilesFunctionalityFromFTPToOOSDrive() throws Exception {
 		try {
+			getDriverInstance();
 			navigateToFtpDrive("TC 010 : Verify Move Function From FTP To OOS Drive");
 			moveFilesFromSourceFolder();
 			clickWebElement(leftPanelIoHubButton);
@@ -773,6 +791,7 @@ public class FtpDriveMoveFunctionality extends BaseClass {
 	
 	public void verifyMoveFilesFunctionalityFromFTPToSFTPDrive() throws Exception {
 		try {
+			getDriverInstance();
 			navigateToFtpDrive("TC 011 : Verify Move Function From FTP To SFTP Drive");
 			moveFilesFromSourceFolder();
 			clickWebElement(leftPanelIoHubButton);
@@ -803,6 +822,7 @@ public class FtpDriveMoveFunctionality extends BaseClass {
 	
 	public void verifyMoveFilesFunctionalityFromFTPToSharePointDrive() throws Exception {
 		try {
+			getDriverInstance();
 			navigateToFtpDrive("TC 012 : Verify Move Function From FTP To SharePoint Drive");
 			moveFilesFromSourceFolder();
 			clickWebElement(leftPanelIoHubButton);

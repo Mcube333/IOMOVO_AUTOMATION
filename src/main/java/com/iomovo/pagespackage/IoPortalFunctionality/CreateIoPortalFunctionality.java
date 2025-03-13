@@ -1,15 +1,31 @@
 package com.iomovo.pagespackage.IoPortalFunctionality;
 
+import java.time.Duration;
+
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import com.iomovo.basepackage.BaseClass;
 
 public class CreateIoPortalFunctionality extends BaseClass {
 
-	public CreateIoPortalFunctionality(WebDriver driver, WebDriverWait wait) {
-		BaseClass.driver = driver;
-        BaseClass.wait = wait;
-	}
+	public CreateIoPortalFunctionality() {
+		if (getDriver() == null) {
+            throw new IllegalStateException("❌ WebDriver is null in ProfilePage. Ensure it is initialized in BaseClass.");
+        }
+    }
+	
+    public CreateIoPortalFunctionality(WebDriver driver, WebDriverWait wait) {
+        BaseClass.tdriver.set(driver);
+        BaseClass.wait.set(new WebDriverWait(driver, Duration.ofSeconds(10))); // Ensure WebDriverWait is set
+    }
+
+    private WebDriver getDriverInstance() {
+        WebDriver driver = tdriver.get();
+        if (driver == null) {
+            throw new IllegalStateException("❌ WebDriver is null in ProfilePage. Ensure it is initialized in BaseClass.");
+        }
+        return driver;
+    }
 
 	String copyDataFolderSelection = "//a[text()='automationfolder']";
 	String moveDataFolderSelectionRoot = "//a[text()='automationfolder']";
@@ -325,6 +341,7 @@ public class CreateIoPortalFunctionality extends BaseClass {
 	 */
 	public void verifyCreatePortalFunctionality() throws Exception {
 		try {
+			getDriverInstance();
 			navigateToIoPortal("TC 001 : Verify Create Portal Function");
 			clickWebElement(createPortalButton);
 			logPassStepInExtentReportWithScreenshot(" Create Portal button is functional and redirects to the correct page.");

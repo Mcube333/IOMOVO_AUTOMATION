@@ -12,8 +12,16 @@ import com.iomovo.basepackage.BaseClass;
 public class MSAzureAudio_VideoConvertFunctionality extends BaseClass {
 
 	public MSAzureAudio_VideoConvertFunctionality(WebDriver driver, WebDriverWait wait) {
-		BaseClass.driver = driver;
-        BaseClass.wait = wait;
+		BaseClass.tdriver.set(driver);  
+		BaseClass.wait.set(wait);
+	}
+
+	private WebDriver getDriverInstance() {
+		WebDriver driver = tdriver.get();
+		if (driver == null) {
+			throw new IllegalStateException("❌ WebDriver is null in LoginPage. Ensure it is initialized in BaseTestClass.");
+		}
+		return driver;
 	}
 
 	String loadmoreButton = "//span[contains(text(),'Load More')]";
@@ -78,6 +86,7 @@ public class MSAzureAudio_VideoConvertFunctionality extends BaseClass {
 	public void verifyAudioConvertFunctionalityInMSAzure() throws Exception {
 
 		try {
+			WebDriver driver = getDriverInstance();
 			logPassStepInExtentReport("TC 001 : Verify Audio Convert Functionality (.MP3) Format File In MSAzure ");
 
 			clickWebElement(leftPanelIoHubButton);
@@ -159,6 +168,7 @@ public class MSAzureAudio_VideoConvertFunctionality extends BaseClass {
 
 	public void verifyVideoConvertFunctionalityInMSAzure() throws Exception {
 		try {
+			WebDriver driver = getDriverInstance();
 			logPassStepInExtentReport("TC 002 : Verify Video Convert Functionality (.MP4) Format File In MSAzure");
 
 			clickWebElement(leftPanelIoHubButton);
@@ -250,6 +260,7 @@ public class MSAzureAudio_VideoConvertFunctionality extends BaseClass {
 	public void verifyVideo2AudioConvertFunctionalityInMSAzure() throws Exception {
 
 		try {
+			WebDriver driver = getDriverInstance();
 			logPassStepInExtentReport("TC 003 : Verify Video To Audio Convert Functionality (.MP4) Format File In MSAzure");
 
 			clickWebElement(leftPanelIoHubButton);
