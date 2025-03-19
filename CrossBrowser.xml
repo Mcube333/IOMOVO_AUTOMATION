@@ -18,7 +18,7 @@
         <classes>
            <class name="com.iomovo.dashboardtests.LoginPageTest">
              <methods>
-                    <include name="Login"/>
+                    <include name="LoginMethod"/>
                 </methods>
            </class>
         </classes>
@@ -34,7 +34,7 @@
         <classes>
             <class name="com.iomovo.dashboardtests.LoginPageTest">
              <methods>
-                    <include name="Login"/>
+                    <include name="LoginMethod"/>
                 </methods>
            </class>
         </classes>
@@ -50,7 +50,7 @@
         <classes>
             <class name="com.iomovo.dashboardtests.LoginPageTest">
              <methods>
-                    <include name="Login"/>
+                    <include name="LoginMethod"/>
                 </methods>
            </class>
         </classes>
