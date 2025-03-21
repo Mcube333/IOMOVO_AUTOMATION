@@ -5,8 +5,8 @@ import java.awt.Toolkit;
 import java.awt.datatransfer.StringSelection;
 import java.awt.event.KeyEvent;
 import java.io.File;
-import java.io.FileReader;
 import java.io.IOException;
+import java.io.InputStream;
 import java.lang.reflect.Method;
 import java.net.URL;
 import java.nio.file.Files;
@@ -46,16 +46,16 @@ import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.ITestResult;
 import org.apache.logging.log4j.LogManager;
-import org.testng.annotations.Parameters;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.BeforeSuite;
 import org.testng.annotations.Optional;
+import org.testng.annotations.Parameters;
 
 import com.aventstack.extentreports.ExtentReports;
 import com.iomovo.utilspackage.ExtentReportManager;
-import com.relevantcodes.extentreports.ExtentTest;
-import com.relevantcodes.extentreports.LogStatus;
+import com.aventstack.extentreports.ExtentTest;
+import com.aventstack.extentreports.Status;
 
 import io.github.bonigarcia.wdm.WebDriverManager;
 
@@ -63,12 +63,8 @@ public class BaseClass {
 	
 	protected WebDriver driver;
 	
-	public void click(WebElement element) {
-	    flashElement(element);
-	    element.click();
-	}
 	
-	private static final Logger log = LogManager.getLogger(BaseClass.class);
+	public static final Logger log = LogManager.getLogger(BaseClass.class);
 
 	public static ThreadLocal<WebDriver> tdriver = new ThreadLocal<>();
 	public static ThreadLocal<WebDriverWait> wait = new ThreadLocal<>();
@@ -78,9 +74,23 @@ public class BaseClass {
 	public static Properties prop;
 	public static int numOfAttemptsToFindWebElement;
 	public static String projectDirectory = System.getProperty("user.dir");
+	
+	/**
+	 * Returns the WebDriver instance for the current thread.
+	 */
+	public static WebDriver getDriver() {
+		return tdriver.get();
+	}
+
+	/**
+	 * Returns the WebDriverWait instance for the current thread.
+	 */
+	public static WebDriverWait getWait() {
+		return wait.get();
+	}
 
 	// All Variables which fetches data from config.properties file
-	public static String strUrl = "";
+	public static  String strUrl = "";
 	public static String strUsername = "";
 	public static String strPassword = "";
 
@@ -93,6 +103,10 @@ public class BaseClass {
 	public static String strUrlDev = "";
 	public static String strUsernameDev = "";
 	public static String strPasswordDev = "";
+	
+	public static String strUrlOci = "";
+	public static String strUsernameOci = "";
+	public static String StrPasswordOci = "";
 
 	public static String strUrlProdStaging = "";
 	public static String strUsernameProdStaging = "";
@@ -116,34 +130,32 @@ public class BaseClass {
 	/**
 	 * Initializes WebDriver before each test and sets up Extent Reports.
 	 */
-	@Parameters({"browser", "os"})
 	@BeforeMethod
+	@Parameters({"browser", "os"})
 	public void testSetUp(Method method, @Optional("chrome") String browser, @Optional("windows") String os) {
-		log.info("Initializing WebDriver for browser: " + browser);
+	    log.info("Initializing WebDriver for browser: " + browser + ", OS: " + os);
 
-		WebDriver driver = initializeDriver(browser, os);
-		if (driver != null) {
-			tdriver.set(driver);
-			wait.set(new WebDriverWait(driver, Duration.ofSeconds(30)));
-			driver.manage().window().maximize();
-			driver.manage().deleteAllCookies();
-		} else {
-			throw new RuntimeException("❌ WebDriver initialization failed for browser: " + browser);
-		}
+	    WebDriver driver = initializeDriver(browser, os); // Fetch WebDriver instance
+	    if (driver == null) {
+	        throw new RuntimeException("❌ WebDriver initialization failed.");
+	    }
 
-		// ✅ Ensure ExtentReports is initialized
-		if (ExtentReportManager.getExtentReports() == null) {
-			throw new RuntimeException("❌ ExtentReports is not initialized. Ensure it is set up in @BeforeSuite.");
-		}
+	    tdriver.set(driver); // ✅ Store WebDriver in ThreadLocal
+	    wait.set(new WebDriverWait(driver, Duration.ofSeconds(30), Duration.ofMillis(500))); // Improved wait
 
-		// ✅ Start test in Extent Report
-		ExtentTest test = ExtentReportManager.startTest(method.getName(), "Executing: " + method.getName());
+	    driver.manage().window().maximize();
+	    driver.manage().deleteAllCookies();
+	    log.info("✅ WebDriver initialized successfully for " + browser);
 
-		if (test == null) {
-			throw new RuntimeException("❌ ExtentTest instance is null for: " + method.getName());
-		}
+	    // Load configuration properties
+	    loadPropertiesFile();
 
-		extTest.set(test); // ✅ Set the ExtentTest for logging
+	    // Start Extent Report for the test
+	    ExtentTest test = ExtentReportManager.startTest(method.getName(), "Executing: " + method.getName());
+	    if (test == null) {
+	        throw new RuntimeException("❌ ExtentTest instance is null for: " + method.getName());
+	    }
+	    extTest.set(test);
 	}
 
 
@@ -210,45 +222,45 @@ public class BaseClass {
 		}
 	}
 
-	/**
-	 * Runs after each test method execution.
-	 * Captures a screenshot on failure and quits WebDriver.
-	 */
 	@AfterMethod
 	public void tearDown(ITestResult result) {
-		ExtentTest test = ExtentReportManager.getCurrentTest(); // ✅ Fetch the current test instance
+	    ExtentTest test = ExtentReportManager.getCurrentTest();
 
-		if (test != null) {
-			if (result.getStatus() == ITestResult.FAILURE) {
-				String screenshotPath = ExtentReportManager.captureScreenshot(getDriver());
-				test.log(LogStatus.FAIL, "❌ Test Failed: " + result.getName());
+	    if (test != null) {
+	        if (result.getStatus() == ITestResult.FAILURE) {
+	            WebDriver driver = getDriver();
+	            String screenshotPath = (driver != null) ? ExtentReportManager.captureScreenshot(driver) : null;
+	            test.log(Status.FAIL, "❌ Test Failed: " + result.getName());
+	            if (screenshotPath != null) {
+	                test.addScreenCaptureFromPath(screenshotPath);
+	            }
+	        } else if (result.getStatus() == ITestResult.SUCCESS) {
+	            test.log(Status.PASS, "✅ Test Passed: " + result.getName());
+	        } else if (result.getStatus() == ITestResult.SKIP) {
+	            test.log(Status.SKIP, "⚠️ Test Skipped: " + result.getName());
+	        }
+	        ExtentReportManager.endCurrentTest();
+	    }
 
-				if (screenshotPath != null) {
-					test.log(LogStatus.INFO, "📸 Screenshot: " + test.addScreenCapture(screenshotPath));
-				}
-			} else if (result.getStatus() == ITestResult.SUCCESS) {
-				test.log(LogStatus.PASS, "✅ Test Passed: " + result.getName());
-			} else if (result.getStatus() == ITestResult.SKIP) {
-				test.log(LogStatus.SKIP, "⚠️ Test Skipped: " + result.getName());
-			}
+	    // Clean up WebDriver after logging
+	    if (driver != null) {
+	        try {
+	            driver.quit();
+	            log.info("✅ WebDriver session closed successfully.");
+	        } catch (Exception e) {
+	            log.error("❌ Error while quitting WebDriver: " + e.getMessage(), e);
+	        } finally {
+	            tdriver.remove();
+	            wait.remove();
+	        }
+	    }
 
-			ExtentReportManager.endCurrentTest(); // ✅ Ensure the test is properly ended
-		}
+	    if (extTest.get() != null) {
+	        extTest.remove();
+	    }
 
-		// ✅ Ensure WebDriver is closed properly
-		if (getDriver() != null) {
-			getDriver().quit();
-			tdriver.remove();
-			wait.remove();
-		}
-
-		if (extTest.get() != null) {
-			extTest.remove();
-		}
-
-		ExtentReportManager.flushReports(); // ✅ Ensure reports are updated
+	    ExtentReportManager.flushReports();
 	}
-
 
 	/**
 	 * Captures a screenshot of the current browser view.
@@ -277,83 +289,85 @@ public class BaseClass {
 	}
 
 	/**
-	 * Returns the WebDriver instance for the current thread.
-	 */
-	public static WebDriver getDriver() {
-		return tdriver.get();
-	}
-
-	/**
-	 * Returns the WebDriverWait instance for the current thread.
-	 */
-	public static WebDriverWait getWait() {
-		return wait.get();
-	}
-
-	/**
 	 * This method initializes and loads the property files
 	 * 
 	 * @author Mohammed_Mudassir
 	 * @return
 	 */
 	public static void loadPropertiesFile() {
-		try {
-			log.info("Loading Test Data Properties File...");
-			prop = new Properties();
-			File file = new File("src/test/resources/TestData.Properties");
+	    try {
+	        log.info("🔍 Loading Config & Test Data Properties Files...");
+	        prop = new Properties();
 
-			if (!file.exists()) {
-				log.error("❌ Properties file not found: " + file.getAbsolutePath());
-				throw new RuntimeException("Properties file not found.");
-			}
+	        // Load config.properties
+	        try (InputStream configInput = BaseClass.class.getClassLoader().getResourceAsStream("config.properties")) {
+	            if (configInput == null) {
+	                throw new RuntimeException("❌ config.properties file NOT found.");
+	            }
+	            prop.load(configInput);
+	            log.info("✅ Successfully loaded config.properties");
+	        }
 
-			try (FileReader reader = new FileReader(file)) {
-				prop.load(reader);
-			}
+	        // Fetch Environment (Default = PROD)
+	        strEnv = prop.getProperty("strEnv", "PROD").toUpperCase();
+	        if (!Arrays.asList("PROD", "PROD_STAGING", "OCI", "DEV").contains(strEnv)) {
+	            log.warn("⚠️ Invalid environment: " + strEnv + ". Defaulting to PROD.");
+	            strEnv = "PROD";
+	        }
 
-			// Get environment, defaulting to PROD if missing
-			strEnv = prop.getProperty("strEnv", "PROD").toUpperCase();
+	        // ✅ Explicitly fetch properties based on environment
+	        switch (strEnv) {
+	            case "PROD":
+	                strUrl = prop.getProperty("strUrlProd", "");
+	                strUsername = prop.getProperty("strUsernameProd", "");
+	                strPassword = prop.getProperty("strPasswordProd", "");
+	                break;
+	            case "PROD_STAGING":
+	                strUrl = prop.getProperty("strUrlProdStaging", "");
+	                strUsername = prop.getProperty("strUsernameProdStaging", "");
+	                strPassword = prop.getProperty("strPasswordProdStaging", "");
+	                break;
+	            case "DEV":
+	                strUrl = prop.getProperty("strUrlDev", "");
+	                strUsername = prop.getProperty("strUsernameDev", "");
+	                strPassword = prop.getProperty("strPasswordDev", "");
+	                break;
+	            case "OCI":
+	                strUrl = prop.getProperty("strUrlOci", "");
+	                strUsername = prop.getProperty("strUsernameOci", "");
+	                strPassword = prop.getProperty("strPasswordOci", "");
+	                break;
+	            default:
+	                throw new RuntimeException("❌ Unknown environment: " + strEnv);
+	        }
 
-			// Fetch properties with validation
-			strUrlProd = prop.getProperty("strUrlProd", "");
-			strUsernameProd = prop.getProperty("strUsernameProd", "");
-			strPasswordProd = prop.getProperty("strPasswordProd", "");
+	        // Validate environment variables
+	        if (strUrl.isEmpty() || strUsername.isEmpty() || strPassword.isEmpty()) {
+	            throw new RuntimeException("❌ Missing URL, Username, or Password for environment: " + strEnv);
+	        }
 
-			strUrlDev = prop.getProperty("strUrlDev", "");
-			strUsernameDev = prop.getProperty("strUsernameDev", "");
-			strPasswordDev = prop.getProperty("strPasswordDev", "");
+	        // ✅ Print for Debugging
+	        log.info("🔍 Loaded Environment: " + strEnv);
+	        log.info("🔍 Using URL: " + strUrl);
+	        log.info("🔍 Using Username: " + strUsername);
+	        log.info("🔍 Using Password: " + strPassword);
 
-			strUrlProdStaging = prop.getProperty("strUrlProdStaging", "");
-			strUsernameProdStaging = prop.getProperty("strUsernameProdStaging", "");
-			strPasswordProdStaging = prop.getProperty("strPasswordProdStaging", "");
+	        // Load TestData.properties if available
+	        try (InputStream testDataInput = BaseClass.class.getClassLoader().getResourceAsStream("TestData.properties")) {
+	            if (testDataInput == null) {
+	                log.warn("⚠️ TestData.properties NOT found. Using config.properties values.");
+	            } else {
+	                prop.load(testDataInput);
+	                log.info("✅ Successfully loaded TestData.properties");
+	            }
+	        }
 
-			// Assign the correct environment values
-			switch (strEnv) {
-			case "PROD":
-				strUrl = strUrlProd;
-				strUsername = strUsernameProd;
-				strPassword = strPasswordProd;
-				break;
-			case "PROD_STAGING":
-				strUrl = strUrlProdStaging;
-				strUsername = strUsernameProdStaging;
-				strPassword = strPasswordProdStaging;
-				break;
-			case "DEV":
-				strUrl = strUrlDev;
-				strUsername = strUsernameDev;
-				strPassword = strPasswordDev;
-				break;
-			default:
-				String errorMsg = "❌ Incorrect Environment! Please specify a correct environment & try again.";
-				log.error(errorMsg);
-				throw new IllegalArgumentException(errorMsg);
-			}
-		} catch (IOException e) {
-			log.error("❌ Error loading properties file: " + e.getMessage(), e);
-			throw new RuntimeException("Failed to load properties file.", e);
-		}
+	    } catch (IOException e) {
+	        log.error("❌ Error loading properties file: ", e);
+	        throw new RuntimeException("Failed to load properties file.", e);
+	    }
 	}
+
 
 	/**
 	 * This is a Generic Method For Logging Passed Step In The Extent Report
@@ -362,15 +376,20 @@ public class BaseClass {
 	 * @param passReportMessage
 	 */
 	public static void logPassStepInExtentReport(String passReportMessage) {
-		ExtentTest test = ExtentReportManager.getCurrentTest(); // ✅ Fetch the current ExtentTest instance
-		if (test == null) {
-			throw new RuntimeException("❌ Cannot log test step: No active ExtentTest found.");
-		}
-		test.log(LogStatus.PASS, passReportMessage); // ✅ Use the correct ExtentTest instance
-		System.out.println("\n**************************************************");
-		System.out.println(passReportMessage);
-		System.out.println("**************************************************\n");
+	    ExtentTest test = ExtentReportManager.getCurrentTest(); // ✅ Fetch the current ExtentTest instance
+	    if (test != null) {
+	        test.log(Status.PASS, passReportMessage); // ✅ Log step with correct ExtentTest instance
+	    } else {
+	        System.err.println("⚠️ Warning: Cannot log test step. No active ExtentTest found.");
+	        return; // ✅ Avoid throwing exception, allow execution to continue
+	    }
+
+	    // ✅ Print formatted console logs for visibility
+	    System.out.println("\n**************************************************");
+	    System.out.println("✅ PASS: " + passReportMessage);
+	    System.out.println("**************************************************\n");
 	}
+
 
 
 	/**
@@ -380,25 +399,28 @@ public class BaseClass {
 	 * @param reportMessage
 	 */
 	public static void logPassStepInExtentReportWithScreenshot(String reportMessage) {
-		ExtentTest extReport = ExtentReportManager.getCurrentTest();
+	    ExtentTest extReport = ExtentReportManager.getCurrentTest(); // ✅ Fetch current ExtentTest instance
 
-		if (extReport != null) {
-			extReport.log(LogStatus.PASS, reportMessage);
-			WebDriver driver = tdriver.get(); // Assuming you have a thread-local WebDriver
-			if (driver != null) {
-				String screenshotPath = ExtentReportManager.captureScreenshot(driver);
-				if (screenshotPath != null) {
-					extReport.log(LogStatus.PASS, extReport.addScreenCapture(screenshotPath));
-				}
-			}
-			System.out.println("\n**************************************************");
-			System.out.println(reportMessage);
-			System.out.println("**************************************************\n");
-		} else {
-			System.err.println("❌ No active ExtentTest found for logging.");
-		}
+	    if (extReport != null) {
+	        extReport.log(Status.PASS, reportMessage); // ✅ Log pass message
+
+	        WebDriver driver = tdriver.get(); // ✅ Fetch thread-local WebDriver instance
+	        if (driver != null) {
+	            String screenshotPath = ExtentReportManager.captureScreenshot(driver);
+	            if (screenshotPath != null) {
+	                extReport.addScreenCaptureFromPath(screenshotPath); // ✅ Correct method for attaching screenshots
+	                System.out.println("📸 Screenshot captured: " + screenshotPath);
+	            }
+	        }
+
+	        // ✅ Print formatted console logs for better visibility
+	        System.out.println("\n**************************************************");
+	        System.out.println("✅ PASS: " + reportMessage);
+	        System.out.println("**************************************************\n");
+	    } else {
+	        System.err.println("⚠️ Warning: No active ExtentTest found for logging.");
+	    }
 	}
-
 
 	/**
 	 * This is a Generic Method For Logging Failed Step In The Extent Report
@@ -407,25 +429,30 @@ public class BaseClass {
 	 * @param reportMessage
 	 */
 	public static void logFailStepInExtentReport(String reportMessage) {
-		ExtentTest extReport = ExtentReportManager.getCurrentTest();
+	    ExtentTest extReport = ExtentReportManager.getCurrentTest();
 
-		if (extReport != null) {
-			extReport.log(LogStatus.FAIL, reportMessage);
-			WebDriver driver = tdriver.get(); // Get WebDriver from thread-local storage
+	    if (extReport != null) {
+	        extReport.log(Status.FAIL, reportMessage);
+	        WebDriver driver = tdriver.get(); // Get WebDriver from thread-local storage
 
-			if (driver != null) {
-				String screenshotPath = ExtentReportManager.captureScreenshot(driver);
-				if (screenshotPath != null) {
-					extReport.log(LogStatus.FAIL, extReport.addScreenCapture(screenshotPath));
-				}
-			}
-			System.err.println("\n**************************************************");
-			System.err.println(reportMessage);
-			System.err.println("**************************************************\n");
-		} else {
-			System.err.println("❌ No active ExtentTest found for logging failure.");
-		}
+	        if (driver != null) {
+	            String screenshotPath = ExtentReportManager.captureScreenshot(driver);
+	            if (screenshotPath != null) {
+	                try {
+	                	extReport.addScreenCaptureFromPath(screenshotPath);
+	                } catch (Exception e) {
+	                    extReport.log(Status.WARNING, "⚠️ Unable to attach screenshot: " + e.getMessage());
+	                }
+	            }
+	        }
+	        System.err.println("\n**************************************************");
+	        System.err.println(reportMessage);
+	        System.err.println("**************************************************\n");
+	    } else {
+	        System.err.println("❌ No active ExtentTest found for logging failure.");
+	    }
 	}
+
 
 
 	/**
@@ -439,7 +466,7 @@ public class BaseClass {
 		if (test == null) {
 			throw new RuntimeException("❌ Cannot log test step: No active ExtentTest found.");
 		}
-		test.log(LogStatus.INFO, reportMessage); // ✅ Use the correct ExtentTest instance
+		test.log(Status.INFO, reportMessage); // ✅ Use the correct ExtentTest instance
 		System.out.println("\n**************************************************");
 		System.out.println(reportMessage);
 		System.out.println("**************************************************\n");
@@ -460,7 +487,7 @@ public class BaseClass {
 		// ✅ Log to Extent Reports (if available)
 		ExtentTest test = ExtentReportManager.getCurrentTest();
 		if (test != null) {
-			test.log(LogStatus.INFO, consoleOutputMessage);
+			test.log(Status.INFO, consoleOutputMessage);
 		}
 	}
 

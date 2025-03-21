@@ -25,7 +25,7 @@ public class GoogleDriveAudio_VideoConvertFunctionalityTest extends BaseClass {
             throw new IllegalStateException("❌ WebDriver is null in HomePageTopPanelTest. Check BaseTestClass initialization.");
         }
 
-        loginPage = new LoginPage(driver, getWait());
+        loginPage = new LoginPage(); // ✅ No need to pass driver, fetched internally
         GoogleDrive = new GoogleDriveAudio_VideoConvertFunctionality(driver, getWait());
 
         performLogin(); // Login before each test

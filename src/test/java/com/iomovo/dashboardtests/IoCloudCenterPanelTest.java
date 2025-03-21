@@ -24,7 +24,7 @@ public class IoCloudCenterPanelTest extends BaseClass {
             throw new IllegalStateException("❌ WebDriver is null. Check BaseClass initialization.");
         }
         
-        loginPage = new LoginPage(driver, getWait());
+        loginPage = new LoginPage(); // ✅ No need to pass driver, fetched internally
         ioCloud = new IoCloudCenterPanel(driver, getWait());
 
         performLogin(); // Login before each test

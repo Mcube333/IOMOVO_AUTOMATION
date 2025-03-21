@@ -50,7 +50,7 @@
               <ul>
                 <li>
                   <a href="#" panel-name="test-xml-Default_suite" class="navigator-link ">
-                    <span>C:\Users\ksrrm\AppData\Local\Temp\testng-eclipse--717187828\testng-customsuite.xml</span>
+                    <span>C:\Users\ksrrm\AppData\Local\Temp\testng-eclipse--812019686\testng-customsuite.xml</span>
                   </a> <!-- navigator-link  -->
                 </li>
                 <li>
@@ -60,7 +60,7 @@
                 </li>
                 <li>
                   <a href="#" panel-name="group-Default_suite" class="navigator-link ">
-                    <span>0 groups</span>
+                    <span>2 groups</span>
                   </a> <!-- navigator-link  -->
                 </li>
                 <li>
@@ -136,7 +136,7 @@
         </div> <!-- panel Default_suite -->
         <div panel-name="test-xml-Default_suite" class="panel">
           <div class="main-panel-header rounded-window-top">
-            <span class="header-content">C:\Users\ksrrm\AppData\Local\Temp\testng-eclipse--717187828\testng-customsuite.xml</span>
+            <span class="header-content">C:\Users\ksrrm\AppData\Local\Temp\testng-eclipse--812019686\testng-customsuite.xml</span>
           </div> <!-- main-panel-header rounded-window-top -->
           <div class="main-panel-content rounded-window-bottom">
             <pre>
@@ -173,6 +173,22 @@
             <span class="header-content">Groups for Default suite</span>
           </div> <!-- main-panel-header rounded-window-top -->
           <div class="main-panel-content rounded-window-bottom">
+            <div class="test-group">
+              <span class="test-group-name">regression</span>
+              <br/>
+              <div class="method-in-group">
+                <span class="method-in-group-name">verifyAllElementsArePresentInLoginPageTest</span>
+                <br/>
+              </div> <!-- method-in-group -->
+            </div> <!-- test-group -->
+            <div class="test-group">
+              <span class="test-group-name">sanity</span>
+              <br/>
+              <div class="method-in-group">
+                <span class="method-in-group-name">verifyAllElementsArePresentInLoginPageTest</span>
+                <br/>
+              </div> <!-- method-in-group -->
+            </div> <!-- test-group -->
           </div> <!-- main-panel-content rounded-window-bottom -->
         </div> <!-- panel -->
         <div panel-name="times-Default_suite" class="panel">
@@ -193,12 +209,12 @@ data.addRows(1);
 data.setCell(0, 0, 0)
 data.setCell(0, 1, 'verifyAllElementsArePresentInLoginPageTest')
 data.setCell(0, 2, 'com.iomovo.dashboardtests.LoginPageTest')
-data.setCell(0, 3, 21848);
+data.setCell(0, 3, 19805);
 window.suiteTableData['Default_suite']= { tableData: data, tableDiv: 'times-div-Default_suite'}
 return data;
 }
               </script>
-              <span class="suite-total-time">Total running time: 21 seconds</span>
+              <span class="suite-total-time">Total running time: 19 seconds</span>
               <div id="times-div-Default_suite">
               </div> <!-- times-div-Default_suite -->
             </div> <!-- times-div -->
@@ -213,19 +229,27 @@ return data;
         </div> <!-- panel -->
         <div panel-name="ignored-methods-Default_suite" class="panel">
           <div class="main-panel-header rounded-window-top">
-            <span class="header-content">4 ignored methods</span>
+            <span class="header-content">8 ignored methods</span>
           </div> <!-- main-panel-header rounded-window-top -->
           <div class="main-panel-content rounded-window-bottom">
             <div class="ignored-class-div">
               <span class="ignored-class-name">com.iomovo.dashboardtests.LoginPageTest</span>
               <div class="ignored-methods-div">
-                <span class="ignored-method-name">verifyPrivacyPolicyPageRedirectionTest</span>
+                <span class="ignored-method-name">verifyLoginWithIncorrectEmailAndPassword</span>
                 <br/>
-                <span class="ignored-method-name">verifyTermsPageRedirectionTest</span>
+                <span class="ignored-method-name">verifyLoginWithCorrectEmailAndPassword</span>
+                <br/>
+                <span class="ignored-method-name">verifyLoginWithIncorrectEmailAndCorrectPassword</span>
+                <br/>
+                <span class="ignored-method-name">verifyLoginWithoutEmailAndPassword</span>
                 <br/>
                 <span class="ignored-method-name">loginTest</span>
                 <br/>
-                <span class="ignored-method-name">multipleLoginScenariosTest</span>
+                <span class="ignored-method-name">verifyPrivacyPolicyPageRedirectionTest</span>
+                <br/>
+                <span class="ignored-method-name">verifyLoginWithCorrectEmailAndIncorrectPassword</span>
+                <br/>
+                <span class="ignored-method-name">verifyTermsPageRedirectionTest</span>
                 <br/>
               </div> <!-- ignored-methods-div -->
             </div> <!-- ignored-class-div -->
@@ -244,19 +268,19 @@ return data;
               </div> <!-- configuration-suite before -->
               <div class="configuration-method before">
                 <span class="method-name">testSetUp(public void com.iomovo.dashboardtests.LoginPageTest.verifyAllElementsArePresentInLoginPageTest() thr...)</span>
-                <span class="method-start">405 ms</span>
+                <span class="method-start">219 ms</span>
               </div> <!-- configuration-method before -->
               <div class="configuration-method before">
-                <span class="method-name">setUp</span>
-                <span class="method-start">4651 ms</span>
+                <span class="method-name">setUp(chrome, windows)</span>
+                <span class="method-start">2090 ms</span>
               </div> <!-- configuration-method before -->
               <div class="test-method">
                 <span class="method-name">verifyAllElementsArePresentInLoginPageTest</span>
-                <span class="method-start">4658 ms</span>
+                <span class="method-start">2111 ms</span>
               </div> <!-- test-method -->
               <div class="configuration-method after">
                 <span class="method-name">tearDown([TestResult name=verifyAllElementsArePresentInLoginPageTest status=SUCCESS method=LoginPageTest.veri...)</span>
-                <span class="method-start">26511 ms</span>
+                <span class="method-start">21918 ms</span>
               </div> <!-- configuration-method after -->
           </div> <!-- main-panel-content rounded-window-bottom -->
         </div> <!-- panel -->

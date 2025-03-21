@@ -25,7 +25,7 @@ public class CreateIoPortalFunctionalityTests extends BaseClass {
             throw new IllegalStateException("❌ WebDriver is null in DropBoxToIoHubMoveTest. Check BaseClass initialization.");
         }
 
-        loginPage = new LoginPage(driver, getWait());
+        loginPage = new LoginPage(); // ✅ No need to pass driver, fetched internally
         IoPortal = new CreateIoPortalFunctionality(driver, getWait());
 
         performLogin(); // ✅ Ensures user is logged in before each test

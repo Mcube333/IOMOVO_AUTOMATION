@@ -1,68 +1,104 @@
-<!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd">
-<suite name="IoMoVo Test Suite" parallel="classes" thread-count="5">
-    <test name="Login Page Tests" parallel="classes" thread-count="5">
-        <parameter name="browser" value="chrome"/>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite name="IOMOVO Automation Suite" thread-count="5" parallel="tests">
+
+	<listeners>
+        <listener class-name="com.iomovo.utilspackage.ExtentReportManager"/>
+    </listeners>
+    
+    <!-- Convert Functionality Tests -->
+    <test name="ConvertTests">
         <classes>
-	      <class name="com.iomovo.encode.SFTPVideoEncodeFunctionalityTest"/>
-	      <class name="com.iomovo.converttests.MSAzureAudio_VideoConvertFunctionalityTest"/>
-	      <class name="com.iomovo.copytests.IoCloudToIoHubCopyTest"/>
-	      <class name="com.iomovo.ioportaltests.CreateIoPortalFunctionalityTests"/>
-	      <class name="com.iomovo.converttests.DropBoxAudio_VideoConvertFunctionalityTest"/>
-	      <class name="com.iomovo.copytests.SFTPToOtherDrivesCopyTest"/>
-	      <class name="com.iomovo.encode.IoCloudVideoEncodeFunctionalityTest"/>
-	      <class name="com.iomovo.basetest.BaseTestClass"/>
-	      <class name="com.iomovo.copytests.AwsToOtherDrivesCopyTest"/>
-	      <class name="com.iomovo.copytests.Optimised_AzureToOtherDrivesCopyTest"/>
-	      <class name="com.iomovo.copytests.OosToOtherDrivesCopyTest"/>
-	      <class name="com.iomovo.movetests.SFTPToIoHubMoveTest"/>
-	      <class name="com.iomovo.copytests.Optimised_AwsDriveCopyFunctionalityTest"/>
-	      <class name="com.iomovo.converttests.OracleStorageAudio_VideoConvertFunctionalityTest"/>
-	      <class name="com.iomovo.dashboardtests.HomePageLeftPanelTest"/>
-	      <class name="com.iomovo.movetests.GoogleDriveToIoHubMoveTest"/>
-	      <class name="com.iomovo.converttests.GoogleCloudAudio_VideoConvertFunctionalityTest"/>
-	      <class name="com.iomovo.converttests.OneDriveAudio_VideoConvertFunctionalityTest"/>
-	      <class name="com.iomovo.converttests.BoxAudio_VideoConvertFunctionalityTest"/>
-	      <class name="com.iomovo.encode.BoxVideoEncodeFunctionalityTest"/>
-	      <class name="com.iomovo.movetests.AzureToIoHubMoveTest"/>
-	      <class name="com.iomovo.converttests.GoogleDriveAudio_VideoConvertFunctionalityTest"/>
-	      <class name="com.iomovo.converttests.IoCloudAudio_VideoConvertFunctionalityTest"/>
-	      <class name="com.iomovo.converttests.AWSS3Audio_VideoConvertFunctionalityTest"/>
-	      <class name="com.iomovo.movetests.AwsToIoHubMoveTest"/>
-	      <class name="com.iomovo.encode.SharePointVideoEncodeFunctionalityTest"/>
-	      <class name="com.iomovo.encode.GoogleDriveVideoEncodeFunctionalityTest"/>
-	      <class name="com.iomovo.movetests.IoCloudToIoHubMoveTest"/>
-	      <class name="com.iomovo.encode.OracleStorageVideoEncodeFunctionalityTest"/>
-	      <class name="com.iomovo.copytests.OneDriveToOtherDrivesCopyTest"/>
-	      <class name="com.iomovo.copytests.GoogleCloudToOtherDrivesCopyTest"/>
-	      <class name="com.iomovo.converttests.SharePointAudio_VideoConvertFunctionalityTest"/>
-	      <class name="com.iomovo.dashboardtests.HomePageTopPanelTest"/>
-	      <class name="com.iomovo.encode.FTPVideoEncodeFunctionalityTest"/>
-	      <class name="com.iomovo.copytests.DropBoxToOtherDrivesCopyTest"/>
-	      <class name="com.iomovo.movetests.BoxToIoHubMoveTest"/>
-	      <class name="com.iomovo.movetests.FTPToIoHubMoveTest"/>
-	      <class name="com.iomovo.copytests.FTPToOtherDrivesCopyTest"/>
-	      <class name="com.iomovo.dashboardtests.LoginPageTest"/>
-	      <class name="com.iomovo.movetests.GoogleCloudToIoHubMoveTest"/>
-	      <class name="com.iomovo.encode.GoogleCloudVideoEncodeFunctionalityTest"/>
-	      <class name="com.iomovo.converttests.SFTPAudio_VideoConvertFunctionalityTest"/>
-	      <class name="com.iomovo.copytests.BoxToOtherDrivesCopyTest"/>
-	      <class name="com.iomovo.movetests.DropBoxToIoHubMoveTest"/>
-	      <class name="com.iomovo.dashboardtests.HomePageCenterPanelTest"/>
-	      <class name="com.iomovo.movetests.OosDriveToIoHubMoveTest"/>
-	      <class name="com.iomovo.dashboardtests.ProfilePageTest"/>
-	      <class name="com.iomovo.encode.MSAzureVideoEncodeFunctionalityTest"/>
-	      <class name="com.iomovo.copytests.AzureToOtherDrivesCopyTest"/>
-	      <class name="com.iomovo.dashboardtests.IoCloudCenterPanelTest"/>
-	      <class name="com.iomovo.encode.OneDriveVideoEncodeFunctionalityTest"/>
-	      <class name="com.iomovo.copytests.Optimised_BoxToOtherDrivesCopyTest"/>
-	      <class name="com.iomovo.copytests.GoogleDriveToOtherDrivesCopyTest"/>
-	      <class name="com.iomovo.converttests.FTPAudio_VideoConvertFunctionalityTest"/>
-	      <class name="com.iomovo.movetests.OneDriveToIoHubMoveTest"/>
-	      <class name="com.iomovo.copytests.SharePointToOtherDrivesCopyTest"/>
-	      <class name="com.iomovo.encode.AWSS3VideoEncodeFunctionalityTest"/>
-	      <class name="com.iomovo.dashboardtests.HomePageRightPanelTest"/>
-	      <class name="com.iomovo.movetests.SharePointToIoHubMoveTest"/>
-	      <class name="com.iomovo.encode.DropBoxVideoEncodeFunctionalityTest"/>
+            <class name="com.iomovo.converttests.AWSS3Audio_VideoConvertFunctionalityTest"/>
+            <class name="com.iomovo.converttests.BoxAudio_VideoConvertFunctionalityTest"/>
+            <class name="com.iomovo.converttests.DropBoxAudio_VideoConvertFunctionalityTest"/>
+            <class name="com.iomovo.converttests.FTPAudio_VideoConvertFunctionalityTest"/>
+            <class name="com.iomovo.converttests.GoogleCloudAudio_VideoConvertFunctionalityTest"/>
+            <class name="com.iomovo.converttests.GoogleDriveAudio_VideoConvertFunctionalityTest"/>
+            <class name="com.iomovo.converttests.IoCloudAudio_VideoConvertFunctionalityTest"/>
+            <class name="com.iomovo.converttests.MSAzureAudio_VideoConvertFunctionalityTest"/>
+            <class name="com.iomovo.converttests.OneDriveAudio_VideoConvertFunctionalityTest"/>
+            <class name="com.iomovo.converttests.OracleStorageAudio_VideoConvertFunctionalityTest"/>
+            <class name="com.iomovo.converttests.SFTPAudio_VideoConvertFunctionalityTest"/>
+            <class name="com.iomovo.converttests.SharePointAudio_VideoConvertFunctionalityTest"/>
         </classes>
     </test>
+
+    <!-- Copy Functionality Tests -->
+    <test name="CopyTests">
+        <classes>
+            <class name="com.iomovo.copytests.AwsToOtherDrivesCopyTest"/>
+            <class name="com.iomovo.copytests.AzureToOtherDrivesCopyTest"/>
+            <class name="com.iomovo.copytests.BoxToOtherDrivesCopyTest"/>
+            <class name="com.iomovo.copytests.CopyRegressionTests"/>
+            <class name="com.iomovo.copytests.DropBoxToOtherDrivesCopyTest"/>
+            <class name="com.iomovo.copytests.FTPToOtherDrivesCopyTest"/>
+            <class name="com.iomovo.copytests.GoogleCloudToOtherDrivesCopyTest"/>
+            <class name="com.iomovo.copytests.GoogleDriveToOtherDrivesCopyTest"/>
+            <class name="com.iomovo.copytests.IoCloudToIoHubCopyTest"/>
+            <class name="com.iomovo.copytests.OneDriveToOtherDrivesCopyTest"/>
+            <class name="com.iomovo.copytests.OosToOtherDrivesCopyTest"/>
+            <class name="com.iomovo.copytests.Optimised_AwsDriveCopyFunctionalityTest"/>
+            <class name="com.iomovo.copytests.Optimised_AzureToOtherDrivesCopyTest"/>
+            <class name="com.iomovo.copytests.Optimised_BoxToOtherDrivesCopyTest"/>
+            <class name="com.iomovo.copytests.SFTPToOtherDrivesCopyTest"/>
+            <class name="com.iomovo.copytests.SharePointToOtherDrivesCopyTest"/>
+        </classes>
+    </test>
+
+    <!-- Dashboard Functionality Tests -->
+    <test name="DashboardTests">
+        <classes>
+            <class name="com.iomovo.dashboardtests.HomePageCenterPanelTest"/>
+            <class name="com.iomovo.dashboardtests.HomePageLeftPanelTest"/>
+            <class name="com.iomovo.dashboardtests.HomePageRightPanelTest"/>
+            <class name="com.iomovo.dashboardtests.HomePageTopPanelTest"/>
+            <class name="com.iomovo.dashboardtests.IoCloudCenterPanelTest"/>
+            <class name="com.iomovo.dashboardtests.LoginPageTest"/>
+            <class name="com.iomovo.dashboardtests.ProfilePageTest"/>
+        </classes>
+    </test>
+
+    <!-- Encode Functionality Tests -->
+    <test name="EncodeTests">
+        <classes>
+            <class name="com.iomovo.encode.AWSS3VideoEncodeFunctionalityTest"/>
+            <class name="com.iomovo.encode.BoxVideoEncodeFunctionalityTest"/>
+            <class name="com.iomovo.encode.DropBoxVideoEncodeFunctionalityTest"/>
+            <class name="com.iomovo.encode.FTPVideoEncodeFunctionalityTest"/>
+            <class name="com.iomovo.encode.GoogleCloudVideoEncodeFunctionalityTest"/>
+            <class name="com.iomovo.encode.GoogleDriveVideoEncodeFunctionalityTest"/>
+            <class name="com.iomovo.encode.IoCloudVideoEncodeFunctionalityTest"/>
+            <class name="com.iomovo.encode.MSAzureVideoEncodeFunctionalityTest"/>
+            <class name="com.iomovo.encode.OneDriveVideoEncodeFunctionalityTest"/>
+            <class name="com.iomovo.encode.OracleStorageVideoEncodeFunctionalityTest"/>
+            <class name="com.iomovo.encode.SFTPVideoEncodeFunctionalityTest"/>
+            <class name="com.iomovo.encode.SharePointVideoEncodeFunctionalityTest"/>
+        </classes>
+    </test>
+
+    <!-- IoPortal Functionality Tests -->
+    <test name="IoPortalTests">
+        <classes>
+            <class name="com.iomovo.ioportaltests.CreateIoPortalFunctionalityTests"/>
+        </classes>
+    </test>
+
+    <!-- Move Functionality Tests -->
+    <test name="MoveTests">
+        <classes>
+            <class name="com.iomovo.movetests.AwsToIoHubMoveTest"/>
+            <class name="com.iomovo.movetests.AzureToIoHubMoveTest"/>
+            <class name="com.iomovo.movetests.BoxToIoHubMoveTest"/>
+            <class name="com.iomovo.movetests.DropBoxToIoHubMoveTest"/>
+            <class name="com.iomovo.movetests.FTPToIoHubMoveTest"/>
+            <class name="com.iomovo.movetests.GoogleCloudToIoHubMoveTest"/>
+            <class name="com.iomovo.movetests.GoogleDriveToIoHubMoveTest"/>
+            <class name="com.iomovo.movetests.IoCloudToIoHubMoveTest"/>
+            <class name="com.iomovo.movetests.OneDriveToIoHubMoveTest"/>
+            <class name="com.iomovo.movetests.OosDriveToIoHubMoveTest"/>
+            <class name="com.iomovo.movetests.SFTPToIoHubMoveTest"/>
+            <class name="com.iomovo.movetests.SharePointToIoHubMoveTest"/>
+        </classes>
+    </test>
+
 </suite>

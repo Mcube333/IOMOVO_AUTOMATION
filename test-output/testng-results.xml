@@ -1,17 +1,23 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testng-results ignored="4" total="5" passed="1" failed="0" skipped="0">
+<testng-results ignored="8" total="9" passed="1" failed="0" skipped="0">
   <reporter-output>
   </reporter-output>
-  <suite started-at="2025-03-19T03:32:33 IST" name="Default suite" finished-at="2025-03-19T03:33:00 IST" duration-ms="26909">
+  <suite started-at="2025-03-22T05:16:27 IST" name="Default suite" finished-at="2025-03-22T05:16:49 IST" duration-ms="21974">
     <groups>
+      <group name="regression">
+        <method signature="LoginPageTest.verifyAllElementsArePresentInLoginPageTest()[pri:0, instance:com.iomovo.dashboardtests.LoginPageTest@239b0f9d]" name="verifyAllElementsArePresentInLoginPageTest" class="com.iomovo.dashboardtests.LoginPageTest"/>
+      </group> <!-- regression -->
+      <group name="sanity">
+        <method signature="LoginPageTest.verifyAllElementsArePresentInLoginPageTest()[pri:0, instance:com.iomovo.dashboardtests.LoginPageTest@239b0f9d]" name="verifyAllElementsArePresentInLoginPageTest" class="com.iomovo.dashboardtests.LoginPageTest"/>
+      </group> <!-- sanity -->
     </groups>
-    <test started-at="2025-03-19T03:32:33 IST" name="Default test" finished-at="2025-03-19T03:33:00 IST" duration-ms="26909">
+    <test started-at="2025-03-22T05:16:27 IST" name="Default test" finished-at="2025-03-22T05:16:49 IST" duration-ms="21974">
       <class name="com.iomovo.dashboardtests.LoginPageTest">
-        <test-method is-config="true" signature="beforeSuite()[pri:0, instance:com.iomovo.dashboardtests.LoginPageTest@1021f6c9]" started-at="2025-03-19T03:32:33 IST" name="beforeSuite" finished-at="2025-03-19T03:32:33 IST" duration-ms="354" status="PASS">
+        <test-method is-config="true" signature="beforeSuite()[pri:0, instance:com.iomovo.dashboardtests.LoginPageTest@239b0f9d]" started-at="2025-03-22T05:16:27 IST" name="beforeSuite" finished-at="2025-03-22T05:16:27 IST" duration-ms="191" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- beforeSuite -->
-        <test-method is-config="true" signature="testSetUp(java.lang.reflect.Method,java.lang.String,java.lang.String)[pri:0, instance:com.iomovo.dashboardtests.LoginPageTest@1021f6c9]" started-at="2025-03-19T03:32:33 IST" name="testSetUp" finished-at="2025-03-19T03:32:37 IST" duration-ms="4245" status="PASS">
+        <test-method is-config="true" signature="testSetUp(java.lang.reflect.Method,java.lang.String,java.lang.String)[pri:0, instance:com.iomovo.dashboardtests.LoginPageTest@239b0f9d]" started-at="2025-03-22T05:16:27 IST" name="testSetUp" finished-at="2025-03-22T05:16:29 IST" duration-ms="1870" status="PASS">
           <params>
             <param index="0">
               <value>
@@ -32,19 +38,31 @@
           <reporter-output>
           </reporter-output>
         </test-method> <!-- testSetUp -->
-        <test-method is-config="true" signature="setUp()[pri:0, instance:com.iomovo.dashboardtests.LoginPageTest@1021f6c9]" started-at="2025-03-19T03:32:37 IST" name="setUp" finished-at="2025-03-19T03:32:37 IST" duration-ms="6" status="PASS">
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- setUp -->
-        <test-method signature="verifyAllElementsArePresentInLoginPageTest()[pri:0, instance:com.iomovo.dashboardtests.LoginPageTest@1021f6c9]" started-at="2025-03-19T03:32:37 IST" name="verifyAllElementsArePresentInLoginPageTest" finished-at="2025-03-19T03:32:59 IST" duration-ms="21848" status="PASS">
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- verifyAllElementsArePresentInLoginPageTest -->
-        <test-method is-config="true" signature="tearDown(org.testng.ITestResult)[pri:0, instance:com.iomovo.dashboardtests.LoginPageTest@1021f6c9]" started-at="2025-03-19T03:32:59 IST" name="tearDown" finished-at="2025-03-19T03:33:00 IST" duration-ms="751" status="PASS">
+        <test-method is-config="true" signature="setUp(java.lang.String,java.lang.String)[pri:0, instance:com.iomovo.dashboardtests.LoginPageTest@239b0f9d]" started-at="2025-03-22T05:16:29 IST" name="setUp" finished-at="2025-03-22T05:16:29 IST" duration-ms="21" status="PASS">
           <params>
             <param index="0">
               <value>
-                <![CDATA[[TestResult name=verifyAllElementsArePresentInLoginPageTest status=SUCCESS method=LoginPageTest.verifyAllElementsArePresentInLoginPageTest()[pri:0, instance:com.iomovo.dashboardtests.LoginPageTest@1021f6c9] output={null}]]]>
+                <![CDATA[chrome]]>
+              </value>
+            </param>
+            <param index="1">
+              <value>
+                <![CDATA[windows]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- setUp -->
+        <test-method signature="verifyAllElementsArePresentInLoginPageTest()[pri:0, instance:com.iomovo.dashboardtests.LoginPageTest@239b0f9d]" started-at="2025-03-22T05:16:29 IST" name="verifyAllElementsArePresentInLoginPageTest" finished-at="2025-03-22T05:16:49 IST" duration-ms="19805" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- verifyAllElementsArePresentInLoginPageTest -->
+        <test-method is-config="true" signature="tearDown(org.testng.ITestResult)[pri:0, instance:com.iomovo.dashboardtests.LoginPageTest@239b0f9d]" started-at="2025-03-22T05:16:49 IST" name="tearDown" finished-at="2025-03-22T05:16:49 IST" duration-ms="248" status="PASS">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[[TestResult name=verifyAllElementsArePresentInLoginPageTest status=SUCCESS method=LoginPageTest.verifyAllElementsArePresentInLoginPageTest()[pri:0, instance:com.iomovo.dashboardtests.LoginPageTest@239b0f9d] output={null}]]]>
               </value>
             </param>
           </params>

@@ -1,29 +1,35 @@
 package com.iomovo.pagespackage.DashboardFunctionality;
 
 import static org.testng.Assert.assertTrue;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.support.ui.WebDriverWait;
 
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.support.PageFactory;
 import com.iomovo.basepackage.BaseClass;
 
 public class LoginPage extends BaseClass {
 
-	public LoginPage(WebDriver driver, WebDriverWait wait) {
-		BaseClass.tdriver.set(driver);  
-		BaseClass.wait.set(wait);
-	}
+    // Constructor that initializes elements using WebDriver from BaseClass
+    public LoginPage() {
+        WebDriver driver = getDriver(); // Fetch driver from BaseClass
 
-	public LoginPage() {
-		// Default constructor
-	}
+        if (driver == null) {
+            throw new IllegalStateException("❌ WebDriver is NULL in LoginPage. Check BaseClass initialization.");
+        }
 
-	private WebDriver getDriverInstance() {
-		WebDriver driver = tdriver.get();
-		if (driver == null) {
-			throw new IllegalStateException("❌ WebDriver is null in LoginPage. Ensure it is initialized in BaseTestClass.");
-		}
-		return driver;
-	}
+        PageFactory.initElements(driver, this);
+    }
+
+    /**
+     * Returns the WebDriver instance for the current thread.
+     */
+    public WebDriver getDriverInstance() {
+        WebDriver driver = getDriver(); // Always fetch from ThreadLocal
+
+        if (driver == null) {
+            throw new IllegalStateException("❌ WebDriver is NULL in LoginPage.");
+        }
+        return driver;
+    }
 
 	//Login Page Visible Elements Xpaths.
 	String tourSkipButton = "//button[@aria-label='Skip']";
@@ -235,7 +241,7 @@ public class LoginPage extends BaseClass {
 		}
 	}
 
-	public void login() throws Exception {
+	public void login_logout() throws Exception {
 		try {
 			WebDriver driver = getDriverInstance();
 			logConsoleOutputMessage("strUrl: " + strUrl);
@@ -278,6 +284,9 @@ public class LoginPage extends BaseClass {
 			} else {
 				logFailStepInExtentReport("Login Failed");
 			}
+			clickWebElement(signoutButtonLink);
+			explicitWaitInSeconds(5);
+			logPassStepInExtentReport("Sign Out Button Visible And Clicked Successfully");
 			explicitWaitInSeconds(5);
 		}
 		catch (Exception e) {

@@ -25,8 +25,8 @@ public class HomePageTopPanelTest extends BaseClass {
         if (driver == null) {
             throw new IllegalStateException("❌ WebDriver is null in HomePageTopPanelTest. Check BaseTestClass initialization.");
         }
-
-        loginPage = new LoginPage(driver, getWait());
+        
+        loginPage = new LoginPage(); // ✅ No need to pass driver, fetched internallyloginPage = new LoginPage(driver, getWait());
         topPanel = new HomePageTopPanel(driver, getWait());
 
         performLogin(); // Login before each test

@@ -21,7 +21,7 @@ public class SharePointAudio_VideoConvertFunctionalityTest extends BaseClass {
             throw new IllegalStateException("❌ WebDriver is null in test setup.");
         }
 
-        loginPage = new LoginPage(driver, getWait()); // ✅ Ensure proper initialization
+        loginPage = new LoginPage(); // ✅ No need to pass driver, fetched internally
         SharePoint = new SharePointAudio_VideoConvertFunctionality(driver, getWait()); // ✅ Ensure AWSS3 is initialized
     }
 	

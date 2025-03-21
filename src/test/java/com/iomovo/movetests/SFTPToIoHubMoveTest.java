@@ -25,7 +25,7 @@ public class SFTPToIoHubMoveTest extends BaseClass {
             throw new IllegalStateException("❌ WebDriver is null in DropBoxToIoHubMoveTest. Check BaseClass initialization.");
         }
 
-        loginPage = new LoginPage(driver, getWait());
+        loginPage = new LoginPage(); // ✅ No need to pass driver, fetched internally
         SFTP = new SftpDriveMoveFunctionality(driver, getWait());
 
         performLogin(); // ✅ Ensures user is logged in before each test

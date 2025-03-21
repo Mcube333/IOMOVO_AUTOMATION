@@ -3,15 +3,15 @@
 <suite name="Failed suite [Default suite]" guice-stage="DEVELOPMENT">
   <test thread-count="5" name="Default test(failed)">
     <classes>
-      <class name="com.iomovo.ioportaltests.CreateIoPortalFunctionalityTests">
+      <class name="com.iomovo.dashboardtests.LoginPageTest">
         <methods>
-          <include name="verifyCreatePortalFunctionality"/>
+          <include name="setUp"/>
+          <include name="verifyAllElementsArePresentInLoginPageTest"/>
           <include name="testSetUp"/>
           <include name="tearDown"/>
-          <include name="setUp"/>
           <include name="beforeSuite"/>
         </methods>
-      </class> <!-- com.iomovo.ioportaltests.CreateIoPortalFunctionalityTests -->
+      </class> <!-- com.iomovo.dashboardtests.LoginPageTest -->
     </classes>
   </test> <!-- Default test(failed) -->
 </suite> <!-- Failed suite [Default suite] -->

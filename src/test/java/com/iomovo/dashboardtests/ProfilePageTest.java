@@ -20,7 +20,7 @@ public class ProfilePageTest extends BaseClass {
         if (driver == null) {
             throw new IllegalStateException("❌ WebDriver is null in ProfilePageTest. Check BaseClass initialization.");
         }
-        loginPage = new LoginPage(driver, getWait());
+        loginPage = new LoginPage(); // ✅ No need to pass driver, fetched internally
         profilePage = new ProfilePage();
 
         performLogin(); // Perform login before each test

@@ -1,0 +1,27 @@
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite name="IOMOVO Sanity Suite" thread-count="3" parallel="tests">
+    
+    <listeners>
+        <listener class-name="com.iomovo.utilspackage.ExtentReportManager"/>
+    </listeners>
+    
+    <!-- Sanity Tests -->
+    <test name="SanityTests">
+        <groups>
+            <run>
+                <include name="sanity"/>  <!-- ✅ Include only "sanity" tests -->
+            </run>
+        </groups>
+        
+        
+        <classes>
+            <!-- Dashboard: Login functionality -->
+            <class name="com.iomovo.dashboardtests.LoginPageTest"/>
+            
+            <!-- Copy: Basic copy functionality -->
+            <class name="com.iomovo.copytests.AwsToOtherDrivesCopyTest"/>
+            
+        </classes>
+    </test>
+
+</suite>
