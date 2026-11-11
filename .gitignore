@@ -1,0 +1,21 @@
+# Build output
+target/
+
+# Test run artefacts
+test-output/
+ExtentReports/
+ScreenShots/
+logs/
+*.log
+
+# Drivers are managed by WebDriverManager
+Drivers/
+
+# IDE
+.settings/
+.classpath
+.project
+.idea/
+*.iml
+.vscode/
+.DS_Store
